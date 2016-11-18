@@ -133,7 +133,6 @@ IF (SYSTEMD_FOUND)
     add_definitions(-DHAVE_LIBSYSTEMD)
     list(APPEND OPTIONAL_LIBRARIES ${SYSTEMD_LIBRARIES})
 ENDIF (SYSTEMD_FOUND)
->>>>>>> v4.0.0
 
 ########################################################################
 # includes
