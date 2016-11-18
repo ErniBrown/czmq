@@ -7,6 +7,13 @@
 # Project setup
 ########################################################################
 cmake_minimum_required(VERSION 2.8)
+
+include("HunterGate.cmake")
+HunterGate(
+    URL "https://github.com/ruslo/hunter/archive/v0.16.30.tar.gz"
+    SHA1 "c5b159b48a3a842697f08fe2a72464adfd78a55d"
+)
+
 project(czmq)
 enable_language(C)
 enable_testing()
@@ -72,6 +79,7 @@ endif()
 ########################################################################
 # ZeroMQ depedency
 ########################################################################
+hunter_add_package(ZeroMQ)
 list(APPEND CMAKE_MODULE_PATH ${SOURCE_DIR})
 find_package(ZeroMQ REQUIRED)
 
