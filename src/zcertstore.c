@@ -1,4 +1,4 @@
-/*  =========================================================================
+﻿/*  =========================================================================
     zcertstore - work with CURVE security certificate stores
 
     Copyright (c) the Contributors as noted in the AUTHORS file.
@@ -46,7 +46,7 @@ struct _zcertstore_t {
     time_t modified;            //  Modified time of directory
     size_t count;               //  Number of certificates
     size_t cursize;             //  Total size of certificates
-    zhash_t *certs;             //  Loaded certificates
+    zhashx_t *certs;            //  Loaded certificates
 };
 
 
@@ -69,11 +69,15 @@ zcertstore_new (const char *location)
     if (!self)
         return NULL;
 
-    self->certs = zhash_new ();
+    self->certs = zhashx_new ();
     if (self->certs) {
-        zhash_set_destructor (self->certs, (czmq_destructor *) zcert_destroy);
+        zhashx_set_destructor (self->certs, (czmq_destructor *) zcert_destroy);
         if (location) {
             self->location = strdup (location);
+            if (!self->location) {
+                zcertstore_destroy (&self);
+                return NULL;
+            }
             s_load_certs_from_disk (self);
         }
     }
@@ -88,11 +92,12 @@ zcertstore_new (const char *location)
 static void
 s_load_certs_from_disk (zcertstore_t *self)
 {
-    zhash_purge (self->certs);
+    zhashx_purge (self->certs);
     zdir_t *dir = zdir_new (self->location, NULL);
     if (dir) {
         //  Load all certificates including those in subdirectories
         zfile_t **filelist = zdir_flatten (dir);
+        assert (filelist);
         zrex_t *rex = zrex_new ("_secret$");
         assert (rex);
 
@@ -101,8 +106,8 @@ s_load_certs_from_disk (zcertstore_t *self)
             zfile_t *file = filelist [index];
             if (!file)
                 break;      //  End of list
-            if (  zfile_is_regular (file)
-               && !zrex_matches (rex, zfile_filename (file, NULL))) {
+            if (zfile_is_regular (file)
+            && !zrex_matches (rex, zfile_filename (file, NULL))) {
                 zcert_t *cert = zcert_load (zfile_filename (file, NULL));
                 if (cert)
                     zcertstore_insert (self, &cert);
@@ -131,7 +136,7 @@ zcertstore_destroy (zcertstore_t **self_p)
     assert (self_p);
     if (*self_p) {
         zcertstore_t *self = *self_p;
-        zhash_destroy (&self->certs);
+        zhashx_destroy (&self->certs);
         free (self->location);
         free (self);
         *self_p = NULL;
@@ -149,15 +154,15 @@ zcertstore_lookup (zcertstore_t *self, const char *public_key)
     //  If directory has changed, reload all certificates
     if (self->location) {
         zdir_t *dir = zdir_new (self->location, NULL);
-        if (  dir
-           && (  self->modified != zdir_modified (dir)
-              || self->count != zdir_count (dir)
-              || self->cursize != zdir_cursize (dir))) {
+        if (dir
+        && (self->modified != zdir_modified (dir)
+         || self->count != zdir_count (dir)
+         || self->cursize != zdir_cursize (dir)))
             s_load_certs_from_disk (self);
-        }
+            
         zdir_destroy (&dir);
     }
-    return (zcert_t *) zhash_lookup (self->certs, public_key);
+    return (zcert_t *) zhashx_lookup (self->certs, public_key);
 }
 
 
@@ -169,7 +174,7 @@ zcertstore_lookup (zcertstore_t *self, const char *public_key)
 void
 zcertstore_insert (zcertstore_t *self, zcert_t **cert_p)
 {
-    int rc = zhash_insert (self->certs, zcert_public_txt (*cert_p), *cert_p);
+    int rc = zhashx_insert (self->certs, zcert_public_txt (*cert_p), *cert_p);
     assert (rc == 0);
     *cert_p = NULL;             //  We own this now
 }
@@ -186,10 +191,10 @@ zcertstore_print (zcertstore_t *self)
     else
         zsys_info ("zcertstore: certificates in memory");
 
-    zcert_t *cert = (zcert_t *) zhash_first (self->certs);
+    zcert_t *cert = (zcert_t *) zhashx_first (self->certs);
     while (cert) {
         zcert_print (cert);
-        cert = (zcert_t *) zhash_next (self->certs);
+        cert = (zcert_t *) zhashx_next (self->certs);
     }
 }
 
@@ -206,10 +211,10 @@ zcertstore_fprint (zcertstore_t *self, FILE *file)
     else
         fprintf (file, "Certificate store\n");
 
-    zcert_t *cert = (zcert_t *) zhash_first (self->certs);
+    zcert_t *cert = (zcert_t *) zhashx_first (self->certs);
     while (cert) {
         zcert_fprint (cert, file);
-        cert = (zcert_t *) zhash_next (self->certs);
+        cert = (zcert_t *) zhashx_next (self->certs);
     }
 }
 

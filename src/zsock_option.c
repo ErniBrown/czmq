@@ -75,7 +75,7 @@ zsock_set_router_handover (void *self, int router_handover)
     assert (self);
 #   if defined (ZMQ_ROUTER_HANDOVER)
     if (zsock_type (self) != ZMQ_ROUTER) {
-        printf ("ZMQ_ROUTER_HANDOVER is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_ROUTER_HANDOVER is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_ROUTER_HANDOVER, &router_handover, sizeof (int));
@@ -94,7 +94,7 @@ zsock_set_router_mandatory (void *self, int router_mandatory)
     assert (self);
 #   if defined (ZMQ_ROUTER_MANDATORY)
     if (zsock_type (self) != ZMQ_ROUTER) {
-        printf ("ZMQ_ROUTER_MANDATORY is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_ROUTER_MANDATORY is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_ROUTER_MANDATORY, &router_mandatory, sizeof (int));
@@ -112,10 +112,10 @@ zsock_set_probe_router (void *self, int probe_router)
 {
     assert (self);
 #   if defined (ZMQ_PROBE_ROUTER)
-    if (  zsock_type (self) != ZMQ_ROUTER
-       && zsock_type (self) != ZMQ_DEALER
-       && zsock_type (self) != ZMQ_REQ) {
-        printf ("ZMQ_PROBE_ROUTER is not valid on %s sockets\n", zsock_type_str (self));
+    if (zsock_type (self) != ZMQ_ROUTER
+    &&  zsock_type (self) != ZMQ_DEALER
+    &&  zsock_type (self) != ZMQ_REQ) {
+        printf ("ZMQ_PROBE_ROUTER is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_PROBE_ROUTER, &probe_router, sizeof (int));
@@ -134,7 +134,7 @@ zsock_set_req_relaxed (void *self, int req_relaxed)
     assert (self);
 #   if defined (ZMQ_REQ_RELAXED)
     if (zsock_type (self) != ZMQ_REQ) {
-        printf ("ZMQ_REQ_RELAXED is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_REQ_RELAXED is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_REQ_RELAXED, &req_relaxed, sizeof (int));
@@ -153,7 +153,7 @@ zsock_set_req_correlate (void *self, int req_correlate)
     assert (self);
 #   if defined (ZMQ_REQ_CORRELATE)
     if (zsock_type (self) != ZMQ_REQ) {
-        printf ("ZMQ_REQ_CORRELATE is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_REQ_CORRELATE is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_REQ_CORRELATE, &req_correlate, sizeof (int));
@@ -171,12 +171,12 @@ zsock_set_conflate (void *self, int conflate)
 {
     assert (self);
 #   if defined (ZMQ_CONFLATE)
-    if (  zsock_type (self) != ZMQ_PUSH
-       && zsock_type (self) != ZMQ_PULL
-       && zsock_type (self) != ZMQ_PUB
-       && zsock_type (self) != ZMQ_SUB
-       && zsock_type (self) != ZMQ_DEALER) {
-        printf ("ZMQ_CONFLATE is not valid on %s sockets\n", zsock_type_str (self));
+    if (zsock_type (self) != ZMQ_PUSH
+    &&  zsock_type (self) != ZMQ_PULL
+    &&  zsock_type (self) != ZMQ_PUB
+    &&  zsock_type (self) != ZMQ_SUB
+    &&  zsock_type (self) != ZMQ_DEALER) {
+        printf ("ZMQ_CONFLATE is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_CONFLATE, &conflate, sizeof (int));
@@ -617,9 +617,7 @@ zsock_set_gssapi_service_principal (void *self, const char * gssapi_service_prin
 {
     assert (self);
 #   if defined (ZMQ_GSSAPI_SERVICE_PRINCIPAL)
-    int rc =
-        zmq_setsockopt (zsock_resolve (self), ZMQ_GSSAPI_SERVICE_PRINCIPAL, gssapi_service_principal,
-                        strlen (gssapi_service_principal));
+    int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_GSSAPI_SERVICE_PRINCIPAL, gssapi_service_principal, strlen (gssapi_service_principal));
     assert (rc == 0 || zmq_errno () == ETERM);
 #   endif
 }
@@ -719,7 +717,7 @@ zsock_set_router_raw (void *self, int router_raw)
     assert (self);
 #   if defined (ZMQ_ROUTER_RAW)
     if (zsock_type (self) != ZMQ_ROUTER) {
-        printf ("ZMQ_ROUTER_RAW is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_ROUTER_RAW is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_ROUTER_RAW, &router_raw, sizeof (int));
@@ -904,7 +902,7 @@ zsock_set_subscribe (void *self, const char * subscribe)
     assert (self);
 #   if defined (ZMQ_SUBSCRIBE)
     if (zsock_type (self) != ZMQ_SUB) {
-        printf ("ZMQ_SUBSCRIBE is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_SUBSCRIBE is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_SUBSCRIBE, subscribe, strlen (subscribe));
@@ -923,7 +921,7 @@ zsock_set_unsubscribe (void *self, const char * unsubscribe)
     assert (self);
 #   if defined (ZMQ_UNSUBSCRIBE)
     if (zsock_type (self) != ZMQ_SUB) {
-        printf ("ZMQ_UNSUBSCRIBE is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_UNSUBSCRIBE is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_UNSUBSCRIBE, unsubscribe, strlen (unsubscribe));
@@ -941,11 +939,11 @@ zsock_set_identity (void *self, const char * identity)
 {
     assert (self);
 #   if defined (ZMQ_IDENTITY)
-    if (  zsock_type (self) != ZMQ_REQ
-       && zsock_type (self) != ZMQ_REP
-       && zsock_type (self) != ZMQ_DEALER
-       && zsock_type (self) != ZMQ_ROUTER) {
-        printf ("ZMQ_IDENTITY is not valid on %s sockets\n", zsock_type_str (self));
+    if (zsock_type (self) != ZMQ_REQ
+    &&  zsock_type (self) != ZMQ_REP
+    &&  zsock_type (self) != ZMQ_DEALER
+    &&  zsock_type (self) != ZMQ_ROUTER) {
+        printf ("ZMQ_IDENTITY is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_IDENTITY, identity, strlen (identity));
@@ -1379,7 +1377,7 @@ zsock_set_xpub_verbose (void *self, int xpub_verbose)
     assert (self);
 #   if defined (ZMQ_XPUB_VERBOSE)
     if (zsock_type (self) != ZMQ_XPUB) {
-        printf ("ZMQ_XPUB_VERBOSE is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_XPUB_VERBOSE is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_XPUB_VERBOSE, &xpub_verbose, sizeof (int));
@@ -1575,13 +1573,13 @@ zsock_rcvmore (void *self)
 //  Return socket ZMQ_FD value
 //  *** GENERATED SOURCE CODE, DO NOT EDIT, SEE INSTRUCTIONS AT START ***
 
-int
+SOCKET
 zsock_fd (void *self)
 {
     assert (self);
 #   if defined (ZMQ_FD)
-    int fd;
-    size_t option_len = sizeof (int);
+    SOCKET fd;
+    size_t option_len = sizeof (SOCKET);
     zmq_getsockopt (zsock_resolve (self), ZMQ_FD, &fd, &option_len);
     return fd;
 #   else
@@ -1638,7 +1636,7 @@ zsock_set_router_raw (void *self, int router_raw)
     assert (self);
 #   if defined (ZMQ_ROUTER_RAW)
     if (zsock_type (self) != ZMQ_ROUTER) {
-        printf ("ZMQ_ROUTER_RAW is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_ROUTER_RAW is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_ROUTER_RAW, &router_raw, sizeof (int));
@@ -1823,7 +1821,7 @@ zsock_set_subscribe (void *self, const char * subscribe)
     assert (self);
 #   if defined (ZMQ_SUBSCRIBE)
     if (zsock_type (self) != ZMQ_SUB) {
-        printf ("ZMQ_SUBSCRIBE is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_SUBSCRIBE is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_SUBSCRIBE, subscribe, strlen (subscribe));
@@ -1842,7 +1840,7 @@ zsock_set_unsubscribe (void *self, const char * unsubscribe)
     assert (self);
 #   if defined (ZMQ_UNSUBSCRIBE)
     if (zsock_type (self) != ZMQ_SUB) {
-        printf ("ZMQ_UNSUBSCRIBE is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_UNSUBSCRIBE is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_UNSUBSCRIBE, unsubscribe, strlen (unsubscribe));
@@ -1860,11 +1858,11 @@ zsock_set_identity (void *self, const char * identity)
 {
     assert (self);
 #   if defined (ZMQ_IDENTITY)
-    if (  zsock_type (self) != ZMQ_REQ
-       && zsock_type (self) != ZMQ_REP
-       && zsock_type (self) != ZMQ_DEALER
-       && zsock_type (self) != ZMQ_ROUTER) {
-        printf ("ZMQ_IDENTITY is not valid on %s sockets\n", zsock_type_str (self));
+    if (zsock_type (self) != ZMQ_REQ
+    &&  zsock_type (self) != ZMQ_REP
+    &&  zsock_type (self) != ZMQ_DEALER
+    &&  zsock_type (self) != ZMQ_ROUTER) {
+        printf ("ZMQ_IDENTITY is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_IDENTITY, identity, strlen (identity));
@@ -2298,7 +2296,7 @@ zsock_set_xpub_verbose (void *self, int xpub_verbose)
     assert (self);
 #   if defined (ZMQ_XPUB_VERBOSE)
     if (zsock_type (self) != ZMQ_XPUB) {
-        printf ("ZMQ_XPUB_VERBOSE is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_XPUB_VERBOSE is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_XPUB_VERBOSE, &xpub_verbose, sizeof (int));
@@ -2494,13 +2492,13 @@ zsock_rcvmore (void *self)
 //  Return socket ZMQ_FD value
 //  *** GENERATED SOURCE CODE, DO NOT EDIT, SEE INSTRUCTIONS AT START ***
 
-int
+SOCKET
 zsock_fd (void *self)
 {
     assert (self);
 #   if defined (ZMQ_FD)
-    int fd;
-    size_t option_len = sizeof (int);
+    SOCKET fd;
+    size_t option_len = sizeof (SOCKET);
     zmq_getsockopt (zsock_resolve (self), ZMQ_FD, &fd, &option_len);
     return fd;
 #   else
@@ -3098,7 +3096,7 @@ zsock_set_subscribe (void *self, const char * subscribe)
     assert (self);
 #   if defined (ZMQ_SUBSCRIBE)
     if (zsock_type (self) != ZMQ_SUB) {
-        printf ("ZMQ_SUBSCRIBE is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_SUBSCRIBE is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_SUBSCRIBE, subscribe, strlen (subscribe));
@@ -3117,7 +3115,7 @@ zsock_set_unsubscribe (void *self, const char * unsubscribe)
     assert (self);
 #   if defined (ZMQ_UNSUBSCRIBE)
     if (zsock_type (self) != ZMQ_SUB) {
-        printf ("ZMQ_UNSUBSCRIBE is not valid on %s sockets\n", zsock_type_str (self));
+        printf ("ZMQ_UNSUBSCRIBE is not valid on %s sockets\n", zsys_sockname (zsock_type (self)));
         assert (false);
     }
     int rc = zmq_setsockopt (zsock_resolve (self), ZMQ_UNSUBSCRIBE, unsubscribe, strlen (unsubscribe));
@@ -3166,13 +3164,13 @@ zsock_rcvmore (void *self)
 //  Return socket ZMQ_FD value
 //  *** GENERATED SOURCE CODE, DO NOT EDIT, SEE INSTRUCTIONS AT START ***
 
-int
+SOCKET
 zsock_fd (void *self)
 {
     assert (self);
 #   if defined (ZMQ_FD)
-    int fd;
-    size_t option_len = sizeof (int);
+    SOCKET fd;
+    size_t option_len = sizeof (SOCKET);
     zmq_getsockopt (zsock_resolve (self), ZMQ_FD, &fd, &option_len);
     return fd;
 #   else

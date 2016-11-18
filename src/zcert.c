@@ -222,12 +222,12 @@ zcert_load (const char *filename)
 
     zcert_t *self = NULL;
     if (root) {
-        char *public_text = zconfig_resolve (root, "/curve/public-key", NULL);
+        char *public_text = zconfig_get (root, "/curve/public-key", NULL);
         if (public_text && strlen (public_text) == 40) {
             byte public_key [32] = { 0 };
             byte secret_key [32] = { 0 };
 #if (ZMQ_VERSION_MAJOR == 4)
-            char *secret_text = zconfig_resolve (root, "/curve/secret-key", NULL);
+            char *secret_text = zconfig_get (root, "/curve/secret-key", NULL);
             zmq_z85_decode (public_key, public_text);
             if (secret_text && strlen (secret_text) == 40)
                 zmq_z85_decode (secret_key, secret_text);
@@ -261,7 +261,7 @@ s_save_metadata_all (zcert_t *self)
 
     char *value = (char *) zhash_first (self->metadata);
     while (value) {
-        zconfig_t *item = zconfig_new ((char *) zhash_cursor (self->metadata), section);
+        zconfig_t *item = zconfig_new (zhash_cursor (self->metadata), section);
         assert (item);
         zconfig_set_value (item, "%s", value);
         value = (char *) zhash_next (self->metadata);
@@ -349,8 +349,8 @@ zcert_apply (zcert_t *self, void *zocket)
 #if (ZMQ_VERSION_MAJOR == 4)
     void *handle = zsock_resolve (zocket);
     if (zsys_has_curve ()) {
-        zsocket_set_curve_secretkey_bin (handle, self->secret_key);
-        zsocket_set_curve_publickey_bin (handle, self->public_key);
+        zsock_set_curve_secretkey_bin (handle, self->secret_key);
+        zsock_set_curve_publickey_bin (handle, self->public_key);
     }
 #endif
 }
@@ -425,14 +425,14 @@ zcert_fprint (zcert_t *self, FILE *file)
 
     char *value = (char *) zhash_first (self->metadata);
     while (value) {
-        fprintf (file, "    %s = \"%s\"\n",
-                 (char *) zhash_cursor (self->metadata), value);
+        fprintf (file, "    %s = \"%s\"\n", zhash_cursor (self->metadata), value);
         value = (char *) zhash_next (self->metadata);
     }
     fprintf (file, "curve\n");
     fprintf (file, "    public-key = \"%s\"\n", self->public_txt);
     fprintf (file, "    secret-key = \"%s\"\n", self->secret_txt);
 }
+
 
 //  --------------------------------------------------------------------------
 //  Selftest
@@ -494,4 +494,3 @@ zcert_test (bool verbose)
 
     printf ("OK\n");
 }
-

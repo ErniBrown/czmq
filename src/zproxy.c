@@ -1,4 +1,4 @@
-/*  =========================================================================
+﻿/*  =========================================================================
     zproxy - run a steerable proxy in the background
 
     Copyright (c) the Contributors as noted in the AUTHORS file.
@@ -97,9 +97,11 @@ static void
 s_self_configure (self_t *self, zsock_t **sock_p, zmsg_t *request, char *name)
 {
     char *type_name = zmsg_popstr (request);
+    assert (type_name);
     char *endpoints = zmsg_popstr (request);
+    assert (endpoints);
     if (self->verbose)
-        zsys_info ("zmonitor: - %s type=%s attach=%s", name, type_name, endpoints);
+        zsys_info ("zproxy: - %s type=%s attach=%s", name, type_name, endpoints);
     assert (*sock_p == NULL);
     *sock_p = s_create_socket (type_name, endpoints);
     assert (*sock_p);
@@ -121,6 +123,7 @@ s_self_handle_pipe (self_t *self)
         return -1;                  //  Interrupted
 
     char *command = zmsg_popstr (request);
+    assert (command);
     if (self->verbose)
         zsys_info ("zproxy: API command=%s", command);
 
@@ -138,6 +141,7 @@ s_self_handle_pipe (self_t *self)
         self->capture = zsock_new (ZMQ_PUSH);
         assert (self->capture);
         char *endpoint = zmsg_popstr (request);
+        assert (endpoint);
         int rc = zsock_connect (self->capture, "%s", endpoint);
         assert (rc == 0);
         zstr_free (&endpoint);
@@ -186,15 +190,14 @@ s_self_switch (self_t *self, zsock_t *input, zsock_t *output)
     //  We use the low-level libzmq API for best performance
     void *zmq_input = zsock_resolve (input);
     void *zmq_output = zsock_resolve (output);
-    void *zmq_capture = self->capture ? zsock_resolve (self->capture) : NULL;
+    void *zmq_capture = self->capture? zsock_resolve (self->capture): NULL;
 
     zmq_msg_t msg;
     zmq_msg_init (&msg);
-    if (zmq_recvmsg (zmq_input, &msg, 0) == -1)
-        return;                 //  Nothing to do, probably interrupted
-
     while (true) {
-        int send_flags = zsocket_rcvmore (zmq_input) ? ZMQ_SNDMORE : 0;
+        if (zmq_recvmsg (zmq_input, &msg, ZMQ_DONTWAIT) == -1)
+            break;      //  Presumably EAGAIN
+        int send_flags = zsock_rcvmore (zmq_input)? ZMQ_SNDMORE: 0;
         if (zmq_capture) {
             zmq_msg_t dup;
             zmq_msg_init (&dup);
@@ -206,8 +209,6 @@ s_self_switch (self_t *self, zsock_t *input, zsock_t *output)
             zmq_msg_close (&msg);
             break;
         }
-        if (zmq_recvmsg (zmq_input, &msg, ZMQ_DONTWAIT) == -1)
-            break;      //  Presumably EAGAIN
     }
 }
 

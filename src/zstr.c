@@ -1,4 +1,4 @@
-/*  =========================================================================
+﻿/*  =========================================================================
     zstr - sending and receiving strings
 
     Copyright (c) the Contributors as noted in the AUTHORS file.
@@ -38,7 +38,7 @@ s_send_string (void *dest, bool more, char *string)
     assert (dest);
     void *handle = zsock_resolve (dest);
 
-    int len = strlen (string);
+    size_t len = strlen (string);
     zmq_msg_t message;
     zmq_msg_init_size (&message, len);
     memcpy (zmq_msg_data (&message), string, len);
@@ -69,9 +69,11 @@ zstr_recv (void *source)
 
     size_t size = zmq_msg_size (&message);
     char *string = (char *) malloc (size + 1);
-    memcpy (string, zmq_msg_data (&message), size);
+    if (string) {
+        memcpy (string, zmq_msg_data (&message), size);
+        string [size] = 0;
+    }
     zmq_msg_close (&message);
-    string [size] = 0;
     return string;
 }
 
@@ -92,7 +94,8 @@ zstr_send (void *dest, const char *string)
 
 //  --------------------------------------------------------------------------
 //  Send a C string to a socket, as zstr_send(), with a MORE flag, so that
-//  you can send further strings in the same multi-part message.
+//  you can send further strings in the same multi-part message. String
+//  may be NULL, which is sent as "".
 
 int
 zstr_sendm (void *dest, const char *string)
@@ -117,6 +120,9 @@ zstr_sendf (void *dest, const char *format, ...)
     va_list argptr;
     va_start (argptr, format);
     char *string = zsys_vprintf (format, argptr);
+    if (!string)
+        return -1;
+
     va_end (argptr);
 
     int rc = s_send_string (dest, false, string);
@@ -139,6 +145,9 @@ zstr_sendfm (void *dest, const char *format, ...)
     va_list argptr;
     va_start (argptr, format);
     char *string = zsys_vprintf (format, argptr);
+    if (!string)
+        return -1;
+
     va_end (argptr);
 
     int rc = s_send_string (dest, true, string);
@@ -187,15 +196,22 @@ zstr_recvx (void *source, char **string_p, ...)
     if (!msg)
         return -1;
 
+    //  Filter a signal that may come from a dying actor
+    if (zmsg_signal (msg) >= 0) {
+        zmsg_destroy (&msg);
+        return -1;
+    }
+    int count = 0;
     va_list args;
     va_start (args, string_p);
     while (string_p) {
         *string_p = zmsg_popstr (msg);
         string_p = va_arg (args, char **);
+        count++;
     }
     va_end (args);
     zmsg_destroy (&msg);
-    return 0;
+    return count;
 }
 
 
@@ -232,9 +248,11 @@ zstr_recv_nowait (void *dest)
 
     size_t size = zmq_msg_size (&message);
     char *string = (char *) malloc (size + 1);
-    memcpy (string, zmq_msg_data (&message), size);
+    if (string) {
+        memcpy (string, zmq_msg_data (&message), size);
+        string [size] = 0;
+    }
     zmq_msg_close (&message);
-    string [size] = 0;
     return string;
 }
 

@@ -67,8 +67,8 @@ zsocket_bind (void *self, const char *format, ...)
     va_end (argptr);
 
     //  Port must be at end of endpoint
-    if (  endpoint [endpoint_size - 2] == ':'
-       && endpoint [endpoint_size - 1] == '*') {
+    if (endpoint [endpoint_size - 2] == ':'
+    &&  endpoint [endpoint_size - 1] == '*') {
         int port = ZSOCKET_DYNFROM;
         while (port <= ZSOCKET_DYNTO) {
             //  Try to bind on the next plausible port
@@ -145,6 +145,7 @@ zsocket_disconnect (void *self, const char *format, ...)
     return -1;
 #endif
 }
+
 
 //  --------------------------------------------------------------------------
 //  Poll for input events on the socket. Returns true if there is input
@@ -253,7 +254,7 @@ zsocket_test (bool verbose)
     assert (ctx);
 
     //  Create a detached thread, let it run
-    char *interf = "*";
+    char *interf = "127.0.0.1";
     char *domain = "localhost";
     int service = 5560;
 

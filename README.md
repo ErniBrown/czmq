@@ -22,66 +22,65 @@
 
 **<a href="#toc3-122">Use from Other Languages</a>**
 
-**<a href="#toc3-135">API v3 Summary</a>**
-&emsp;<a href="#toc4-140">zactor - simple actor framework</a>
-&emsp;<a href="#toc4-207">zauth - authentication for ZeroMQ security mechanisms</a>
-&emsp;<a href="#toc4-420">zbeacon - LAN discovery and presence</a>
-&emsp;<a href="#toc4-616">zcert - work with CURVE security certificates</a>
-&emsp;<a href="#toc4-736">zcertstore - work with CURVE security certificate stores</a>
-&emsp;<a href="#toc4-835">zchunk - work with memory chunks</a>
-&emsp;<a href="#toc4-1014">zclock - millisecond clocks and delays</a>
-&emsp;<a href="#toc4-1060">zconfig - work with config files written in rfc.zeromq.org/spec:4/ZPL.</a>
-&emsp;<a href="#toc4-1233">zdigest - provides hashing functions (SHA-1 at present)</a>
-&emsp;<a href="#toc4-1296">zdir - work with file-system directories</a>
-&emsp;<a href="#toc4-1405">zdir_patch - work with directory patches</a>
-&emsp;<a href="#toc4-1470">zfile - provides methods to work with files in a portable fashion.</a>
-&emsp;<a href="#toc4-1703">zframe - working with single message frames</a>
-&emsp;<a href="#toc4-1807">zgossip - decentralized configuration management</a>
-&emsp;<a href="#toc4-2002">zhash - generic type-free hash container</a>
-&emsp;<a href="#toc4-2382">ziflist - List of network interfaces available on system</a>
-&emsp;<a href="#toc4-2453">zlist - generic type-free list container</a>
-&emsp;<a href="#toc4-2673">zloop - event-driven reactor</a>
-&emsp;<a href="#toc4-2798">zmonitor - socket event monitor</a>
-&emsp;<a href="#toc4-2902">zmsg - working with multipart messages</a>
-&emsp;<a href="#toc4-3069">zpoller - trivial socket poller class</a>
-&emsp;<a href="#toc4-3182">zproxy - run a steerable proxy in the background</a>
-&emsp;<a href="#toc4-3328">zrex - work with regular expressions</a>
-&emsp;<a href="#toc4-3419">zring - generic type-free doubly linked ring container</a>
-&emsp;<a href="#toc4-3677">zsock - high-level socket API that hides libzmq contexts and sockets</a>
-&emsp;<a href="#toc4-3939">zsock_option - get/set ØMQ socket options</a>
-&emsp;<a href="#toc4-4930">zstr - sending and receiving strings</a>
-&emsp;<a href="#toc4-5008">zsys - system-level methods</a>
-&emsp;<a href="#toc4-5419">zuuid - UUID support class</a>
+**<a href="#toc3-136">API v3 Summary</a>**
+&emsp;<a href="#toc4-141">zactor - simple actor framework</a>
+&emsp;<a href="#toc4-214">zauth - authentication for ZeroMQ security mechanisms</a>
+&emsp;<a href="#toc4-427">zbeacon - LAN discovery and presence</a>
+&emsp;<a href="#toc4-611">zcert - work with CURVE security certificates</a>
+&emsp;<a href="#toc4-772">zcertstore - work with CURVE security certificate stores</a>
+&emsp;<a href="#toc4-871">zchunk - work with memory chunks</a>
+&emsp;<a href="#toc4-1056">zclock - millisecond clocks and delays</a>
+&emsp;<a href="#toc4-1114">zconfig - work with config files written in rfc.zeromq.org/spec:4/ZPL.</a>
+&emsp;<a href="#toc4-1364">zdigest - provides hashing functions (SHA-1 at present)</a>
+&emsp;<a href="#toc4-1427">zdir - work with file-system directories</a>
+&emsp;<a href="#toc4-1537">zdir_patch - work with directory patches</a>
+&emsp;<a href="#toc4-1603">zfile - provides methods to work with files in a portable fashion.</a>
+&emsp;<a href="#toc4-1854">zframe - working with single message frames</a>
+&emsp;<a href="#toc4-2026">zgossip - decentralized configuration management</a>
+&emsp;<a href="#toc4-2217">zhash - simple generic hash container</a>
+&emsp;<a href="#toc4-2545">ziflist - List of network interfaces available on system</a>
+&emsp;<a href="#toc4-2617">zlist - simple generic list container</a>
+&emsp;<a href="#toc4-2840">zloop - event-driven reactor</a>
+&emsp;<a href="#toc4-3039">zmonitor - socket event monitor</a>
+&emsp;<a href="#toc4-3143">zmsg - working with multipart messages</a>
+&emsp;<a href="#toc4-3560">zpoller - trivial socket poller class</a>
+&emsp;<a href="#toc4-3691">zproxy - run a steerable proxy in the background</a>
+&emsp;<a href="#toc4-3837">zrex - work with regular expressions</a>
+&emsp;<a href="#toc4-3930">zsock - high-level socket API that hides libzmq contexts and sockets</a>
+&emsp;<a href="#toc4-4456">zsock_option - get/set ØMQ socket options</a>
+&emsp;<a href="#toc4-5447">zstr - sending and receiving strings</a>
+&emsp;<a href="#toc4-5551">zsys - system-level methods</a>
+&emsp;<a href="#toc4-5987">zuuid - UUID support class</a>
 
-**<a href="#toc3-5503">API v2 Summary</a>**
-&emsp;<a href="#toc4-5508">zauth_v2 - authentication for ZeroMQ servers (deprecated)</a>
-&emsp;<a href="#toc4-5700">zctx - working with ØMQ contexts (deprecated)</a>
-&emsp;<a href="#toc4-5828">zmonitor_v2 - socket event monitor (deprecated)</a>
-&emsp;<a href="#toc4-5912">zmutex - working with mutexes (deprecated)</a>
-&emsp;<a href="#toc4-5956">zproxy_v2 - run a steerable proxy in the background (deprecated)</a>
-&emsp;<a href="#toc4-6064">zsocket - working with ØMQ sockets (deprecated)</a>
-&emsp;<a href="#toc4-6228">zsockopt - get/set ØMQ socket options (deprecated)</a>
-&emsp;<a href="#toc4-7220">zthread - working with system threads (deprecated)</a>
+**<a href="#toc3-6086">API v2 Summary</a>**
+&emsp;<a href="#toc4-6091">zauth_v2 - authentication for ZeroMQ servers (deprecated)</a>
+&emsp;<a href="#toc4-6283">zctx - working with ØMQ contexts (deprecated)</a>
+&emsp;<a href="#toc4-6411">zmonitor_v2 - socket event monitor (deprecated)</a>
+&emsp;<a href="#toc4-6495">zmutex - working with mutexes (deprecated)</a>
+&emsp;<a href="#toc4-6540">zproxy_v2 - run a steerable proxy in the background (deprecated)</a>
+&emsp;<a href="#toc4-6648">zsocket - working with ØMQ sockets (deprecated)</a>
+&emsp;<a href="#toc4-6813">zsockopt - get/set ØMQ socket options (deprecated)</a>
+&emsp;<a href="#toc4-7805">zthread - working with system threads (deprecated)</a>
 
-**<a href="#toc2-7337">Error Handling</a>**
+**<a href="#toc2-7922">Error Handling</a>**
 
-**<a href="#toc2-7354">CZMQ Actors</a>**
+**<a href="#toc2-7939">CZMQ Actors</a>**
 
-**<a href="#toc2-7500">Under the Hood</a>**
+**<a href="#toc2-8085">Under the Hood</a>**
 
-**<a href="#toc3-7503">Adding a New Class</a>**
+**<a href="#toc3-8088">Adding a New Class</a>**
 
-**<a href="#toc3-7515">Documentation</a>**
+**<a href="#toc3-8100">Documentation</a>**
 
-**<a href="#toc3-7554">Development</a>**
+**<a href="#toc3-8139">Development</a>**
 
-**<a href="#toc3-7564">Porting CZMQ</a>**
+**<a href="#toc3-8149">Porting CZMQ</a>**
 
-**<a href="#toc3-7575">Hints to Contributors</a>**
+**<a href="#toc3-8160">Hints to Contributors</a>**
 
-**<a href="#toc3-7587">Code Generation</a>**
+**<a href="#toc3-8171">Code Generation</a>**
 
-**<a href="#toc3-7592">This Document</a>**
+**<a href="#toc3-8176">This Document</a>**
 
 <A name="toc2-13" title="Overview" />
 ## Overview
@@ -180,13 +179,14 @@ This is a list of known higher-level wrappers around CZMQ:
 * https://github.com/fmp88/ocaml-czmq - Ocaml
 * https://github.com/gar1t/erlang-czmq - Erlang
 * https://github.com/mtortonesi/ruby-czmq-ffi - Ruby FFI
+* https://github.com/zeromq/goczmq - Go
 
-<A name="toc3-135" title="API v3 Summary" />
+<A name="toc3-136" title="API v3 Summary" />
 ### API v3 Summary
 
 This is the API provided by CZMQ v3.x, in alphabetical order.
 
-<A name="toc4-140" title="zactor - simple actor framework" />
+<A name="toc4-141" title="zactor - simple actor framework" />
 #### zactor - simple actor framework
 
 The zactor class provides a simple actor framework. It replaces the
@@ -204,6 +204,7 @@ zmsg, zstr, zpoller, and zloop.
 An actor function MUST call zsock_signal (pipe) when initialized
 and MUST listen to pipe and exit on $TERM command.
 
+Please add @discuss section in ../src/zactor.c.
 
 This is the class interface:
 
@@ -239,6 +240,11 @@ This is the class interface:
     CZMQ_EXPORT void *
         zactor_resolve (void *self);
     
+    //  Return the actor's zsock handle. Use this when you absolutely need
+    //  to work with the zsock instance rather than the actor.
+    CZMQ_EXPORT zsock_t *
+        zactor_sock (zactor_t *self);
+    
     //  Self test of this class
     CZMQ_EXPORT void
         zactor_test (bool verbose);
@@ -253,7 +259,7 @@ This is the class self test code:
     free (string);
     zactor_destroy (&actor);
 
-<A name="toc4-207" title="zauth - authentication for ZeroMQ security mechanisms" />
+<A name="toc4-214" title="zauth - authentication for ZeroMQ security mechanisms" />
 #### zauth - authentication for ZeroMQ security mechanisms
 
 A zauth actor takes over authentication for all incoming connections in
@@ -466,7 +472,7 @@ This is the class self test code:
     zdir_remove (dir, true);
     zdir_destroy (&dir);
 
-<A name="toc4-420" title="zbeacon - LAN discovery and presence" />
+<A name="toc4-427" title="zbeacon - LAN discovery and presence" />
 #### zbeacon - LAN discovery and presence
 
 The zbeacon class implements a peer-to-peer discovery service for local
@@ -548,18 +554,6 @@ This is the class self test code:
     assert (speaker);
     if (verbose)
         zstr_sendx (speaker, "VERBOSE", NULL);
-    
-    //
-    //  Stop broadcasting the beacon:
-    //
-    //      zstr_sendx (beacon, "SILENCE", NULL);
-    //
-    //  Start listening to beacons from peers. The filter is used to do a prefix
-    //  match on received beacons, to remove junk. Note that any received data
-    //  that is identical to our broadcast beacon_data is discarded in any case.
-    //  If the filter size is zero, we get all peer beacons:
-    //
-    //      zsock_send (beacon, "sb", "SUBSCRIBE", filter_data, filter_size);
     
     zsock_send (speaker, "si", "CONFIGURE", 9999);
     char *hostname = zstr_recv (speaker);
@@ -662,7 +656,7 @@ This is the class self test code:
     zactor_destroy (&node2);
     zactor_destroy (&node3);
 
-<A name="toc4-616" title="zcert - work with CURVE security certificates" />
+<A name="toc4-611" title="zcert - work with CURVE security certificates" />
 #### zcert - work with CURVE security certificates
 
 The zcert class provides a way to create and work with security
@@ -781,8 +775,49 @@ This is the class self test code:
     //  Create a simple certificate with metadata
     zcert_t *cert = zcert_new ();
     assert (cert);
+    zcert_set_meta (cert, "email", "ph@imatix.com");
+    zcert_set_meta (cert, "name", "Pieter Hintjens");
+    zcert_set_meta (cert, "organization", "iMatix Corporation");
+    zcert_set_meta (cert, "version", "%d", 1);
+    assert (streq (zcert_meta (cert, "email"), "ph@imatix.com"));
+    zlist_t *keys = zcert_meta_keys (cert);
+    assert (zlist_size (keys) == 4);
+    zlist_destroy (&keys);
+    
+    //  Check the dup and eq methods
+    zcert_t *shadow = zcert_dup (cert);
+    assert (zcert_eq (cert, shadow));
+    zcert_destroy (&shadow);
+    
+    //  Check we can save and load certificate
+    zcert_save (cert, TESTDIR "/mycert.txt");
+    assert (zsys_file_exists (TESTDIR "/mycert.txt"));
+    assert (zsys_file_exists (TESTDIR "/mycert.txt_secret"));
+    
+    //  Load certificate, will in fact load secret one
+    shadow = zcert_load (TESTDIR "/mycert.txt");
+    assert (shadow);
+    assert (zcert_eq (cert, shadow));
+    zcert_destroy (&shadow);
+    
+    //  Delete secret certificate, load public one
+    int rc = zsys_file_delete (TESTDIR "/mycert.txt_secret");
+    assert (rc == 0);
+    shadow = zcert_load (TESTDIR "/mycert.txt");
+    
+    //  32-byte null key encodes as 40 '0' characters
+    assert (streq (zcert_secret_txt (shadow), FORTY_ZEROES));
+    
+    zcert_destroy (&shadow);
+    zcert_destroy (&cert);
+    
+    //  Delete all test files
+    zdir_t *dir = zdir_new (TESTDIR, NULL);
+    assert (dir);
+    zdir_remove (dir, true);
+    zdir_destroy (&dir);
 
-<A name="toc4-736" title="zcertstore - work with CURVE security certificate stores" />
+<A name="toc4-772" title="zcertstore - work with CURVE security certificate stores" />
 #### zcertstore - work with CURVE security certificate stores
 
 To authenticate new clients using the ZeroMQ CURVE security mechanism,
@@ -881,13 +916,14 @@ This is the class self test code:
     zdir_remove (dir, true);
     zdir_destroy (&dir);
 
-<A name="toc4-835" title="zchunk - work with memory chunks" />
+<A name="toc4-871" title="zchunk - work with memory chunks" />
 #### zchunk - work with memory chunks
 
 The zchunk class works with variable sized blobs. Not as efficient as
 MQ's messages but they do less weirdness and so are easier to understand.
 The chunk class has methods to read and write chunks from disk.
 
+Please add @discuss section in ../src/zchunk.c.
 
 This is the class interface:
 
@@ -985,6 +1021,10 @@ This is the class interface:
     CZMQ_EXPORT zchunk_t *
         zchunk_unpack (zframe_t *frame);
     
+    //  Calculate SHA1 digest for chunk, using zdigest class.
+    CZMQ_EXPORT const char *
+        zchunk_digest (zchunk_t *self);
+    
     //  Dump chunk to FILE stream, for debugging and tracing.
     CZMQ_EXPORT void
         zchunk_fprint (zchunk_t *self, FILE *file);
@@ -1018,6 +1058,7 @@ This is the class self test code:
     assert (memcmp (zchunk_data (chunk), "1234567890", 10) == 0);
     assert (zchunk_size (chunk) == 10);
     assert (zchunk_streq (chunk, "1234567890"));
+    assert (streq (zchunk_digest (chunk), "01B307ACBA4F54F55AAFC33BB06BBBF6CA803E9A"));
     char *string = zchunk_strdup (chunk);
     assert (streq (string, "1234567890"));
     free (string);
@@ -1060,16 +1101,16 @@ This is the class self test code:
     zchunk_destroy (&copy);
     zchunk_destroy (&chunk);
 
-<A name="toc4-1014" title="zclock - millisecond clocks and delays" />
+<A name="toc4-1056" title="zclock - millisecond clocks and delays" />
 #### zclock - millisecond clocks and delays
 
-The zclock class provides essential sleep and system time functions, used
-to slow down threads for testing, and calculate timers for polling. Wraps
-the non-portable system calls in a simple portable API.
+The zclock class provides essential sleep and system time functions,
+used to slow down threads for testing, and calculate timers for polling.
+Wraps the non-portable system calls in a simple portable API.
 
-The Win32 Sleep() call defaults to 16ms resolution unless the system timer
-resolution is increased with a call to timeBeginPeriod() permitting 1ms
-granularity.
+The Win32 Sleep() call defaults to 16ms resolution unless the system
+timer resolution is increased with a call to timeBeginPeriod() permitting
+1ms granularity.
 
 This is the class interface:
 
@@ -1077,13 +1118,23 @@ This is the class interface:
     CZMQ_EXPORT void
         zclock_sleep (int msecs);
     
-    //  Return current system clock as milliseconds
+    //  Return current system clock as milliseconds. Note that this clock can
+    //  jump backwards (if the system clock is changed) so is unsafe to use for
+    //  timers and time offsets. Use zclock_mono for that instead.
     CZMQ_EXPORT int64_t
         zclock_time (void);
     
-    //  Return current monotonic clock in milliseconds
+    //  Return current monotonic clock in milliseconds. Use this when you compute
+    //  time offsets. The monotonic clock is not affected by system changes and
+    //  so will never be reset backwards, unlike a system clock.
     CZMQ_EXPORT int64_t
         zclock_mono (void);
+    
+    //  Return current monotonic clock in microseconds. Use this when you compute
+    //  time offsets. The monotonic clock is not affected by system changes and
+    //  so will never be reset backwards, unlike a system clock.
+    CZMQ_EXPORT int64_t
+        zclock_usecs (void);
     
     //  Return formatted date/time as fresh string. Free using zstr_free().
     CZMQ_EXPORT char *
@@ -1099,14 +1150,16 @@ This is the class self test code:
     zclock_sleep (10);
     assert ((zclock_time () - start) >= 10);
     start = zclock_mono ();
+    int64_t usecs = zclock_usecs ();
     zclock_sleep (10);
     assert ((zclock_mono () - start) >= 10);
+    assert ((zclock_usecs () - usecs) >= 10000);
     char *timestr = zclock_timestr ();
     if (verbose)
         puts (timestr);
     free (timestr);
 
-<A name="toc4-1060" title="zconfig - work with config files written in rfc.zeromq.org/spec:4/ZPL." />
+<A name="toc4-1114" title="zconfig - work with config files written in rfc.zeromq.org/spec:4/ZPL." />
 #### zconfig - work with config files written in rfc.zeromq.org/spec:4/ZPL.
 
 Lets applications load, work with, and save configuration files.
@@ -1115,37 +1168,37 @@ text format for configuration files.
 
 Here is an example ZPL stream and corresponding config structure:
 
-context
-    iothreads = 1
-    verbose = 1      #   Ask for a trace
-main
-    type = zqueue    #  ZMQ_DEVICE type
-    frontend
-        option
-            hwm = 1000
-            swap = 25000000     #  25MB
-        bind = 'inproc://addr1'
-        bind = 'ipc://addr2'
-    backend
-        bind = inproc://addr3
+    context
+        iothreads = 1
+        verbose = 1      #   Ask for a trace
+    main
+        type = zqueue    #  ZMQ_DEVICE type
+        frontend
+            option
+                hwm = 1000
+                swap = 25000000     #  25MB
+            bind = 'inproc://addr1'
+            bind = 'ipc://addr2'
+        backend
+            bind = inproc://addr3
 
-root                    Down = child
-  |                     Across = next
-  v
-context-->main
-  |         |
-  |         v
-  |       type=queue-->frontend-->backend
-  |                      |          |
-  |                      |          v
-  |                      |        bind=inproc://addr3
-  |                      v
-  |                    option-->bind=inproc://addr1-->bind=ipc://addr2
-  |                      |
-  |                      v
-  |                    hwm=1000-->swap=25000000
-  v
-iothreads=1-->verbose=false
+    root                    Down = child
+    |                     Across = next
+    v
+    context-->main
+    |         |
+    |         v
+    |       type=queue-->frontend-->backend
+    |                      |          |
+    |                      |          v
+    |                      |        bind=inproc://addr3
+    |                      v
+    |                    option-->bind=inproc://addr1-->bind=ipc://addr2
+    |                      |
+    |                      v
+    |                    hwm=1000-->swap=25000000
+    v
+    iothreads=1-->verbose=false
 
 This is the class interface:
 
@@ -1172,6 +1225,11 @@ This is the class interface:
     CZMQ_EXPORT void
         zconfig_put (zconfig_t *self, const char *path, const char *value);
     
+    //  Equivalent to zconfig_put, accepting a format specifier and variable
+    //  argument list, instead of a single string value.
+    CZMQ_EXPORT void
+        zconfig_putf (zconfig_t *self, const char *path, const char *format, ...);
+        
     //  Set config item name, name may be NULL
     CZMQ_EXPORT void
         zconfig_set_name (zconfig_t *self, const char *name);
@@ -1223,7 +1281,9 @@ This is the class interface:
     CZMQ_EXPORT zlist_t *
         zconfig_comments (zconfig_t *self);
     
-    //  Load a config tree from a specified ZPL text file
+    //  Load a config tree from a specified ZPL text file; returns a zconfig_t
+    //  reference for the root, if the file exists and is readable. Returns NULL
+    //  if the file does not exist.
     CZMQ_EXPORT zconfig_t *
         zconfig_load (const char *filename);
     
@@ -1232,6 +1292,16 @@ This is the class interface:
     CZMQ_EXPORT int
         zconfig_save (zconfig_t *self, const char *filename);
     
+    //  Equivalent to zconfig_load, taking a format string instead of a fixed
+    //  filename.
+    CZMQ_EXPORT zconfig_t *
+        zconfig_loadf (const char *format, ...);
+    
+    //  Equivalent to zconfig_save, taking a format string instead of a fixed
+    //  filename.
+    CZMQ_EXPORT int
+        zconfig_savef (zconfig_t *self, const char *format, ...);
+        
     //  Report filename used during zconfig_load, or NULL if none
     CZMQ_EXPORT char *
         zconfig_filename (zconfig_t *self);
@@ -1278,8 +1348,68 @@ This is the class self test code:
     assert (section);
     item = zconfig_new ("email", section);
     assert (item);
+    zconfig_set_value (item, "some@random.com");
+    item = zconfig_new ("name", section);
+    assert (item);
+    zconfig_set_value (item, "Justin Kayce");
+    zconfig_putf (root, "/curve/secret-key", "%s", "Top Secret");
+    zconfig_set_comment (root, "   CURVE certificate");
+    zconfig_set_comment (root, "   -----------------");
+    assert (zconfig_comments (root));
+    zconfig_save (root, TESTDIR "/test.cfg");
+    zconfig_destroy (&root);
+    root = zconfig_load (TESTDIR "/test.cfg");
+    if (verbose)
+        zconfig_save (root, "-");
+    assert (streq (zconfig_filename (root), TESTDIR "/test.cfg"));
+    
+    char *email = zconfig_resolve (root, "/headers/email", NULL);
+    assert (email);
+    assert (streq (email, "some@random.com"));
+    char *passwd = zconfig_resolve (root, "/curve/secret-key", NULL);
+    assert (passwd);
+    assert (streq (passwd, "Top Secret"));
+    
+    zconfig_savef (root, "%s/%s", TESTDIR, "test.cfg");
+    assert (!zconfig_has_changed (root));
+    int rc = zconfig_reload (&root);
+    assert (rc == 0);
+    assert (!zconfig_has_changed (root));
+    zconfig_destroy (&root);
+    
+    //  Test chunk load/save
+    root = zconfig_new ("root", NULL);
+    assert (root);
+    section = zconfig_new ("section", root);
+    assert (section);
+    item = zconfig_new ("value", section);
+    assert (item);
+    zconfig_set_value (item, "somevalue");
+    zchunk_t *chunk = zconfig_chunk_save (root);
+    assert (chunk);
+    zconfig_destroy (&root);
+    
+    root = zconfig_chunk_load (chunk);
+    assert (root);
+    char *value = zconfig_resolve (root, "/section/value", NULL);
+    assert (value);
+    assert (streq (value, "somevalue"));
+    
+    //  Test config can't be saved to a file in a path that doesn't
+    //  exist or isn't writable
+    rc = zconfig_savef (root, "%s/path/that/doesnt/exist/%s", TESTDIR, "test.cfg");
+    assert (rc == -1);
+    
+    zconfig_destroy (&root);
+    zchunk_destroy (&chunk);
+    
+    //  Delete all test files
+    zdir_t *dir = zdir_new (TESTDIR, NULL);
+    assert (dir);
+    zdir_remove (dir, true);
+    zdir_destroy (&dir);
 
-<A name="toc4-1233" title="zdigest - provides hashing functions (SHA-1 at present)" />
+<A name="toc4-1364" title="zdigest - provides hashing functions (SHA-1 at present)" />
 #### zdigest - provides hashing functions (SHA-1 at present)
 
 The zdigest class generates a hash from zchunks of data. The current
@@ -1342,7 +1472,7 @@ This is the class self test code:
     zdigest_destroy (&digest);
     free (buffer);
 
-<A name="toc4-1296" title="zdir - work with file-system directories" />
+<A name="toc4-1427" title="zdir - work with file-system directories" />
 #### zdir - work with file-system directories
 
 The zdir class gives access to the file system index. It will load
@@ -1350,12 +1480,13 @@ a directory tree (a directory plus all child directories) into a
 zdir structure and then let you navigate that structure. It exists
 mainly to wrap non-portable OS functions to do this.
 
+Please add @discuss section in ../src/zdir.c.
 
 This is the class interface:
 
     //  Create a new directory item that loads in the full tree of the specified
     //  path, optionally located under some parent path. If parent is "-", then
-    //  loads only the top-level directory (and does not use parent as a path).
+    //  loads only the top-level directory, and does not use parent as a path.
     CZMQ_EXPORT zdir_t *
         zdir_new (const char *path, const char *parent);
     
@@ -1451,12 +1582,13 @@ This is the class self test code:
     zdir_t *nosuch = zdir_new ("does-not-exist", NULL);
     assert (nosuch == NULL);
 
-<A name="toc4-1405" title="zdir_patch - work with directory patches" />
+<A name="toc4-1537" title="zdir_patch - work with directory patches" />
 #### zdir_patch - work with directory patches
 
 The zdir_patch class works with one patch, which says "create this
 file" or "delete this file" (referring to a zfile item each time).
 
+Please add @discuss section in ../src/zdir_patch.c.
 
 This is the class interface:
 
@@ -1516,7 +1648,7 @@ This is the class self test code:
     assert (streq (zdir_patch_vpath (patch), "/bilbo"));
     zdir_patch_destroy (&patch);
 
-<A name="toc4-1470" title="zfile - provides methods to work with files in a portable fashion." />
+<A name="toc4-1603" title="zfile - provides methods to work with files in a portable fashion." />
 #### zfile - provides methods to work with files in a portable fashion.
 
 The zfile class provides methods to work with disk files. A file object
@@ -1620,15 +1752,24 @@ This is the class interface:
         zfile_output (zfile_t *self);
     
     //  Read chunk from file at specified position. If this was the last chunk,
-    //  sets self->eof. Returns a null chunk in case of error.
+    //  sets the eof property. Returns a null chunk in case of error.
     CZMQ_EXPORT zchunk_t *
         zfile_read (zfile_t *self, size_t bytes, off_t offset);
     
+    //  Returns true if zfile_read() just read the last chunk in the file.
+    CZMQ_EXPORT bool
+        zfile_eof (zfile_t *self);
+        
     //  Write chunk to file at specified position
     //  Return 0 if OK, else -1
     CZMQ_EXPORT int
         zfile_write (zfile_t *self, zchunk_t *chunk, off_t offset);
     
+    //  Read next line of text from file. Returns a pointer to the text line,
+    //  or NULL if there was nothing more to read from the file.
+    CZMQ_EXPORT const char *
+        zfile_readln (zfile_t *self);
+        
     //  Close file, if open
     CZMQ_EXPORT void
         zfile_close (zfile_t *self);
@@ -1637,9 +1778,8 @@ This is the class interface:
     CZMQ_EXPORT FILE *
         zfile_handle (zfile_t *self);
     
-    //  Calculate SHA1 digest for file, using zdigest class. Caller should not
-    //  modify digest.
-    CZMQ_EXPORT char *
+    //  Calculate SHA1 digest for file, using zdigest class.
+    CZMQ_EXPORT const char *
         zfile_digest (zfile_t *self);
     
     //  Self test of this class
@@ -1690,8 +1830,9 @@ This is the class self test code:
     assert (zfile_is_readable (file));
     assert (zfile_cursize (file) == 1000100);
     assert (!zfile_is_stable (file));
+    assert (zfile_digest (file));
     
-    //  Now append one byte to file from outside
+    //  Now truncate file from outside
     int handle = open ("./this/is/a/test/bilbo", O_WRONLY | O_TRUNC | O_BINARY, 0);
     assert (handle >= 0);
     rc = write (handle, "Hello, World\n", 13);
@@ -1713,6 +1854,15 @@ This is the class self test code:
     assert (chunk);
     assert (zchunk_size (chunk) == 13);
     zchunk_destroy (&chunk);
+    zfile_close (file);
+    
+    //  Check we can read lines from file
+    rc = zfile_input (file);
+    assert (rc == 0);
+    const char *line = zfile_readln (file);
+    assert (streq (line, "Hello, World"));
+    line = zfile_readln (file);
+    assert (line == NULL);
     zfile_close (file);
     
     //  Try some fun with symbolic links
@@ -1749,7 +1899,7 @@ This is the class self test code:
     assert (rc == -1);
     zfile_destroy (&file);
 
-<A name="toc4-1703" title="zframe - working with single message frames" />
+<A name="toc4-1854" title="zframe - working with single message frames" />
 #### zframe - working with single message frames
 
 The zframe class provides methods to send and receive single message
@@ -1760,6 +1910,7 @@ normally destroys the frame, but with the ZFRAME_REUSE flag, you can send
 the same frame many times. Frames are binary, and this class has no
 special support for text data.
 
+Please add @discuss section in ../src/zframe.c.
 
 This is the class interface:
 
@@ -1767,7 +1918,8 @@ This is the class interface:
     #define ZFRAME_REUSE    2
     #define ZFRAME_DONTWAIT 4
     
-    //  Create a new frame with optional size, and optional data
+    //  Constructor; if size is >0, allocates frame with that size, and if data
+    //  is not null, copies data into frame.
     CZMQ_EXPORT zframe_t *
         zframe_new (const void *data, size_t size);
     
@@ -1781,7 +1933,7 @@ This is the class interface:
     
     //  Receive frame from socket, returns zframe_t object or NULL if the recv
     //  was interrupted. Does a blocking recv, if you want to not block then use
-    //  zframe_recv_nowait().
+    //  zpoller or zloop.
     CZMQ_EXPORT zframe_t *
         zframe_recv (void *source);
     
@@ -1852,8 +2004,74 @@ This is the class interface:
 This is the class self test code:
 
     //  Create two PAIR sockets and connect over inproc
+    zsock_t *output = zsock_new_pair ("@inproc://zframe.test");
+    assert (output);
+    zsock_t *input = zsock_new_pair (">inproc://zframe.test");
+    assert (input);
+    
+    //  Send five different frames, test ZFRAME_MORE
+    int frame_nbr;
+    for (frame_nbr = 0; frame_nbr < 5; frame_nbr++) {
+        frame = zframe_new ("Hello", 5);
+        assert (frame);
+        rc = zframe_send (&frame, output, ZFRAME_MORE);
+        assert (rc == 0);
+    }
+    //  Send same frame five times, test ZFRAME_REUSE
+    frame = zframe_new ("Hello", 5);
+    assert (frame);
+    for (frame_nbr = 0; frame_nbr < 5; frame_nbr++) {
+        rc = zframe_send (&frame, output, ZFRAME_MORE + ZFRAME_REUSE);
+        assert (rc == 0);
+    }
+    assert (frame);
+    zframe_t *copy = zframe_dup (frame);
+    assert (zframe_eq (frame, copy));
+    zframe_destroy (&frame);
+    assert (!zframe_eq (frame, copy));
+    assert (zframe_size (copy) == 5);
+    zframe_destroy (&copy);
+    assert (!zframe_eq (frame, copy));
+    
+    //  Test zframe_new_empty
+    frame = zframe_new_empty ();
+    assert (frame);
+    assert (zframe_size (frame) == 0);
+    zframe_destroy (&frame);
+    
+    //  Send END frame
+    frame = zframe_new ("NOT", 3);
+    assert (frame);
+    zframe_reset (frame, "END", 3);
+    char *string = zframe_strhex (frame);
+    assert (streq (string, "454E44"));
+    free (string);
+    string = zframe_strdup (frame);
+    assert (streq (string, "END"));
+    free (string);
+    rc = zframe_send (&frame, output, 0);
+    assert (rc == 0);
+    
+    //  Read and count until we receive END
+    frame_nbr = 0;
+    for (frame_nbr = 0;; frame_nbr++) {
+        zframe_t *frame = zframe_recv (input);
+        if (zframe_streq (frame, "END")) {
+            zframe_destroy (&frame);
+            break;
+        }
+        assert (zframe_more (frame));
+        zframe_set_more (frame, 0);
+        assert (zframe_more (frame) == 0);
+        zframe_destroy (&frame);
+    }
+    assert (frame_nbr == 10);
+    
+    zsock_destroy (&input);
+    zsock_destroy (&output);
+    
 
-<A name="toc4-1807" title="zgossip - decentralized configuration management" />
+<A name="toc4-2026" title="zgossip - decentralized configuration management" />
 #### zgossip - decentralized configuration management
 
 Implements a gossip protocol for decentralized configuration management.
@@ -1866,8 +2084,9 @@ Provides these commands (sent as multipart strings to the actor):
 
 * BIND endpoint -- binds the gossip service to specified endpoint
 * PORT -- returns the last TCP port, if any, used for binding
-* CONFIGURE configfile -- load configuration from specified file
+* LOAD configfile -- load configuration from specified file
 * SET configpath value -- set configuration path = value
+* SAVE configfile -- save configuration to specified file
 * CONNECT endpoint -- connect the gossip service to the specified peer
 * PUBLISH key value -- publish a key/value pair to the gossip cluster
 * STATUS -- return number of key/value pairs held by gossip service
@@ -1933,47 +2152,47 @@ This is the class interface:
 
     //  To work with zgossip, use the CZMQ zactor API:
     //
-    //  Create new zgossip server instance, passing logging prefix:
+    //  Create new zgossip instance, passing logging prefix:
     //
-    //      zactor_t *zgossip_server = zactor_new (zgossip, "myname");
+    //      zactor_t *zgossip = zactor_new (zgossip, "myname");
     //  
-    //  Destroy zgossip server instance
+    //  Destroy zgossip instance
     //
-    //      zactor_destroy (&zgossip_server);
+    //      zactor_destroy (&zgossip);
     //  
     //  Enable verbose logging of commands and activity:
     //
-    //      zstr_send (server, "VERBOSE");
+    //      zstr_send (zgossip, "VERBOSE");
     //
-    //  Bind zgossip server to specified endpoint. TCP endpoints may specify
+    //  Bind zgossip to specified endpoint. TCP endpoints may specify
     //  the port number as "*" to aquire an ephemeral port:
     //
-    //      zstr_sendx (zgossip_server, "BIND", endpoint, NULL);
+    //      zstr_sendx (zgossip, "BIND", endpoint, NULL);
     //
     //  Return assigned port number, specifically when BIND was done using an
     //  an ephemeral port:
     //
-    //      zstr_sendx (zgossip_server, "PORT", NULL);
+    //      zstr_sendx (zgossip, "PORT", NULL);
     //      char *command, *port_str;
-    //      zstr_recvx (zgossip_server, &command, &port_str, NULL);
+    //      zstr_recvx (zgossip, &command, &port_str, NULL);
     //      assert (streq (command, "PORT"));
     //
     //  Specify configuration file to load, overwriting any previous loaded
     //  configuration file or options:
     //
-    //      zstr_sendx (zgossip_server, "CONFIGURE", filename, NULL);
+    //      zstr_sendx (zgossip, "CONFIGURE", filename, NULL);
     //
     //  Set configuration path value:
     //
-    //      zstr_sendx (zgossip_server, "SET", path, value, NULL);
+    //      zstr_sendx (zgossip, "SET", path, value, NULL);
     //    
-    //  Send zmsg_t instance to zgossip server:
+    //  Send zmsg_t instance to zgossip:
     //
-    //      zactor_send (zgossip_server, &msg);
+    //      zactor_send (zgossip, &msg);
     //
-    //  Receive zmsg_t instance from zgossip server:
+    //  Receive zmsg_t instance from zgossip:
     //
-    //      zmsg_t *msg = zactor_recv (zgossip_server);
+    //      zmsg_t *msg = zactor_recv (zgossip);
     //
     //  This is the zgossip constructor as a zactor_fn:
     //
@@ -1999,25 +2218,20 @@ This is the class self test code:
     int rc = zsock_connect (client, "inproc://zgossip");
     assert (rc == 0);
     
-    //  Send HELLO, which gets no reply
-    zgossip_msg_t *request, *reply;
-    request = zgossip_msg_new (ZGOSSIP_MSG_HELLO);
-    assert (request);
-    zgossip_msg_send (&request, client);
+    //  Send HELLO, which gets no message
+    zgossip_msg_t *message = zgossip_msg_new ();
+    zgossip_msg_set_id (message, ZGOSSIP_MSG_HELLO);
+    zgossip_msg_send (message, client);
     
     //  Send PING, expect PONG back
-    request = zgossip_msg_new (ZGOSSIP_MSG_PING);
-    assert (request);
-    zgossip_msg_send (&request, client);
-    reply = zgossip_msg_recv (client);
-    assert (reply);
-    assert (zgossip_msg_id (reply) == ZGOSSIP_MSG_PONG);
-    zgossip_msg_destroy (&reply);
+    zgossip_msg_set_id (message, ZGOSSIP_MSG_PING);
+    zgossip_msg_send (message, client);
+    zgossip_msg_recv (message, client);
+    assert (zgossip_msg_id (message) == ZGOSSIP_MSG_PONG);
+    zgossip_msg_destroy (&message);
     
     zactor_destroy (&server);
-    
     zsock_destroy (&client);
-    zactor_destroy (&server);
     
     //  Test peer-to-peer operations
     zactor_t *base = zactor_new (zgossip, "base");
@@ -2048,223 +2262,171 @@ This is the class self test code:
     zactor_destroy (&beta);
     
 
-<A name="toc4-2002" title="zhash - generic type-free hash container" />
-#### zhash - generic type-free hash container
+<A name="toc4-2217" title="zhash - simple generic hash container" />
+#### zhash - simple generic hash container
 
-zhash is an expandable hash table container.
+zhash is an expandable hash table container. This is a simple container.
+For heavy-duty applications we recommend using zhashx.
 
-The hash table always has a size that is prime and roughly doubles its
-size when 75% full. In case of hash collisions items are chained in a
-linked list. The hash table size is increased slightly (up to 5 times
-before roughly doubling the size) when an overly long chain (between 1
-and 63 items depending on table size) is detected.
+Note that it's relatively slow (~50K insertions/deletes per second), so
+don't do inserts/updates on the critical path for message I/O. It can
+do ~2.5M lookups per second for 16-char keys. Timed on a 1.6GHz CPU.
 
 This is the class interface:
 
-    //  Callback function for zhash_freefn method
-    typedef void (zhash_free_fn) (void *data);
+    // Callback function for zhash_freefn method
+    typedef void (zhash_free_fn) (
+        void *data);
     
-    //  Callback function for hashing keys
-    typedef size_t (zhash_hash_fn) (const void *key);
+    // DEPRECATED as clumsy -- use zhash_first/_next instead
+    typedef int (zhash_foreach_fn) (
+        const char *key, void *item, void *argument);
     
     //  Create a new, empty hash container
     CZMQ_EXPORT zhash_t *
-        zhash_new (void);
+        zhash_new ();
     
     //  Destroy a hash container and all items in it
     CZMQ_EXPORT void
         zhash_destroy (zhash_t **self_p);
     
-    //  Insert item into hash table with specified key and item.
+    //  Insert item into hash table with specified key and item.               
     //  If key is already present returns -1 and leaves existing item unchanged
-    //  Returns 0 on success.
+    //  Returns 0 on success.                                                  
     CZMQ_EXPORT int
-        zhash_insert (zhash_t *self, const void *key, void *item);
+        zhash_insert (zhash_t *self, const char *key, void *item);
     
-    //  Update or insert item into hash table with specified key and item. If the
-    //  key is already present, destroys old item and inserts new one. If you set
-    //  a container item destructor, this is called on the old value. If the key
-    //  was not already present, inserts a new item. Sets the hash cursor to the
-    //  new item.
+    //  Update item into hash table with specified key and item.            
+    //  If key is already present, destroys old item and inserts new one.   
+    //  Use free_fn method to ensure deallocator is properly called on item.
     CZMQ_EXPORT void
-        zhash_update (zhash_t *self, const void *key, void *item);
+        zhash_update (zhash_t *self, const char *key, void *item);
     
     //  Remove an item specified by key from the hash table. If there was no such
-    //  item, this function does nothing.
+    //  item, this function does nothing.                                        
     CZMQ_EXPORT void
-        zhash_delete (zhash_t *self, const void *key);
-    
-    //  Delete all items from the hash table. If the key destructor is
-    //  set, calls it on every key. If the item destructor is set, calls
-    //  it on every item.
-    CZMQ_EXPORT void
-        zhash_purge (zhash_t *self);
+        zhash_delete (zhash_t *self, const char *key);
     
     //  Return the item at the specified key, or null
     CZMQ_EXPORT void *
-        zhash_lookup (zhash_t *self, const void *key);
+        zhash_lookup (zhash_t *self, const char *key);
     
     //  Reindexes an item from an old key to a new key. If there was no such
-    //  item, does nothing. Returns 0 if successful, else -1.
+    //  item, does nothing. Returns 0 if successful, else -1.               
     CZMQ_EXPORT int
-        zhash_rename (zhash_t *self, const void *old_key, const void *new_key);
+        zhash_rename (zhash_t *self, const char *old_key, const char *new_key);
     
     //  Set a free function for the specified hash table item. When the item is
-    //  destroyed, the free function, if any, is called on that item.
-    //  Use this when hash items are dynamically allocated, to ensure that
-    //  you don't have memory leaks. You can pass 'free' or NULL as a free_fn.
-    //  Returns the item, or NULL if there is no such item.
+    //  destroyed, the free function, if any, is called on that item.          
+    //  Use this when hash items are dynamically allocated, to ensure that     
+    //  you don't have memory leaks. You can pass 'free' or NULL as a free_fn. 
+    //  Returns the item, or NULL if there is no such item.                    
     CZMQ_EXPORT void *
-        zhash_freefn (zhash_t *self, const void *key, zhash_free_fn *free_fn);
+        zhash_freefn (zhash_t *self, const char *key, zhash_free_fn free_fn);
     
     //  Return the number of keys/items in the hash table
-    CZMQ_EXPORT size_t
+    CZMQ_EXPORT size_t *
         zhash_size (zhash_t *self);
     
-    //  Return a zlist_t containing the keys for the items in the
-    //  table. Uses the key_duplicator to duplicate all keys and sets the
-    //  key_destructor as destructor for the list.
+    //  Make copy of hash table; if supplied table is null, returns null.    
+    //  Does not copy items themselves. Rebuilds new table so may be slow on 
+    //  very large tables. NOTE: only works with item values that are strings
+    //  since there's no other way to know how to duplicate the item value.  
+    CZMQ_EXPORT zhash_t *
+        zhash_dup (zhash_t *self);
+    
+    //  Return keys for items in table
     CZMQ_EXPORT zlist_t *
         zhash_keys (zhash_t *self);
-        
-    //  Simple iterator; returns first item in hash table, in no given order,
-    //  or NULL if the table is empty. This method is simpler to use than the
+    
+    //  Simple iterator; returns first item in hash table, in no given order, 
+    //  or NULL if the table is empty. This method is simpler to use than the 
     //  foreach() method, which is deprecated. To access the key for this item
-    //  use zhash_cursor(). NOTE: do NOT modify the table while iterating.
+    //  use zhash_cursor(). NOTE: do NOT modify the table while iterating.    
     CZMQ_EXPORT void *
         zhash_first (zhash_t *self);
     
-    //  Simple iterator; returns next item in hash table, in no given order,
+    //  Simple iterator; returns next item in hash table, in no given order, 
     //  or NULL if the last item was already returned. Use this together with
-    //  zhash_first() to process all items in a hash table. If you need the
-    //  items in sorted order, use zhash_keys() and then zlist_sort(). To
-    //  access the key for this item use zhash_cursor(). NOTE: do NOT modify
-    //  the table while iterating.
+    //  zhash_first() to process all items in a hash table. If you need the  
+    //  items in sorted order, use zhash_keys() and then zlist_sort(). To    
+    //  access the key for this item use zhash_cursor(). NOTE: do NOT modify 
+    //  the table while iterating.                                           
     CZMQ_EXPORT void *
         zhash_next (zhash_t *self);
     
-    //  After a successful insert, update, or first/next method, returns the key
-    //  for the item that was returned. This is a constant string that you may
-    //  not modify or deallocate, and which lasts as long as the item in the hash.
-    //  After an unsuccessful first/next, returns NULL.
-    CZMQ_EXPORT const void *
+    //  After a successful first/next method, returns the key for the item that
+    //  was returned. This is a constant string that you may not modify or     
+    //  deallocate, and which lasts as long as the item in the hash. After an  
+    //  unsuccessful first/next, returns NULL.                                 
+    CZMQ_EXPORT const char *
         zhash_cursor (zhash_t *self);
     
-    //  Add a comment to hash table before saving to disk. You can add as many
+    //  Add a comment to hash table before saving to disk. You can add as many   
     //  comment lines as you like. These comment lines are discarded when loading
-    //  the file. If you use a null format, all comments are deleted.
+    //  the file. If you use a null format, all comments are deleted.            
     CZMQ_EXPORT void
-        zhash_comment (zhash_t *self, const char *format, ...);
+        zhash_comment (zhash_t *self, format_t *format);
+    
+    //  Serialize hash table to a binary frame that can be sent in a message.
+    //  The packed format is compatible with the 'dictionary' type defined in
+    //  http://rfc.zeromq.org/spec:35/FILEMQ, and implemented by zproto:     
+    //                                                                       
+    //     ; A list of name/value pairs                                      
+    //     dictionary      = dict-count *( dict-name dict-value )            
+    //     dict-count      = number-4                                        
+    //     dict-value      = longstr                                         
+    //     dict-name       = string                                          
+    //                                                                       
+    //     ; Strings are always length + text contents                       
+    //     longstr         = number-4 *VCHAR                                 
+    //     string          = number-1 *VCHAR                                 
+    //                                                                       
+    //     ; Numbers are unsigned integers in network byte order             
+    //     number-1        = 1OCTET                                          
+    //     number-4        = 4OCTET                                          
+    //                                                                       
+    //  Comments are not included in the packed data. Item values MUST be    
+    //  strings.                                                             
+    CZMQ_EXPORT zframe_t *
+        zhash_pack (zhash_t *self);
+    
+    //  Unpack binary frame into a new hash table. Packed data must follow format
+    //  defined by zhash_pack. Hash table is set to autofree. An empty frame     
+    //  unpacks to an empty hash table.                                          
+    CZMQ_EXPORT zhash_t *
+        zhash_unpack (zframe_t *frame);
     
     //  Save hash table to a text file in name=value format. Hash values must be
-    //  printable strings; keys may not contain '=' character. Returns 0 if OK,
-    //  else -1 if a file error occurred.
+    //  printable strings; keys may not contain '=' character. Returns 0 if OK, 
+    //  else -1 if a file error occurred.                                       
     CZMQ_EXPORT int
         zhash_save (zhash_t *self, const char *filename);
     
-    //  Load hash table from a text file in name=value format; hash table must
+    //  Load hash table from a text file in name=value format; hash table must 
     //  already exist. Hash values must printable strings; keys may not contain
-    //  '=' character. Returns 0 if OK, else -1 if a file was not readable.
+    //  '=' character. Returns 0 if OK, else -1 if a file was not readable.    
     CZMQ_EXPORT int
         zhash_load (zhash_t *self, const char *filename);
     
     //  When a hash table was loaded from a file by zhash_load, this method will
     //  reload the file if it has been modified since, and is "stable", i.e. not
     //  still changing. Returns 0 if OK, -1 if there was an error reloading the 
-    //  file.
+    //  file.                                                                   
     CZMQ_EXPORT int
         zhash_refresh (zhash_t *self);
     
-    //  Serialize hash table to a binary frame that can be sent in a message.
-    //  The packed format is compatible with the 'dictionary' type defined in
-    //  http://rfc.zeromq.org/spec:35/FILEMQ, and implemented by zproto:
-    //
-    //     ; A list of name/value pairs
-    //     dictionary      = dict-count *( dict-name dict-value )
-    //     dict-count      = number-4
-    //     dict-value      = longstr
-    //     dict-name       = string
-    //
-    //     ; Strings are always length + text contents
-    //     longstr         = number-4 *VCHAR
-    //     string          = number-1 *VCHAR
-    //
-    //     ; Numbers are unsigned integers in network byte order
-    //     number-1        = 1OCTET
-    //     number-4        = 4OCTET
-    //
-    //  Comments are not included in the packed data. Item values MUST be
-    //  strings.
-    CZMQ_EXPORT zframe_t *
-        zhash_pack (zhash_t *self);
-        
-    //  Unpack binary frame into a new hash table. Packed data must follow format
-    //  defined by zhash_pack. Hash table is set to autofree. An empty frame
-    //  unpacks to an empty hash table.
-    CZMQ_EXPORT zhash_t *
-        zhash_unpack (zframe_t *frame);
-    
-    //  Make a copy of the list; items are duplicated if you set a duplicator
-    //  for the list, otherwise not. Copying a null reference returns a null
-    //  reference. Note that this method's behavior changed slightly for CZMQ
-    //  v3.x, as it does not set nor respect autofree. It does however let you
-    //  duplicate any hash table safely. The old behavior is in zhash_dup_v2.
-    CZMQ_EXPORT zhash_t *
-        zhash_dup (zhash_t *self);
-    
-    //  Set a user-defined deallocator for hash items; by default items are not
-    //  freed when the hash is destroyed.
-    CZMQ_EXPORT void
-        zhash_set_destructor (zhash_t *self, czmq_destructor destructor);
-    
-    //  Set a user-defined duplicator for hash items; by default items are not
-    //  copied when the hash is duplicated.
-    CZMQ_EXPORT void
-        zhash_set_duplicator (zhash_t *self, czmq_duplicator duplicator);
-    
-    //  Set a user-defined deallocator for keys; by default keys are freed
-    //  when the hash is destroyed using free().
-    CZMQ_EXPORT void
-        zhash_set_key_destructor (zhash_t *self, czmq_destructor destructor);
-    
-    //  Set a user-defined duplicator for keys; by default keys are duplicated
-    //  using strdup.
-    CZMQ_EXPORT void
-        zhash_set_key_duplicator (zhash_t *self, czmq_duplicator duplicator);
-    
-    //  Set a user-defined comparator for keys; by default keys are
-    //  compared using strcmp.
-    CZMQ_EXPORT void
-        zhash_set_key_comparator (zhash_t *self, czmq_comparator comparator);
-    
-    //  Set a user-defined hash function for keys; by default keys are
-    //  hashed by a modified Bernstein hashing function.
-    CZMQ_EXPORT void
-        zhash_set_key_hasher (zhash_t *self, zhash_hash_fn hasher);
-    
-    //  DEPRECATED by zhash_dup
-    //  Make copy of hash table; if supplied table is null, returns null.
-    //  Does not copy items themselves. Rebuilds new table so may be slow on
-    //  very large tables. NOTE: only works with item values that are strings
-    //  since there's no other way to know how to duplicate the item value.
-    CZMQ_EXPORT zhash_t *
-        zhash_dup_v2 (zhash_t *self);
-    
-    //  DEPRECATED as clumsy -- use set_destructor instead
     //  Set hash for automatic value destruction
     CZMQ_EXPORT void
         zhash_autofree (zhash_t *self);
     
-    //  DEPRECATED as clumsy -- use zhash_first/_next instead
-    typedef int (zhash_foreach_fn) (const char *key, void *item, void *argument);
-    
-    //  DEPRECATED as clumsy -- use zhash_first/_next instead
+    //  DEPRECATED as clumsy -- use zhash_first/_next instead                  
     //  Apply function to each item in the hash table. Items are iterated in no
-    //  defined order. Stops if callback function returns non-zero and returns
-    //  final return code from callback function (zero = success).
-    //  Callback function for zhash_foreach method
+    //  defined order. Stops if callback function returns non-zero and returns 
+    //  final return code from callback function (zero = success).             
+    //  Callback function for zhash_foreach method                             
     CZMQ_EXPORT int
-        zhash_foreach (zhash_t *self, zhash_foreach_fn *callback, void *argument);
+        zhash_foreach (zhash_t *self, zhash_foreach_fn callback, void *argument);
     
     //  Self test of this class
     CZMQ_EXPORT void
@@ -2282,7 +2444,7 @@ This is the class self test code:
     int rc;
     rc = zhash_insert (hash, "DEADBEEF", "dead beef");
     char *item = (char *) zhash_first (hash);
-    assert (streq ((char *) zhash_cursor (hash), "DEADBEEF"));
+    assert (streq (zhash_cursor (hash), "DEADBEEF"));
     assert (streq (item, "dead beef"));
     assert (rc == 0);
     rc = zhash_insert (hash, "ABADCAFE", "a bad cafe");
@@ -2428,15 +2590,16 @@ This is the class self test code:
     assert (streq ((char *) zhash_lookup (hash, "key2"), "Ring a ding ding"));
     zhash_destroy (&hash);
 
-<A name="toc4-2382" title="ziflist - List of network interfaces available on system" />
+<A name="toc4-2545" title="ziflist - List of network interfaces available on system" />
 #### ziflist - List of network interfaces available on system
 
 The ziflist class takes a snapshot of the network interfaces that the
 system currently supports (this can change arbitrarily, especially on
 mobile devices). The caller can then access the network interface
-information using an iterator that works like zring. Only stores those
+information using an iterator that works like zlistx. Only stores those
 interfaces with broadcast capability, and ignores the loopback interface.
 
+Please add @discuss section in ../src/ziflist.c.
 
 This is the class interface:
 
@@ -2487,7 +2650,7 @@ This is the class self test code:
     size_t items = ziflist_size (iflist);
     
     if (verbose) {
-        printf ("ziflist: interfaces=%zu\n", ziflist_size (iflist));
+    //        printf ("ziflist: interfaces=%zu\n", ziflist_size (iflist));
         const char *name = ziflist_first (iflist);
         while (name) {
             printf (" - name=%s address=%s netmask=%s broadcast=%s\n",
@@ -2499,12 +2662,13 @@ This is the class self test code:
     assert (items == ziflist_size (iflist));
     ziflist_destroy (&iflist);
 
-<A name="toc4-2453" title="zlist - generic type-free list container" />
-#### zlist - generic type-free list container
+<A name="toc4-2617" title="zlist - simple generic list container" />
+#### zlist - simple generic list container
 
 Provides a generic container implementing a fast singly-linked list. You
 can use this to construct multi-dimensional lists, and other structures
-together with other generic containers like zhash.
+together with other generic containers like zhash. This is a simple
+class. For demanding applications we recommend using zlistx.
 
 To iterate through a list, use zlist_first to get the first item, then
 loop while not null, and do zlist_next at the end of each iteration.
@@ -2592,17 +2756,6 @@ This is the class interface:
     CZMQ_EXPORT void
         zlist_sort (zlist_t *self, zlist_compare_fn *compare);
     
-    //  Set a user-defined destructor for items; by default items are not
-    //  freed when the list is destroyed.
-    CZMQ_EXPORT void
-        zlist_set_destructor (zlist_t *self, czmq_destructor destructor);
-    
-    //  Set a user-defined duplicator for items; by default items are not
-    //  copied when the list is duplicated.
-    CZMQ_EXPORT void
-        zlist_set_duplicator (zlist_t *self, czmq_duplicator duplicator);
-    
-    //  DEPRECATED by zlist_set_duplicator/zlist_set_destructor
     //  Set list for automatic item destruction; item values MUST be strings.
     //  By default a list item refers to a value held elsewhere. When you set
     //  this, each time you append or push a list item, zlist will take a copy
@@ -2614,7 +2767,6 @@ This is the class interface:
     CZMQ_EXPORT void
         zlist_autofree (zlist_t *self);
     
-    //  DEPRECATED by zlist_set_duplicator/zlist_set_destructor
     //  Set a free function for the specified list item. When the item is
     //  destroyed, the free function, if any, is called on that item.
     //  Use this when list items are dynamically allocated, to ensure that
@@ -2702,9 +2854,9 @@ This is the class self test code:
     item = (char *) zlist_pop (list);
     assert (item == bread);
     item = (char *) zlist_pop (list);
-    assert (item == wine);
-    item = (char *) zlist_pop (list);
     assert (item == cheese);
+    item = (char *) zlist_pop (list);
+    assert (item == wine);
     assert (zlist_size (list) == 0);
     
     assert (zlist_size (sub_list) == 3);
@@ -2713,13 +2865,27 @@ This is the class self test code:
     zlist_append (list, sub_list_2);
     assert (zlist_freefn (list, sub_list, &s_zlist_free, false) == sub_list);
     assert (zlist_freefn (list, sub_list_2, &s_zlist_free, true) == sub_list_2);
-    
-    //  Destructor should be safe to call twice
     zlist_destroy (&list);
+    
+    //  Test autofree functionality
+    list = zlist_new ();
+    assert (list);
+    zlist_autofree (list);
+    zlist_push (list, "bread");
+    zlist_append (list, "cheese");
+    assert (zlist_size (list) == 2);
+    assert (streq ((const char *) zlist_first (list), "bread"));
+    item = (char *) zlist_pop (list);
+    assert (streq (item, "bread"));
+    free (item);
+    item = (char *) zlist_pop (list);
+    assert (streq (item, "cheese"));
+    free (item);
+    
     zlist_destroy (&list);
     assert (list == NULL);
 
-<A name="toc4-2673" title="zloop - event-driven reactor" />
+<A name="toc4-2840" title="zloop - event-driven reactor" />
 #### zloop - event-driven reactor
 
 The zloop class provides an event-driven reactor pattern. The reactor
@@ -2727,6 +2893,7 @@ handles zmq_pollitem_t items (pollers or writers, sockets or fds), and
 once-off or repeated timers. Its resolution is 1 msec. It uses a tickless
 timer to reduce CPU interrupts in inactive processes.
 
+Please add @discuss section in ../src/zloop.c.
 
 This is the class interface:
 
@@ -2795,6 +2962,42 @@ This is the class interface:
     CZMQ_EXPORT int
         zloop_timer_end (zloop_t *self, int timer_id);
     
+    //  Register a ticket timer. Ticket timers are very fast in the case where
+    //  you use a lot of timers (thousands), and frequently remove and add them.
+    //  The main use case is expiry timers for servers that handle many clients,
+    //  and which reset the expiry timer for each message received from a client.
+    //  Whereas normal timers perform poorly as the number of clients grows, the
+    //  cost of ticket timers is constant, no matter the number of clients. You
+    //  must set the ticket delay using zloop_set_ticket_delay before creating a
+    //  ticket. Returns a handle to the timer that you should use in
+    //  zloop_ticket_reset and zloop_ticket_delete.
+    CZMQ_EXPORT void *
+        zloop_ticket (zloop_t *self, zloop_timer_fn handler, void *arg);
+    
+    //  Reset a ticket timer, which moves it to the end of the ticket list and
+    //  resets its execution time. This is a very fast operation.
+    CZMQ_EXPORT void
+        zloop_ticket_reset (zloop_t *self, void *handle);
+    
+    //  Delete a ticket timer. We do not actually delete the ticket here, as
+    //  other code may still refer to the ticket. We mark as deleted, and remove
+    //  later and safely.
+    CZMQ_EXPORT void
+        zloop_ticket_delete (zloop_t *self, void *handle);
+    
+    //  Set the ticket delay, which applies to all tickets. If you lower the
+    //  delay and there are already tickets created, the results are undefined.
+    CZMQ_EXPORT void
+        zloop_set_ticket_delay (zloop_t *self, size_t ticket_delay);
+    
+    //  Set hard limit on number of timers allowed. Setting more than a small
+    //  number of timers (10-100) can have a dramatic impact on the performance
+    //  of the reactor. For high-volume cases, use ticket timers. If the hard
+    //  limit is reached, the reactor stops creating new timers and logs an
+    //  error.
+    CZMQ_EXPORT void
+        zloop_set_max_timers (zloop_t *self, size_t max_timers);
+    
     //  Set verbose tracing of reactor on/off
     CZMQ_EXPORT void
         zloop_set_verbose (zloop_t *self, bool verbose);
@@ -2805,6 +3008,13 @@ This is the class interface:
     //  cancel sockets. Returns 0 if interrupted, -1 if cancelled by a handler.
     CZMQ_EXPORT int
         zloop_start (zloop_t *self);
+    
+    //  Ignore zsys_interrupted flag in this loop. By default, a zloop_start will
+    //  exit as soon as it detects zsys_interrupted is set to something other than
+    //  zero. Calling zloop_ignore_interrupts will supress this behavior.
+    
+    CZMQ_EXPORT void
+        zloop_ignore_interrupts(zloop_t *self);
     
     //  Self test of this class
     CZMQ_EXPORT void
@@ -2832,19 +3042,49 @@ This is the class self test code:
     //  After 20 msecs, send a ping message to output3
     zloop_timer (loop, 20, 1, s_timer_event, output);
     
+    //  Set up some tickets that will never expire
+    zloop_set_ticket_delay (loop, 10000);
+    void *ticket1 = zloop_ticket (loop, s_timer_event, NULL);
+    void *ticket2 = zloop_ticket (loop, s_timer_event, NULL);
+    void *ticket3 = zloop_ticket (loop, s_timer_event, NULL);
+    
     //  When we get the ping message, end the reactor
     rc = zloop_reader (loop, input, s_socket_event, NULL);
     assert (rc == 0);
     zloop_reader_set_tolerant (loop, input);
     zloop_start (loop);
     
+    zloop_ticket_delete (loop, ticket1);
+    zloop_ticket_delete (loop, ticket2);
+    zloop_ticket_delete (loop, ticket3);
+    
+    //  Check whether loop properly ignores zsys_interrupted flag
+    //  when asked to
+    zloop_destroy (&loop);
+    loop = zloop_new ();
+    
+    bool timer_event_called = false;
+    zloop_timer (loop, 1, 1, s_timer_event3, &timer_event_called);
+    
+    zsys_interrupted = 1;
+    zloop_start (loop);
+    //  zloop returns immediately without giving any handler a chance to run
+    assert (!timer_event_called);
+    
+    zloop_ignore_interrupts (loop);
+    zloop_start (loop);
+    //  zloop runs the handler which will terminate the loop
+    assert (timer_event_called);
+    zsys_interrupted = 0;
+    
+    //  cleanup
     zloop_destroy (&loop);
     assert (loop == NULL);
     
     zsock_destroy (&input);
     zsock_destroy (&output);
 
-<A name="toc4-2798" title="zmonitor - socket event monitor" />
+<A name="toc4-3039" title="zmonitor - socket event monitor" />
 #### zmonitor - socket event monitor
 
 The zmonitor actor provides an API for obtaining socket events such as
@@ -2948,7 +3188,7 @@ This is the class self test code:
     zsock_destroy (&server);
     #endif
 
-<A name="toc4-2902" title="zmsg - working with multipart messages" />
+<A name="toc4-3143" title="zmsg - working with multipart messages" />
 #### zmsg - working with multipart messages
 
 The zmsg class provides methods to send and receive multipart messages
@@ -2956,6 +3196,7 @@ across ØMQ sockets. This class provides a list-like container interface,
 with methods to work with the overall container. zmsg_t messages are
 composed of zero or more zframe_t frames.
 
+Please add @discuss section in ../src/zmsg.c.
 
 This is the class interface:
 
@@ -3043,10 +3284,17 @@ This is the class interface:
     CZMQ_EXPORT char *
         zmsg_popstr (zmsg_t *self);
     
-    //  Pop frame off front of message, return as integer value. If there were
-    //  no more frames in the message, returns 0.
+    //  Push encoded message as a new frame. Message takes ownership of
+    //  submessage, so the original is destroyed in this call. Returns 0 on
+    //  success, -1 on error.
     CZMQ_EXPORT int
-        zmsg_popint (zmsg_t *self);
+        zmsg_addmsg (zmsg_t *self, zmsg_t **msg_p);
+    
+    //  Remove first submessage from message, if any. Returns zmsg_t, or NULL if
+    //  decoding was not succesfull. Caller now owns message and must destroy it
+    //  when finished with it.
+    CZMQ_EXPORT zmsg_t *
+        zmsg_popmsg (zmsg_t *self);
     
     //  Remove specified frame from list, if present. Does not destroy frame.
     CZMQ_EXPORT void
@@ -3103,6 +3351,22 @@ This is the class interface:
     CZMQ_EXPORT void
         zmsg_print (zmsg_t *self);
     
+    //  Return true if the two messages have the same number of frames and each
+    //  frame in the first message is identical to the corresponding frame in the
+    //  other message. As with zframe_eq, return false if either message is NULL.
+    CZMQ_EXPORT bool
+        zmsg_eq (zmsg_t *self, zmsg_t *other);
+    
+    //  Generate a signal message encoding the given status. A signal is a short
+    //  message carrying a 1-byte success/failure code (by convention, 0 means
+    //  OK). Signals are encoded to be distinguishable from "normal" messages.
+    CZMQ_EXPORT zmsg_t *
+        zmsg_new_signal (byte status);
+    
+    //  Return signal value, 0 or greater, if message is a signal, -1 if not.
+    CZMQ_EXPORT int
+        zmsg_signal (zmsg_t *self);
+        
     //  Probe the supplied object, and report if it looks like a zmsg_t.
     CZMQ_EXPORT bool
         zmsg_is (void *self);
@@ -3114,8 +3378,234 @@ This is the class interface:
 This is the class self test code:
 
     //  Create two PAIR sockets and connect over inproc
+    zsock_t *output = zsock_new_pair ("@inproc://zmsg.test");
+    assert (output);
+    zsock_t *input = zsock_new_pair (">inproc://zmsg.test");
+    assert (input);
+    
+    //  Test send and receive of single-frame message
+    zmsg_t *msg = zmsg_new ();
+    assert (msg);
+    zframe_t *frame = zframe_new ("Hello", 5);
+    assert (frame);
+    zmsg_prepend (msg, &frame);
+    assert (zmsg_size (msg) == 1);
+    assert (zmsg_content_size (msg) == 5);
+    rc = zmsg_send (&msg, output);
+    assert (msg == NULL);
+    assert (rc == 0);
+    
+    msg = zmsg_recv (input);
+    assert (msg);
+    assert (zmsg_size (msg) == 1);
+    assert (zmsg_content_size (msg) == 5);
+    zmsg_destroy (&msg);
+    
+    //  Test send and receive of multi-frame message
+    msg = zmsg_new ();
+    assert (msg);
+    rc = zmsg_addmem (msg, "Frame0", 6);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, "Frame1", 6);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, "Frame2", 6);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, "Frame3", 6);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, "Frame4", 6);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, "Frame5", 6);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, "Frame6", 6);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, "Frame7", 6);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, "Frame8", 6);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, "Frame9", 6);
+    assert (rc == 0);
+    zmsg_t *copy = zmsg_dup (msg);
+    assert (copy);
+    rc = zmsg_send (&copy, output);
+    assert (rc == 0);
+    rc = zmsg_send (&msg, output);
+    assert (rc == 0);
+    
+    copy = zmsg_recv (input);
+    assert (copy);
+    assert (zmsg_size (copy) == 10);
+    assert (zmsg_content_size (copy) == 60);
+    zmsg_destroy (&copy);
+    
+    msg = zmsg_recv (input);
+    assert (msg);
+    assert (zmsg_size (msg) == 10);
+    assert (zmsg_content_size (msg) == 60);
+    
+    // create empty file for null test
+    FILE *file = fopen ("zmsg.test", "w");
+    assert (file);
+    fclose (file);
+    
+    file = fopen ("zmsg.test", "r");
+    zmsg_t *null_msg = zmsg_load (NULL, file);
+    assert (null_msg == NULL);
+    fclose (file);
+    remove ("zmsg.test");
+    
+    //  Save to a file, read back
+    file = fopen ("zmsg.test", "w");
+    assert (file);
+    rc = zmsg_save (msg, file);
+    assert (rc == 0);
+    fclose (file);
+    
+    file = fopen ("zmsg.test", "r");
+    rc = zmsg_save (msg, file);
+    assert (rc == -1);
+    fclose (file);
+    zmsg_destroy (&msg);
+    
+    file = fopen ("zmsg.test", "r");
+    msg = zmsg_load (NULL, file);
+    assert (msg);
+    fclose (file);
+    remove ("zmsg.test");
+    assert (zmsg_size (msg) == 10);
+    assert (zmsg_content_size (msg) == 60);
+    
+    //  Remove all frames except first and last
+    int frame_nbr;
+    for (frame_nbr = 0; frame_nbr < 8; frame_nbr++) {
+        zmsg_first (msg);
+        frame = zmsg_next (msg);
+        zmsg_remove (msg, frame);
+        zframe_destroy (&frame);
+    }
+    //  Test message frame manipulation
+    assert (zmsg_size (msg) == 2);
+    frame = zmsg_last (msg);
+    assert (zframe_streq (frame, "Frame9"));
+    assert (zmsg_content_size (msg) == 12);
+    frame = zframe_new ("Address", 7);
+    assert (frame);
+    zmsg_prepend (msg, &frame);
+    assert (zmsg_size (msg) == 3);
+    rc = zmsg_addstr (msg, "Body");
+    assert (rc == 0);
+    assert (zmsg_size (msg) == 4);
+    frame = zmsg_pop (msg);
+    zframe_destroy (&frame);
+    assert (zmsg_size (msg) == 3);
+    char *body = zmsg_popstr (msg);
+    assert (streq (body, "Frame0"));
+    free (body);
+    zmsg_destroy (&msg);
+    
+    //  Test encoding/decoding
+    msg = zmsg_new ();
+    assert (msg);
+    byte *blank = (byte *) zmalloc (100000);
+    assert (blank);
+    rc = zmsg_addmem (msg, blank, 0);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, blank, 1);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, blank, 253);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, blank, 254);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, blank, 255);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, blank, 256);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, blank, 65535);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, blank, 65536);
+    assert (rc == 0);
+    rc = zmsg_addmem (msg, blank, 65537);
+    assert (rc == 0);
+    free (blank);
+    assert (zmsg_size (msg) == 9);
+    byte *buffer;
+    size_t buffer_size = zmsg_encode (msg, &buffer);
+    zmsg_destroy (&msg);
+    msg = zmsg_decode (buffer, buffer_size);
+    assert (msg);
+    free (buffer);
+    zmsg_destroy (&msg);
+    
+    //  Test submessages
+    msg = zmsg_new ();
+    assert (msg);
+    zmsg_t *submsg = zmsg_new ();
+    zmsg_pushstr (msg, "matr");
+    zmsg_pushstr (submsg, "joska");
+    rc = zmsg_addmsg (msg, &submsg);
+    assert (rc == 0);
+    assert (submsg == NULL);
+    submsg = zmsg_popmsg (msg);
+    assert (submsg == NULL);   // string "matr" is not encoded zmsg_t, so was discarded
+    submsg = zmsg_popmsg (msg);
+    assert (submsg);
+    body = zmsg_popstr (submsg);
+    assert (streq (body, "joska"));
+    free (body);
+    zmsg_destroy (&submsg);
+    frame = zmsg_pop (msg);
+    assert (frame == NULL);
+    zmsg_destroy (&msg);
+    
+    //  Test comparison of two messages
+    msg = zmsg_new ();
+    zmsg_addstr (msg, "One");
+    zmsg_addstr (msg, "Two");
+    zmsg_addstr (msg, "Three");
+    zmsg_t *msg_other = zmsg_new ();
+    zmsg_addstr (msg_other, "One");
+    zmsg_addstr (msg_other, "Two");
+    zmsg_addstr (msg_other, "One-Hundred");
+    zmsg_t *msg_dup = zmsg_dup (msg);
+    zmsg_t *empty_msg = zmsg_new ();
+    zmsg_t *empty_msg_2 = zmsg_new ();
+    assert (zmsg_eq (msg, msg_dup));
+    assert (!zmsg_eq (msg, msg_other));
+    assert (zmsg_eq (empty_msg, empty_msg_2));
+    assert (!zmsg_eq (msg, NULL));
+    assert (!zmsg_eq (NULL, empty_msg));
+    assert (!zmsg_eq (NULL, NULL));
+    zmsg_destroy (&msg);
+    zmsg_destroy (&msg_other);
+    zmsg_destroy (&msg_dup);
+    zmsg_destroy (&empty_msg);
+    zmsg_destroy (&empty_msg_2);
+    
+    //  Test signal messages
+    msg = zmsg_new_signal (0);
+    assert (zmsg_signal (msg) == 0);
+    zmsg_destroy (&msg);
+    msg = zmsg_new_signal (-1);
+    assert (zmsg_signal (msg) == 255);
+    zmsg_destroy (&msg);
+    
+    //  Now try methods on an empty message
+    msg = zmsg_new ();
+    assert (msg);
+    assert (zmsg_size (msg) == 0);
+    assert (zmsg_unwrap (msg) == NULL);
+    assert (zmsg_first (msg) == NULL);
+    assert (zmsg_last (msg) == NULL);
+    assert (zmsg_next (msg) == NULL);
+    assert (zmsg_pop (msg) == NULL);
+    //  Sending an empty message is valid and destroys the message
+    assert (zmsg_send (&msg, output) == 0);
+    assert (!msg);
+    
+    zsock_destroy (&input);
+    zsock_destroy (&output);
+    
 
-<A name="toc4-3069" title="zpoller - trivial socket poller class" />
+<A name="toc4-3560" title="zpoller - trivial socket poller class" />
 #### zpoller - trivial socket poller class
 
 The zpoller class provides a minimalist interface to ZeroMQ's zmq_poll
@@ -3123,6 +3613,7 @@ API, for the very common case of reading from a number of sockets.
 It does not provide polling for output, nor polling on file handles.
 If you need either of these, use the zmq_poll API directly.
 
+Please add @discuss section in ../src/zpoller.c.
 
 This is the class interface:
 
@@ -3148,12 +3639,12 @@ This is the class interface:
     
     //  Poll the registered readers for I/O, return first reader that has input.
     //  The reader will be a libzmq void * socket, or a zsock_t or zactor_t
-    //  instance as specified in zpoller_new/zpoller_add. The order that
-    //  sockets are defined in the poll list affects their priority. If you
-    //  need a balanced poll, use the low level zmq_poll method directly. If
-    //  the poll call was interrupted (SIGINT), or the ZMQ context was
-    //  destroyed, or the timeout expired, returns NULL. You can test the
-    //  actual exit condition by calling zpoller_expired () and
+    //  instance as specified in zpoller_new/zpoller_add. The timeout should be
+    //  zero or greater, or -1 to wait indefinitely. Socket priority is defined
+    //  by their order in the poll list. If you need a balanced poll, use the low
+    //  level zmq_poll method directly. If the poll call was interrupted (SIGINT),
+    //  or the ZMQ context was destroyed, or the timeout expired, returns NULL.
+    //  You can test the actual exit condition by calling zpoller_expired () and
     //  zpoller_terminated (). The timeout is in msec.
     CZMQ_EXPORT void *
         zpoller_wait (zpoller_t *self, int timeout);
@@ -3167,6 +3658,13 @@ This is the class interface:
     //  was interrupted, or the parent context was destroyed.
     CZMQ_EXPORT bool
         zpoller_terminated (zpoller_t *self);
+    
+    //  Ignore zsys_interrupted flag in this poller. By default, a zpoller_wait will
+    //  return immediately if detects zsys_interrupted is set to something other than
+    //  zero. Calling zpoller_ignore_interrupts will supress this behavior.
+    
+    CZMQ_EXPORT void
+        zpoller_ignore_interrupts(zpoller_t *self);
     
     //  Self test of this class
     CZMQ_EXPORT void
@@ -3207,18 +3705,28 @@ This is the class self test code:
     assert (streq (message, "Hello, World"));
     zstr_free (&message);
     
-    // Stop polling reader
+    //  Stop polling reader
     rc = zpoller_remove (poller, sink);
     assert (rc == 0);
     
-    // Check fd works
+    //  Check we can poll an FD
     rc = zsock_connect (bowl, "tcp://127.0.0.1:%d", port_nbr);
     assert (rc != -1);
-    int fd = zsock_fd (bowl);
+    SOCKET fd = zsock_fd (bowl);
     rc = zpoller_add (poller, (void *) &fd);
     assert (rc != -1);
     zstr_send (vent, "Hello again, world");
     assert (zpoller_wait (poller, 500) == &fd);
+    
+    // Check whether poller properly ignores zsys_interrupted flag
+    // when asked to
+    zsys_interrupted = 1;
+    zpoller_wait (poller, 0);
+    assert (zpoller_terminated (poller));
+    zpoller_ignore_interrupts (poller);
+    zpoller_wait (poller, 0);
+    assert (!zpoller_terminated (poller));
+    zsys_interrupted = 0;
     
     //  Destroy poller and sockets
     zpoller_destroy (&poller);
@@ -3228,7 +3736,7 @@ This is the class self test code:
     zsock_destroy (&bowl);
     zsock_destroy (&dish);
 
-<A name="toc4-3182" title="zproxy - run a steerable proxy in the background" />
+<A name="toc4-3691" title="zproxy - run a steerable proxy in the background" />
 #### zproxy - run a steerable proxy in the background
 
 A zproxy actor switches messages between a frontend and a backend socket.
@@ -3374,7 +3882,7 @@ This is the class self test code:
     zsock_destroy (&capture);
     zactor_destroy (&proxy);
 
-<A name="toc4-3328" title="zrex - work with regular expressions" />
+<A name="toc4-3837" title="zrex - work with regular expressions" />
 #### zrex - work with regular expressions
 
 Wraps a very simple regular expression library (SLRE) as a CZMQ class.
@@ -3404,6 +3912,7 @@ Supports this syntax:
     \xDD            Match byte with hex value 0xDD
     \meta           Match one of the meta character: ^$().[*+?\
 
+Please add @discuss section in ../src/zrex.c.
 
 This is the class interface:
 
@@ -3464,517 +3973,288 @@ This is the class interface:
 
 This is the class self test code:
 
+Please add @selftest section in ../src/zrex.c.
 
-<A name="toc4-3419" title="zring - generic type-free doubly linked ring container" />
-#### zring - generic type-free doubly linked ring container
-
-Provides a generic "ring" container, which mixes a doubly-linked list
-with a hash table to provide both ordered and direct keyed access to
-items. The zring class is more complex and powerful than zlist, which
-is considered a 'basic' list container. This container provides hooks
-for duplicator, comparator, and destructor functions. These tie into
-CZMQ and standard C semantics, so e.g. for string items you can use
-strdup, strcmp, and zstr_free. To store custom objects, define your
-own duplicator and comparator, and use the standard object destructor.
-
-
-This is the class interface:
-
-    //  Create a new ring container (a ring is a doubly-linked ring)
-    CZMQ_EXPORT zring_t *
-        zring_new (void);
-    
-    //  Destroy a ring container
-    CZMQ_EXPORT void
-        zring_destroy (zring_t **self_p);
-    
-    //  Prepend an item to the start of the ring, return 0 if OK, else -1.
-    //  Leaves cursor at newly inserted item.
-    CZMQ_EXPORT int
-        zring_prepend (zring_t *self, void *item);
-    
-    //  Append an item to the end of the ring, return 0 if OK, else -1.
-    //  Leaves cursor at newly inserted item.
-    CZMQ_EXPORT int
-        zring_append (zring_t *self, void *item);
-    
-    //  Append an item to the end of the ring, and insert into the ring
-    //  dictionary, so that you can find the item rapidly using zring_lookup.
-    //  If you do a lot of item searches, this is faster than zring_find,
-    //  which is at worst an O(N) operation. When items leave the ring, they
-    //  are always removed from the dictionary. Returns 0 on success, -1 if
-    //  the key already existed in the dictionary, or heap memory ran out.
-    CZMQ_EXPORT int
-        zring_insert (zring_t *self, const void *key, void *item);
-        
-    //  Find an item in the ring, looking first at the cursor, and then from the
-    //  first to last item. If a comparator was set on container, calls this to
-    //  compare each item in the ring with the supplied target item. If none
-    //  was set, compares the two item pointers for equality. If the item is
-    //  found, leaves the cursor at the found item. Returns the item if found,
-    //  else null.
-    CZMQ_EXPORT void *
-        zring_find (zring_t *self, void *item);
-    
-    //  Search the ring dictionary for an item, by key. If the item is in the
-    //  dictionary (via zring_insert), then sets the ring cursor to the item,
-    //  and returns the item value. If not, leaves the cursor unchanged, and
-    //  returns NULL.
-    CZMQ_EXPORT void *
-        zring_lookup (zring_t *self, const void *key);
-    
-    //  Detach an item from the ring, without destroying the item. Searches the
-    //  ring for the item, always starting with the cursor, if any is set, and
-    //  then from the start of the ring. If item is null, detaches the item at the
-    //  cursor, if set. If the item was found and detached, leaves the cursor at
-    //  the next item, if any, and returns the item. Else, returns null.
-    CZMQ_EXPORT void *
-        zring_detach (zring_t *self, void *item);
-    
-    //  Remove an item from the ring, and destroy it, if the item destructor is
-    //  set. Searches the ring for the item, always starting with the cursor, if
-    //  any is set, and then from the start of the ring. If item is null, removes
-    //  the item at the cursor, if set. If the item was found and removed, leaves
-    //  the cursor at the next item, if any, and returns 0. Else, returns -1.
-    CZMQ_EXPORT int
-        zring_remove (zring_t *self, void *item);
-    
-    //  Search the ring dictionary for an item, by key. If the item is in the
-    //  dictionary (via zring_insert), then removes the item from the ring and
-    //  calls the item destructor, if any is found. Returns 0 if the item was
-    //  found and removed, else -1 if not found.
-    CZMQ_EXPORT int
-        zring_delete (zring_t *self, const void *key);
-        
-    //  Delete all items from the ring. If the item destructor is set, calls it
-    //  on every item.
-    CZMQ_EXPORT void
-        zring_purge (zring_t *self);
-    
-    //  Return number of items in the ring
-    CZMQ_EXPORT size_t
-        zring_size (zring_t *self);
-    
-    //  Return the item at the head of ring. If the ring is empty, returns NULL.
-    //  Leaves cursor pointing at the head item, or NULL if the ring is empty.
-    CZMQ_EXPORT void *
-        zring_first (zring_t *self);
-    
-    //  Return the item at the tail of ring. If the ring is empty, returns NULL.
-    //  Leaves cursor pointing at the tail item, or NULL if the ring is empty.
-    CZMQ_EXPORT void *
-        zring_last (zring_t *self);
-        
-    //  Return the next item. At the end of the ring (or in an empty ring),
-    //  returns NULL. Use repeated zring_next () calls to work through the ring
-    //  from zring_first ().
-    CZMQ_EXPORT void *
-        zring_next (zring_t *self);
-        
-    //  Return the previous item. At the start of the ring (or in an empty ring),
-    //  returns NULL. Use repeated zring_prev () calls to work through the ring
-    //  backwards from zring_last ().
-    CZMQ_EXPORT void *
-        zring_prev (zring_t *self);
-    
-    //  Return current item in the ring. If the ring is empty, or the cursor
-    //  passed the end of the ring, returns NULL. Does not change the cursor.
-    CZMQ_EXPORT void *
-        zring_item (zring_t *self);
-    
-    //  Sort the list using the compare function.
-    //  The sort is not stable, so may reorder items with the same keys.
-    CZMQ_EXPORT void
-        zlist_sort (zlist_t *self, zlist_compare_fn *compare);
-    
-    //  Make a copy of the ring; items are duplicated if you set a duplicator
-    //  for the ring, otherwise not. Copying a null reference returns a null
-    //  reference.
-    CZMQ_EXPORT zring_t *
-        zring_dup (zring_t *self);
-        
-    //  Set a user-defined deallocator for ring items; by default items are not
-    //  freed when the ring is destroyed.
-    CZMQ_EXPORT void
-        zring_set_destructor (zring_t *self, czmq_destructor destructor);
-    
-    //  Set a user-defined duplicator for ring items; by default items are not
-    //  copied when the ring is duplicated.
-    CZMQ_EXPORT void
-        zring_set_duplicator (zring_t *self, czmq_duplicator duplicator);
-    
-    //  Set a user-defined comparator for zring_find and zring_sort; the method
-    //  must return -1, 0, or 1 depending on whether item1 is less than, equal to,
-    //  or greater than, item2.
-    CZMQ_EXPORT void
-        zring_set_comparator (zring_t *self, czmq_comparator comparator);
-    
-    //  Self test of this class
-    CZMQ_EXPORT void
-        zring_test (int verbose);
-
-This is the class self test code:
-
-    zring_t *ring = zring_new ();
-    assert (ring);
-    assert (zring_size (ring) == 0);
-    
-    //  Three items we'll use as test data
-    //  Ring items are void *, not particularly strings
-    char *cheese = "boursin";
-    char *bread = "baguette";
-    char *wine = "bordeaux";
-    
-    int rc = zring_append (ring, cheese);
-    assert (!rc);
-    assert (zring_size (ring) == 1);
-    assert (zring_item (ring) == cheese);
-    rc = zring_append (ring, bread);
-    assert (!rc);
-    assert (zring_size (ring) == 2);
-    assert (zring_item (ring) == bread);
-    rc = zring_append (ring, wine);
-    assert (!rc);
-    assert (zring_size (ring) == 3);
-    assert (zring_item (ring) == wine);
-    
-    assert (zring_first (ring) == cheese);
-    assert (zring_next (ring) == bread);
-    assert (zring_next (ring) == wine);
-    assert (zring_next (ring) == NULL);
-    //  After we reach end of ring, next wraps around
-    assert (zring_next (ring) == cheese);
-    
-    assert (zring_last (ring) == wine);
-    assert (zring_prev (ring) == bread);
-    assert (zring_prev (ring) == cheese);
-    assert (zring_prev (ring) == NULL);
-    //  After we reach start of ring, prev wraps around
-    assert (zring_prev (ring) == wine);
-    zring_purge (ring);
-    
-    //  Test some list insertion-deletion combos
-    assert (zring_size (ring) == 0);
-    zring_prepend (ring, "4");
-    zring_append (ring, "3");
-    zring_prepend (ring, "5");
-    zring_append (ring, "2");
-    zring_prepend (ring, "0");
-    zring_append (ring, "1");
-    assert (zring_size (ring) == 6);
-    
-    //  Try the comparator functionality
-    zring_set_comparator (ring, (czmq_comparator *) strcmp);
-    zring_sort (ring);
-    
-    char *item = (char *) zring_first (ring);
-    assert (streq (item, "0"));
-    item = (char *) zring_find (ring, "5");
-    assert (streq (item, "5"));
-    
-    //  Try the duplicator and destructor
-    zring_set_duplicator (ring, (czmq_duplicator *) strdup);
-    zring_t *dup = zring_dup (ring);
-    assert (dup);
-    zring_set_destructor (dup, (czmq_destructor *) zstr_free);
-    assert (zring_size (dup) == 6);
-    zring_destroy (&dup);
-    
-    //  We're comparing as strings, not item pointers
-    rc = zring_remove (ring, "2");
-    assert (rc == 0);
-    rc = zring_remove (ring, "5");
-    assert (rc == 0);
-    rc = zring_remove (ring, "3");
-    assert (rc == 0);
-    item = (char *) zring_detach (ring, NULL);
-    zring_purge (ring);
-    
-    //  Try the dictionary insert/delete functionality
-    rc = zring_insert (ring, "1", "one");
-    assert (rc == 0);
-    rc = zring_insert (ring, "3", "three");
-    assert (rc == 0);
-    rc = zring_insert (ring, "2", "two");
-    assert (rc == 0);
-    rc = zring_insert (ring, "2", "two");
-    assert (rc == -1);
-    
-    item = (char *) zring_lookup (ring, "2");
-    assert (streq (item, "two"));
-    item = (char *) zring_lookup (ring, "1");
-    assert (streq (item, "one"));
-    item = (char *) zring_item (ring);
-    assert (streq (item, "one"));
-    
-    rc = zring_delete (ring, "3");
-    assert (rc == 0);
-    rc = zring_delete (ring, "3");
-    assert (rc == -1);
-    //  Using detach/remove will also remove from dictionary
-    rc = zring_remove (ring, "two");
-    assert (rc == 0);
-    rc = zring_delete (ring, "2");
-    assert (rc == -1);
-    zring_purge (ring);
-    
-    //  Destructor should be safe to call twice
-    zring_destroy (&ring);
-    assert (ring == NULL);
-    zring_destroy (&ring);
-
-<A name="toc4-3677" title="zsock - high-level socket API that hides libzmq contexts and sockets" />
+<A name="toc4-3930" title="zsock - high-level socket API that hides libzmq contexts and sockets" />
 #### zsock - high-level socket API that hides libzmq contexts and sockets
 
 The zsock class wraps the libzmq socket handle (a void *) with a proper
 structure that follows the CLASS rules for construction and destruction.
 Some zsock methods take a void * "polymorphic" reference, which can be
-either a zsock_t or a zactor_r reference, or a libzmq void *.
+either a zsock_t or a zactor_t reference, or a libzmq void *.
 
 
 This is the class interface:
 
-    
-    #if defined (ZSOCK_NOCHECK)
-    #   define zsock_new(t) zsock_new_((t), NULL, 0)
-    #   define zsock_new_pub(e) zsock_new_pub_((e), NULL, 0)
-    #   define zsock_new_sub(e,s) zsock_new_sub_((e), (s), NULL, 0)
-    #   define zsock_new_req(e) zsock_new_req_((e), NULL, 0)
-    #   define zsock_new_rep(e) zsock_new_rep_((e), NULL, 0)
-    #   define zsock_new_dealer(e) zsock_new_dealer_((e), NULL, 0)
-    #   define zsock_new_router(e) zsock_new_router_((e), NULL, 0)
-    #   define zsock_new_pull(e) zsock_new_pull_((e), NULL, 0)
-    #   define zsock_new_push(e) zsock_new_push_((e), NULL, 0)
-    #   define zsock_new_xpub(e) zsock_new_xpub_((e), NULL, 0)
-    #   define zsock_new_xsub(e) zsock_new_xsub_((e), NULL, 0)
-    #   define zsock_new_pair(e) zsock_new_pair_((e), NULL, 0)
-    #   define zsock_new_stream(e) zsock_new_stream_((e), NULL, 0)
-    #   define zsock_destroy(t) zsock_destroy_((t), NULL, 0)
-    #else
-    #   define zsock_new(t) zsock_new_((t), __FILE__, __LINE__)
-    #   define zsock_new_pub(e) zsock_new_pub_((e), __FILE__, __LINE__)
-    #   define zsock_new_sub(e,s) zsock_new_sub_((e), (s), __FILE__, __LINE__)
-    #   define zsock_new_req(e) zsock_new_req_((e), __FILE__, __LINE__)
-    #   define zsock_new_rep(e) zsock_new_rep_((e), __FILE__, __LINE__)
-    #   define zsock_new_dealer(e) zsock_new_dealer_((e), __FILE__, __LINE__)
-    #   define zsock_new_router(e) zsock_new_router_((e), __FILE__, __LINE__)
-    #   define zsock_new_pull(e) zsock_new_pull_((e), __FILE__, __LINE__)
-    #   define zsock_new_push(e) zsock_new_push_((e), __FILE__, __LINE__)
-    #   define zsock_new_xpub(e) zsock_new_xpub_((e), __FILE__, __LINE__)
-    #   define zsock_new_xsub(e) zsock_new_xsub_((e), __FILE__, __LINE__)
-    #   define zsock_new_pair(e) zsock_new_pair_((e), __FILE__, __LINE__)
-    #   define zsock_new_stream(e) zsock_new_stream_((e), __FILE__, __LINE__)
-    #   define zsock_destroy(t) zsock_destroy_((t), __FILE__, __LINE__)
-    #endif
-    
-    //  Create a new socket. This macro passes the caller source and line
-    //  number so that CZMQ can report socket leaks intelligently. To switch
-    //  off this checking, which may be costly if you use a LOT of sockets,
-    //  define ZSOCK_NOCHECK before compiling your code. Returns the new
-    //  socket, or NULL if the new socket could not be created.
+    //  Create a new socket. Returns the new socket, or NULL if the new socket
+    //  could not be created. Note that the symbol zsock_new (and other       
+    //  constructors/destructors for zsock) are redirected to the *_checked   
+    //  variant, enabling intelligent socket leak detection. This can have    
+    //  performance implications if you use a LOT of sockets. To turn off this
+    //  redirection behaviour, define ZSOCK_NOCHECK.                          
     CZMQ_EXPORT zsock_t *
-        zsock_new_ (int type, const char *filename, size_t line_nbr);
+        zsock_new (int type);
     
     //  Destroy the socket. You must use this for any socket created via the
-    //  zsock_new method.
+    //  zsock_new method.                                                   
     CZMQ_EXPORT void
-        zsock_destroy_ (zsock_t **self_p, const char *filename, size_t line_nbr);
-    
-    //  Smart constructors, which create sockets with additional set-up. In all of
-    //  these, the endpoint is NULL, or starts with '@' (connect) or '>' (bind).
-    //  Multiple endpoints are allowed, separated by commas. If endpoint does not
-    //  start with '@' or '>', default action depends on socket type.
+        zsock_destroy (zsock_t **self_p);
     
     //  Create a PUB socket. Default action is bind.
+    //  The caller is responsible for destroying the return value when finished with it.
     CZMQ_EXPORT zsock_t *
-        zsock_new_pub_ (const char *endpoint, const char *filename, size_t line_nbr);
+        zsock_new_pub (const char *endpoint);
     
     //  Create a SUB socket, and optionally subscribe to some prefix string. Default
-    //  action is connect.
+    //  action is connect.                                                          
+    //  The caller is responsible for destroying the return value when finished with it.
     CZMQ_EXPORT zsock_t *
-        zsock_new_sub_ (const char *endpoint, const char *subscribe, const char *filename, size_t line_nbr);
+        zsock_new_sub (const char *endpoint, const char *subscribe);
     
     //  Create a REQ socket. Default action is connect.
+    //  The caller is responsible for destroying the return value when finished with it.
     CZMQ_EXPORT zsock_t *
-        zsock_new_req_ (const char *endpoint, const char *filename, size_t line_nbr);
+        zsock_new_req (const char *endpoint);
     
     //  Create a REP socket. Default action is bind.
+    //  The caller is responsible for destroying the return value when finished with it.
     CZMQ_EXPORT zsock_t *
-        zsock_new_rep_ (const char *endpoint, const char *filename, size_t line_nbr);
+        zsock_new_rep (const char *endpoint);
     
     //  Create a DEALER socket. Default action is connect.
+    //  The caller is responsible for destroying the return value when finished with it.
     CZMQ_EXPORT zsock_t *
-        zsock_new_dealer_ (const char *endpoint, const char *filename, size_t line_nbr);
+        zsock_new_dealer (const char *endpoint);
     
     //  Create a ROUTER socket. Default action is bind.
+    //  The caller is responsible for destroying the return value when finished with it.
     CZMQ_EXPORT zsock_t *
-        zsock_new_router_ (const char *endpoint, const char *filename, size_t line_nbr);
+        zsock_new_router (const char *endpoint);
     
     //  Create a PUSH socket. Default action is connect.
+    //  The caller is responsible for destroying the return value when finished with it.
     CZMQ_EXPORT zsock_t *
-        zsock_new_push_ (const char *endpoint, const char *filename, size_t line_nbr);
+        zsock_new_push (const char *endpoint);
     
     //  Create a PULL socket. Default action is bind.
+    //  The caller is responsible for destroying the return value when finished with it.
     CZMQ_EXPORT zsock_t *
-        zsock_new_pull_ (const char *endpoint, const char *filename, size_t line_nbr);
+        zsock_new_pull (const char *endpoint);
     
     //  Create an XPUB socket. Default action is bind.
+    //  The caller is responsible for destroying the return value when finished with it.
     CZMQ_EXPORT zsock_t *
-        zsock_new_xpub_ (const char *endpoint, const char *filename, size_t line_nbr);
+        zsock_new_xpub (const char *endpoint);
     
     //  Create an XSUB socket. Default action is connect.
+    //  The caller is responsible for destroying the return value when finished with it.
     CZMQ_EXPORT zsock_t *
-        zsock_new_xsub_ (const char *endpoint, const char *filename, size_t line_nbr);
+        zsock_new_xsub (const char *endpoint);
     
     //  Create a PAIR socket. Default action is connect.
+    //  The caller is responsible for destroying the return value when finished with it.
     CZMQ_EXPORT zsock_t *
-        zsock_new_pair_ (const char *endpoint, const char *filename, size_t line_nbr);
+        zsock_new_pair (const char *endpoint);
     
     //  Create a STREAM socket. Default action is connect.
+    //  The caller is responsible for destroying the return value when finished with it.
     CZMQ_EXPORT zsock_t *
-        zsock_new_stream_ (const char *endpoint, const char *filename, size_t line_nbr);
+        zsock_new_stream (const char *endpoint);
     
-    //  Bind a socket to a formatted endpoint. For tcp:// endpoints, supports
-    //  ephemeral ports, if you specify the port number as "*". By default
-    //  zsock uses the IANA designated range from C000 (49152) to FFFF (65535).
-    //  To override this range, follow the "*" with "[first-last]". Either or
-    //  both first and last may be empty. To bind to a random port within the
-    //  range, use "!" in place of "*".
-    //
-    //  Examples:
-    //      tcp://127.0.0.1:*           bind to first free port from C000 up
-    //      tcp://127.0.0.1:!           bind to random port from C000 to FFFF
-    //      tcp://127.0.0.1:*[60000-]   bind to first free port from 60000 up
-    //      tcp://127.0.0.1:![55000-55999]
-    //                                  bind to random port from 55000 to 55999
-    //
-    //  On success, returns the actual port number used, for tcp:// endpoints,
+    //  Bind a socket to a formatted endpoint. For tcp:// endpoints, supports   
+    //  ephemeral ports, if you specify the port number as "*". By default      
+    //  zsock uses the IANA designated range from C000 (49152) to FFFF (65535). 
+    //  To override this range, follow the "*" with "[first-last]". Either or   
+    //  both first and last may be empty. To bind to a random port within the   
+    //  range, use "!" in place of "*".                                         
+    //                                                                          
+    //  Examples:                                                               
+    //      tcp://127.0.0.1:*           bind to first free port from C000 up    
+    //      tcp://127.0.0.1:!           bind to random port from C000 to FFFF   
+    //      tcp://127.0.0.1:*[60000-]   bind to first free port from 60000 up   
+    //      tcp://127.0.0.1:![-60000]   bind to random port from C000 to 60000  
+    //      tcp://127.0.0.1:![55000-55999]                                      
+    //                                  bind to random port from 55000 to 55999 
+    //                                                                          
+    //  On success, returns the actual port number used, for tcp:// endpoints,  
     //  and 0 for other transports. On failure, returns -1. Note that when using
-    //  ephemeral ports, a port may be reused by different services without
-    //  clients being aware. Protocols that run on ephemeral ports should take
-    //  this into account.
+    //  ephemeral ports, a port may be reused by different services without     
+    //  clients being aware. Protocols that run on ephemeral ports should take  
+    //  this into account.                                                      
     CZMQ_EXPORT int
-        zsock_bind (zsock_t *self, const char *format, ...);
+        zsock_bind (zsock_t *self, const char *format, ...) CHECK_PRINTF (2);
     
     //  Returns last bound endpoint, if any.
-    CZMQ_EXPORT char *
+    CZMQ_EXPORT const char *
         zsock_endpoint (zsock_t *self);
     
-    //  Unbind a socket from a formatted endpoint.
+    //  Unbind a socket from a formatted endpoint.                     
     //  Returns 0 if OK, -1 if the endpoint was invalid or the function
-    //  isn't supported.
+    //  isn't supported.                                               
     CZMQ_EXPORT int
-        zsock_unbind (zsock_t *self, const char *format, ...);
+        zsock_unbind (zsock_t *self, const char *format, ...) CHECK_PRINTF (2);
     
-    //  Connect a socket to a formatted endpoint
+    //  Connect a socket to a formatted endpoint        
     //  Returns 0 if OK, -1 if the endpoint was invalid.
     CZMQ_EXPORT int
-        zsock_connect (zsock_t *self, const char *format, ...);
+        zsock_connect (zsock_t *self, const char *format, ...) CHECK_PRINTF (2);
     
-    //  Disconnect a socket from a formatted endpoint
+    //  Disconnect a socket from a formatted endpoint                  
     //  Returns 0 if OK, -1 if the endpoint was invalid or the function
-    //  isn't supported.
+    //  isn't supported.                                               
     CZMQ_EXPORT int
-        zsock_disconnect (zsock_t *self, const char *format, ...);
+        zsock_disconnect (zsock_t *self, const char *format, ...) CHECK_PRINTF (2);
     
-    //  Attach a socket to zero or more endpoints. If endpoints is not null,
+    //  Attach a socket to zero or more endpoints. If endpoints is not null,    
     //  parses as list of ZeroMQ endpoints, separated by commas, and prefixed by
     //  '@' (to bind the socket) or '>' (to attach the socket). Returns 0 if all
     //  endpoints were valid, or -1 if there was a syntax error. If the endpoint
-    //  does not start with '@' or '>', the serverish argument defines whether
-    //  it is used to bind (serverish = true) or connect (serverish = false).
+    //  does not start with '@' or '>', the serverish argument defines whether  
+    //  it is used to bind (serverish = true) or connect (serverish = false).   
     CZMQ_EXPORT int
         zsock_attach (zsock_t *self, const char *endpoints, bool serverish);
     
-    //  Returns socket type as printable constant string. Takes a polymorphic
-    //  socket reference.
+    //  Returns socket type as printable constant string.
     CZMQ_EXPORT const char *
-        zsock_type_str (void *self);
+        zsock_type_str (zsock_t *self);
     
-    //  Send a 'picture' message to the socket (or actor). The picture is a
+    //  Send a 'picture' message to the socket (or actor). The picture is a   
     //  string that defines the type of each frame. This makes it easy to send
-    //  a complex multiframe message in one call. The picture can contain any
-    //  of these characters, each corresponding to one or two arguments:
-    //
-    //      i = int
-    //      s = char *
-    //      b = byte *, size_t (2 arguments)
-    //      c = zchunk_t *
-    //      f = zframe_t *
-    //      h = zhash_t *
-    //      m = zmsg_t * (sends all frames in the zmsg)
-    //      p = void * (sends the pointer value, only meaningful over inproc)
-    //      z = sends zero-sized frame (0 arguments)
-    //
-    //  Note that s, b, c, and f are encoded the same way and the choice is
-    //  offered as a convenience to the sender, which may or may not already
-    //  have data in a zchunk or zframe. Does not change or take ownership of
-    //  any arguments. Returns 0 if successful, -1 if sending failed for any
-    //  reason.
+    //  a complex multiframe message in one call. The picture can contain any 
+    //  of these characters, each corresponding to one or two arguments:      
+    //                                                                        
+    //      i = int (signed)                                                  
+    //      1 = uint8_t                                                       
+    //      2 = uint16_t                                                      
+    //      4 = uint32_t                                                      
+    //      8 = uint64_t                                                      
+    //      b = byte *, size_t (2 arguments)                                  
+    //      c = zchunk_t *                                                    
+    //      f = zframe_t *                                                    
+    //      h = zhashx_t *                                                    
+    //      p = void * (sends the pointer value, only meaningful over inproc) 
+    //      m = zmsg_t * (sends all frames in the zmsg)                       
+    //      z = sends zero-sized frame (0 arguments)                          
+    //      u = uint (deprecated)                                             
+    //                                                                        
+    //  Note that s, b, c, and f are encoded the same way and the choice is   
+    //  offered as a convenience to the sender, which may or may not already  
+    //  have data in a zchunk or zframe. Does not change or take ownership of 
+    //  any arguments. Returns 0 if successful, -1 if sending failed for any  
+    //  reason.                                                               
     CZMQ_EXPORT int
         zsock_send (void *self, const char *picture, ...);
     
+    //  Send a 'picture' message to the socket (or actor). This is a va_list 
+    //  version of zsock_send (), so please consult its documentation for the
+    //  details.                                                             
+    CZMQ_EXPORT int
+        zsock_vsend (void *self, const char *picture, va_list argptr);
+    
     //  Receive a 'picture' message to the socket (or actor). See zsock_send for
     //  the format and meaning of the picture. Returns the picture elements into
-    //  a series of pointers as provided by the caller:
-    //
-    //      i = int * (stores integer)
-    //      s = char ** (allocates new string)
-    //      b = byte **, size_t * (2 arguments) (allocates memory)
-    //      c = zchunk_t ** (creates zchunk)
-    //      f = zframe_t ** (creates zframe)
-    //      p = void ** (stores pointer)
-    //      h = zhash_t ** (creates zhash)
-    //      m = zmsg_t ** (creates a zmsg with the remaing frames)    
-    //      z = null, asserts empty frame (0 arguments)
-    //
-    //  Note that zsock_recv creates the returned objects, and the caller must
-    //  destroy them when finished with them. The supplied pointers do not need
-    //  to be initialized. Returns 0 if successful, or -1 if it failed to recv
-    //  a message, in which case the pointers are not modified. When message
+    //  a series of pointers as provided by the caller:                         
+    //                                                                          
+    //      i = int * (stores signed integer)                                   
+    //      4 = uint32_t * (stores 32-bit unsigned integer)                     
+    //      8 = uint64_t * (stores 64-bit unsigned integer)                     
+    //      s = char ** (allocates new string)                                  
+    //      b = byte **, size_t * (2 arguments) (allocates memory)              
+    //      c = zchunk_t ** (creates zchunk)                                    
+    //      f = zframe_t ** (creates zframe)                                    
+    //      p = void ** (stores pointer)                                        
+    //      h = zhashx_t ** (creates zhashx)                                    
+    //      m = zmsg_t ** (creates a zmsg with the remaing frames)              
+    //      z = null, asserts empty frame (0 arguments)                         
+    //      u = uint * (stores unsigned integer, deprecated)                    
+    //                                                                          
+    //  Note that zsock_recv creates the returned objects, and the caller must  
+    //  destroy them when finished with them. The supplied pointers do not need 
+    //  to be initialized. Returns 0 if successful, or -1 if it failed to recv  
+    //  a message, in which case the pointers are not modified. When message    
     //  frames are truncated (a short message), sets return values to zero/null.
-    //  If an argument pointer is NULL, does not store any value (skips it).
-    //  An 'n' picture matches an empty frame; if the message does not match, 
-    //  the method will return -1.
+    //  If an argument pointer is NULL, does not store any value (skips it).    
+    //  An 'n' picture matches an empty frame; if the message does not match,   
+    //  the method will return -1.                                              
     CZMQ_EXPORT int
         zsock_recv (void *self, const char *picture, ...);
     
+    //  Receive a 'picture' message from the socket (or actor). This is a    
+    //  va_list version of zsock_recv (), so please consult its documentation
+    //  for the details.                                                     
+    CZMQ_EXPORT int
+        zsock_vrecv (void *self, const char *picture, va_list argptr);
+    
+    //  Send a binary encoded 'picture' message to the socket (or actor). This 
+    //  method is similar to zsock_send, except the arguments are encoded in a 
+    //  binary format that is compatible with zproto, and is designed to reduce
+    //  memory allocations. The pattern argument is a string that defines the  
+    //  type of each argument. Supports these argument types:                  
+    //                                                                         
+    //   pattern    C type                  zproto type:                       
+    //      1       uint8_t                 type = "number" size = "1"         
+    //      2       uint16_t                type = "number" size = "2"         
+    //      4       uint32_t                type = "number" size = "3"         
+    //      8       uint64_t                type = "number" size = "4"         
+    //      s       char *, 0-255 chars     type = "string"                    
+    //      S       char *, 0-2^32-1 chars  type = "longstr"                   
+    //      c       zchunk_t *              type = "chunk"                     
+    //      f       zframe_t *              type = "frame"                     
+    //      m       zmsg_t *                type = "msg"                       
+    //      p       void *, sends pointer value, only over inproc              
+    //                                                                         
+    //  Does not change or take ownership of any arguments. Returns 0 if       
+    //  successful, -1 if sending failed for any reason.                       
+    CZMQ_EXPORT int
+        zsock_bsend (void *self, const char *picture, ...);
+    
+    //  Receive a binary encoded 'picture' message from the socket (or actor).  
+    //  This method is similar to zsock_recv, except the arguments are encoded  
+    //  in a binary format that is compatible with zproto, and is designed to   
+    //  reduce memory allocations. The pattern argument is a string that defines
+    //  the type of each argument. See zsock_bsend for the supported argument   
+    //  types. All arguments must be pointers; this call sets them to point to  
+    //  values held on a per-socket basis. Do not modify or destroy the returned
+    //  values. Returns 0 if successful, or -1 if it failed to read a message.  
+    CZMQ_EXPORT int
+        zsock_brecv (void *self, const char *picture, ...);
+    
     //  Set socket to use unbounded pipes (HWM=0); use this in cases when you are
-    //  totally certain the message volume can fit in memory. This method works
-    //  across all versions of ZeroMQ. Takes a polymorphic socket reference.
+    //  totally certain the message volume can fit in memory. This method works  
+    //  across all versions of ZeroMQ. Takes a polymorphic socket reference.     
     CZMQ_EXPORT void
         zsock_set_unbounded (void *self);
     
-    //  Send a signal over a socket. A signal is a short message carrying a
-    //  success/failure code (by convention, 0 means OK). Signals are encoded
-    //  to be distinguishable from "normal" messages. Accepts a zock_t or a
+    //  Send a signal over a socket. A signal is a short message carrying a   
+    //  success/failure code (by convention, 0 means OK). Signals are encoded 
+    //  to be distinguishable from "normal" messages. Accepts a zock_t or a   
     //  zactor_t argument, and returns 0 if successful, -1 if the signal could
-    //  not be sent. Takes a polymorphic socket reference.
+    //  not be sent. Takes a polymorphic socket reference.                    
     CZMQ_EXPORT int
         zsock_signal (void *self, byte status);
-        
-    //  Wait on a signal. Use this to coordinate between threads, over pipe
+    
+    //  Wait on a signal. Use this to coordinate between threads, over pipe  
     //  pairs. Blocks until the signal is received. Returns -1 on error, 0 or
-    //  greater on success. Accepts a zsock_t or a zactor_t as argument.
-    //  Takes a polymorphic socket reference.
+    //  greater on success. Accepts a zsock_t or a zactor_t as argument.     
+    //  Takes a polymorphic socket reference.                                
     CZMQ_EXPORT int
         zsock_wait (void *self);
     
-    //  If there is a partial message still waiting on the socket, remove and
+    //  If there is a partial message still waiting on the socket, remove and    
     //  discard it. This is useful when reading partial messages, to get specific
-    //  message types.
+    //  message types.                                                           
     CZMQ_EXPORT void
         zsock_flush (void *self);
     
     //  Probe the supplied object, and report if it looks like a zsock_t.
-    //  Takes a polymorphic socket reference.
+    //  Takes a polymorphic socket reference.                            
     CZMQ_EXPORT bool
         zsock_is (void *self);
     
     //  Probe the supplied reference. If it looks like a zsock_t instance, return
-    //  the underlying libzmq socket handle; elsie if it looks like a file
-    //  descriptor, return NULL; else if it looks like a libzmq socket handle,
-    //  return the supplied value. Takes a polymorphic socket reference.
+    //  the underlying libzmq socket handle; else if it looks like a file        
+    //  descriptor, return NULL; else if it looks like a libzmq socket handle,   
+    //  return the supplied value. Takes a polymorphic socket reference.         
     CZMQ_EXPORT void *
         zsock_resolve (void *self);
     
@@ -3984,8 +4264,244 @@ This is the class interface:
 
 This is the class self test code:
 
+    zsock_t *writer = zsock_new_push ("@tcp://127.0.0.1:5560");
+    assert (writer);
+    assert (zsock_resolve (writer) != writer);
+    assert (streq (zsock_type_str (writer), "PUSH"));
+    
+    int rc;
+    #if (ZMQ_VERSION >= ZMQ_MAKE_VERSION (3, 2, 0))
+    //  Check unbind
+    rc = zsock_unbind (writer, "tcp://127.0.0.1:%d", 5560);
+    assert (rc == 0);
+    
+    //  In some cases and especially when running under Valgrind, doing
+    //  a bind immediately after an unbind causes an EADDRINUSE error.
+    //  Even a short sleep allows the OS to release the port for reuse.
+    zclock_sleep (100);
+    
+    //  Bind again
+    rc = zsock_bind (writer, "tcp://127.0.0.1:%d", 5560);
+    assert (rc == 5560);
+    assert (streq (zsock_endpoint (writer), "tcp://127.0.0.1:5560"));
+    #endif
+    
+    zsock_t *reader = zsock_new_pull (">tcp://127.0.0.1:5560");
+    assert (reader);
+    assert (zsock_resolve (reader) != reader);
+    assert (streq (zsock_type_str (reader), "PULL"));
+    
+    //  Basic Hello, World
+    zstr_send (writer, "Hello, World");
+    zmsg_t *msg = zmsg_recv (reader);
+    assert (msg);
+    char *string = zmsg_popstr (msg);
+    assert (streq (string, "Hello, World"));
+    free (string);
+    zmsg_destroy (&msg);
+    
+    //  Test resolve FD
+    SOCKET fd = zsock_fd (reader);
+    assert (zsock_resolve ((void *) &fd) == NULL);
+    
+    //  Test binding to ephemeral ports, sequential and random
+    int port = zsock_bind (writer, "tcp://127.0.0.1:*");
+    assert (port >= DYNAMIC_FIRST && port <= DYNAMIC_LAST);
+    port = zsock_bind (writer, "tcp://127.0.0.1:*[50000-]");
+    assert (port >= 50000 && port <= DYNAMIC_LAST);
+    port = zsock_bind (writer, "tcp://127.0.0.1:*[-50001]");
+    assert (port >= DYNAMIC_FIRST && port <= 50001);
+    port = zsock_bind (writer, "tcp://127.0.0.1:*[60000-60050]");
+    assert (port >= 60000 && port <= 60050);
+    
+    port = zsock_bind (writer, "tcp://127.0.0.1:!");
+    assert (port >= DYNAMIC_FIRST && port <= DYNAMIC_LAST);
+    port = zsock_bind (writer, "tcp://127.0.0.1:![50000-]");
+    assert (port >= 50000 && port <= DYNAMIC_LAST);
+    port = zsock_bind (writer, "tcp://127.0.0.1:![-50001]");
+    assert (port >= DYNAMIC_FIRST && port <= 50001);
+    port = zsock_bind (writer, "tcp://127.0.0.1:![60000-60050]");
+    assert (port >= 60000 && port <= 60050);
+    
+    //  Test zsock_attach method
+    zsock_t *server = zsock_new (ZMQ_DEALER);
+    assert (server);
+    rc = zsock_attach (server, "@inproc://myendpoint,tcp://127.0.0.1:5556,inproc://others", true);
+    assert (rc == 0);
+    rc = zsock_attach (server, "", false);
+    assert (rc == 0);
+    rc = zsock_attach (server, NULL, true);
+    assert (rc == 0);
+    rc = zsock_attach (server, ">a,@b, c,, ", false);
+    assert (rc == -1);
+    zsock_destroy (&server);
+    
+    //  Test zsock_endpoint method
+    rc = zsock_bind (writer, "inproc://test.%s", "writer");
+    assert (rc == 0);
+    assert (streq (zsock_endpoint (writer), "inproc://test.writer"));
+    
+    //  Test error state when connecting to an invalid socket type
+    //  ('txp://' instead of 'tcp://', typo intentional)
+    rc = zsock_connect (reader, "txp://127.0.0.1:5560");
+    assert (rc == -1);
+    
+    //  Test signal/wait methods
+    rc = zsock_signal (writer, 123);
+    assert (rc == 0);
+    rc = zsock_wait (reader);
+    assert (rc == 123);
+    
+    //  Test zsock_send/recv pictures
+    uint8_t  number1 = 123;
+    uint16_t number2 = 123 * 123;
+    uint32_t number4 = 123 * 123 * 123;
+    uint64_t number8 = 123 * 123 * 123 * 123;
+    
+    zchunk_t *chunk = zchunk_new ("HELLO", 5);
+    assert (chunk);
+    zframe_t *frame = zframe_new ("WORLD", 5);
+    assert (frame);
+    zhashx_t *hash = zhashx_new ();
+    assert (hash);
+    zhashx_autofree (hash);
+    zhashx_insert (hash, "1", "value A");
+    zhashx_insert (hash, "2", "value B");
+    char *original = "pointer";
+    
+    //  Test zsock_recv into each supported type
+    zsock_send (writer, "i1248zsbcfhp",
+                -12345, number1, number2, number4, number8,
+                "This is a string", "ABCDE", 5, chunk, frame, hash, original);
+    zframe_destroy (&frame);
+    zchunk_destroy (&chunk);
+    zhashx_destroy (&hash);
+    
+    int integer;
+    byte *data;
+    size_t size;
+    char *pointer;
+    number8 = number4 = number2 = number1 = 0;
+    rc = zsock_recv (reader, "i1248zsbcfhp",
+                     &integer, &number1, &number2, &number4, &number8,
+                     &string, &data, &size, &chunk, &frame, &hash, &pointer);
+    assert (rc == 0);
+    assert (integer == -12345);
+    assert (number1 == 123);
+    assert (number2 == 123 * 123);
+    assert (number4 == 123 * 123 * 123);
+    assert (number8 == 123 * 123 * 123 * 123);
+    assert (streq (string, "This is a string"));
+    assert (memcmp (data, "ABCDE", 5) == 0);
+    assert (size == 5);
+    assert (memcmp (zchunk_data (chunk), "HELLO", 5) == 0);
+    assert (zchunk_size (chunk) == 5);
+    assert (memcmp (zframe_data (frame), "WORLD", 5) == 0);
+    assert (zframe_size (frame) == 5);
+    char *value = (char *) zhashx_lookup (hash, "1");
+    assert (streq (value, "value A"));
+    value = (char *) zhashx_lookup (hash, "2");
+    assert (streq (value, "value B"));
+    assert (original == pointer);
+    free (string);
+    free (data);
+    zframe_destroy (&frame);
+    zchunk_destroy (&chunk);
+    zhashx_destroy (&hash);
+    
+    //  Test zsock_recv of short message; this lets us return a failure
+    //  with a status code and then nothing else; the receiver will get
+    //  the status code and NULL/zero for all other values
+    zsock_send (writer, "i", -1);
+    zsock_recv (reader, "izsbcfp",
+        &integer, &string, &data, &size, &chunk, &frame, &pointer);
+    assert (integer == -1);
+    assert (string == NULL);
+    assert (data == NULL);
+    assert (size == 0);
+    assert (chunk == NULL);
+    assert (frame == NULL);
+    assert (pointer == NULL);
+    
+    msg = zmsg_new ();
+    zmsg_addstr (msg, "frame 1");
+    zmsg_addstr (msg, "frame 2");
+    zsock_send (writer, "szm", "header", msg);
+    zmsg_destroy (&msg);
+    
+    zsock_recv (reader, "szm", &string, &msg);
+    
+    assert (streq ("header", string));
+    assert (zmsg_size (msg) == 2);
+    assert (zframe_streq (zmsg_first (msg), "frame 1"));
+    assert (zframe_streq (zmsg_next (msg), "frame 2"));
+    zstr_free (&string);
+    zmsg_destroy (&msg);
+    
+    //  Test zsock_recv with null arguments
+    chunk = zchunk_new ("HELLO", 5);
+    assert (chunk);
+    frame = zframe_new ("WORLD", 5);
+    assert (frame);
+    zsock_send (writer, "izsbcfp",
+                -12345, "This is a string", "ABCDE", 5, chunk, frame, original);
+    zframe_destroy (&frame);
+    zchunk_destroy (&chunk);
+    zsock_recv (reader, "izsbcfp", &integer, NULL, NULL, NULL, &chunk, NULL, NULL);
+    assert (integer == -12345);
+    assert (memcmp (zchunk_data (chunk), "HELLO", 5) == 0);
+    assert (zchunk_size (chunk) == 5);
+    zchunk_destroy (&chunk);
+    
+    //  Test zsock_bsend/brecv pictures with binary encoding
+    frame = zframe_new ("Hello", 5);
+    chunk = zchunk_new ("World", 5);
+    
+    msg = zmsg_new ();
+    zmsg_addstr (msg, "Hello");
+    zmsg_addstr (msg, "World");
+    
+    zsock_bsend (writer, "1248sSpcfm",
+                 number1, number2, number4, number8,
+                 "Hello, World",
+                 "Goodbye cruel World!",
+                 original,
+                 chunk, frame, msg);
+    zchunk_destroy (&chunk);
+    zframe_destroy (&frame);
+    zmsg_destroy (&msg);
+    
+    number8 = number4 = number2 = number1 = 0;
+    char *longstr;
+    zsock_brecv (reader, "1248sSpcfm",
+                 &number1, &number2, &number4, &number8,
+                 &string, &longstr,
+                 &pointer,
+                 &chunk, &frame, &msg);
+    assert (number1 == 123);
+    assert (number2 == 123 * 123);
+    assert (number4 == 123 * 123 * 123);
+    assert (number8 == 123 * 123 * 123 * 123);
+    assert (streq (string, "Hello, World"));
+    assert (streq (longstr, "Goodbye cruel World!"));
+    assert (pointer == original);
+    zstr_free (&longstr);
+    zchunk_destroy (&chunk);
+    zframe_destroy (&frame);
+    zmsg_destroy (&msg);
+    
+    //  Check that we can send a zproto format message
+    zsock_bsend (writer, "1111sS4", 0xAA, 0xA0, 0x02, 0x01, "key", "value", 1234);
+    zgossip_msg_t *gossip = zgossip_msg_new ();
+    zgossip_msg_recv (gossip, reader);
+    assert (zgossip_msg_id (gossip) == ZGOSSIP_MSG_PUBLISH);
+    zgossip_msg_destroy (&gossip);
+    
+    zsock_destroy (&reader);
+    zsock_destroy (&writer);
+    
 
-<A name="toc4-3939" title="zsock_option - get/set ØMQ socket options" />
+<A name="toc4-4456" title="zsock_option - get/set ØMQ socket options" />
 #### zsock_option - get/set ØMQ socket options
 
 The zsock_option class provides access to the ØMQ getsockopt/setsockopt API.
@@ -4040,7 +4556,7 @@ This is the class interface:
     CZMQ_EXPORT int zsock_tcp_keepalive_intvl (void *self);
     CZMQ_EXPORT char * zsock_tcp_accept_filter (void *self);
     CZMQ_EXPORT int zsock_rcvmore (void *self);
-    CZMQ_EXPORT int zsock_fd (void *self);
+    CZMQ_EXPORT SOCKET zsock_fd (void *self);
     CZMQ_EXPORT int zsock_events (void *self);
     CZMQ_EXPORT char * zsock_last_endpoint (void *self);
     
@@ -4124,7 +4640,7 @@ This is the class interface:
     CZMQ_EXPORT int zsock_tcp_keepalive_intvl (void *self);
     CZMQ_EXPORT char * zsock_tcp_accept_filter (void *self);
     CZMQ_EXPORT int zsock_rcvmore (void *self);
-    CZMQ_EXPORT int zsock_fd (void *self);
+    CZMQ_EXPORT SOCKET zsock_fd (void *self);
     CZMQ_EXPORT int zsock_events (void *self);
     CZMQ_EXPORT char * zsock_last_endpoint (void *self);
     
@@ -4182,7 +4698,7 @@ This is the class interface:
     CZMQ_EXPORT int zsock_backlog (void *self);
     CZMQ_EXPORT int zsock_type (void *self);
     CZMQ_EXPORT int zsock_rcvmore (void *self);
-    CZMQ_EXPORT int zsock_fd (void *self);
+    CZMQ_EXPORT SOCKET zsock_fd (void *self);
     CZMQ_EXPORT int zsock_events (void *self);
     
     //  Set socket options
@@ -4976,7 +5492,7 @@ This is the class self test code:
     #endif
     
 
-<A name="toc4-4930" title="zstr - sending and receiving strings" />
+<A name="toc4-5447" title="zstr - sending and receiving strings" />
 #### zstr - sending and receiving strings
 
 The zstr class provides utility functions for sending and receiving C
@@ -5053,14 +5569,41 @@ This is the class interface:
 This is the class self test code:
 
     //  Create two PAIR sockets and connect over inproc
+    zsock_t *output = zsock_new_pair ("@inproc://zstr.test");
+    assert (output);
+    zsock_t *input = zsock_new_pair (">inproc://zstr.test");
+    assert (input);
+    
+    //  Send ten strings, five strings with MORE flag and then END
+    int string_nbr;
+    for (string_nbr = 0; string_nbr < 10; string_nbr++)
+        zstr_sendf (output, "this is string %d", string_nbr);
+    zstr_sendx (output, "This", "is", "almost", "the", "very", "END", NULL);
+    
+    //  Read and count until we receive END
+    string_nbr = 0;
+    for (string_nbr = 0;; string_nbr++) {
+        char *string = zstr_recv (input);
+        assert (string);
+        if (streq (string, "END")) {
+            zstr_free (&string);
+            break;
+        }
+        zstr_free (&string);
+    }
+    assert (string_nbr == 15);
+    
+    zsock_destroy (&input);
+    zsock_destroy (&output);
 
-<A name="toc4-5008" title="zsys - system-level methods" />
+<A name="toc4-5551" title="zsys - system-level methods" />
 #### zsys - system-level methods
 
 The zsys class provides a portable wrapper for system calls. We collect
 them here to reduce the number of weird #ifdefs in other classes. As far
 as possible, the bulk of CZMQ classes are fully portable.
 
+Please add @discuss section in ../src/zsys.c.
 
 This is the class interface:
 
@@ -5103,6 +5646,12 @@ This is the class interface:
     CZMQ_EXPORT char *
         zsys_sockname (int socktype);
         
+    //  Create a pipe, which consists of two PAIR sockets connected over inproc.
+    //  The pipe is configured to use the zsys_pipehwm setting. Returns the
+    //  frontend socket successful, NULL if failed.
+    CZMQ_EXPORT zsock_t *
+        zsys_create_pipe (zsock_t **backend_p);
+        
     //  Set interrupt handler; this saves the default handlers so that a
     //  zsys_handler_reset () can restore them. If you call this multiple times
     //  then the last handler will take affect. If handler_fn is NULL, disables
@@ -5134,7 +5683,8 @@ This is the class interface:
     
     //  Return file mode; provides at least support for the POSIX S_ISREG(m)
     //  and S_ISDIR(m) macros and the S_IRUSR and S_IWUSR bits, on all boxes.
-    CZMQ_EXPORT mode_t
+    //  Returns a mode_t cast to int, or -1 in case of error.
+    CZMQ_EXPORT int
         zsys_file_mode (const char *filename);
     
     //  Delete file. Does not complain if the file is absent
@@ -5153,6 +5703,10 @@ This is the class interface:
     //  Remove a file path if empty; the pathname is treated as printf format.
     CZMQ_EXPORT int
         zsys_dir_delete (const char *pathname, ...);
+    
+    //  Move to a specified working directory. Returns 0 if OK, -1 if this failed.
+    CZMQ_EXPORT int
+        zsys_dir_change (const char *pathname);
     
     //  Set private file creation mode; all files created from here will be
     //  readable/writable by the owner only.
@@ -5193,9 +5747,10 @@ This is the class interface:
     CZMQ_EXPORT int
         zsys_udp_close (SOCKET handle);
     
-    //  Send zframe to UDP socket
+    //  Send zframe to UDP socket, return -1 if sending failed due to
+    //  interface having disappeared (happens easily with WiFi)
     //  *** This is for CZMQ internal use only and may change arbitrarily ***
-    CZMQ_EXPORT void
+    CZMQ_EXPORT int
         zsys_udp_send (SOCKET udpsock, zframe_t *frame, inaddr_t *address);
     
     //  Receive zframe from UDP socket, and set address of peer that sent it
@@ -5211,7 +5766,8 @@ This is the class interface:
         zsys_socket_error (const char *reason);
     
     //  Return current host name, for use in public tcp:// endpoints. Caller gets
-    //  a freshly allocated string, should free it using zstr_free().
+    //  a freshly allocated string, should free it using zstr_free(). If the host
+    //  name is not resolvable, returns NULL.
     CZMQ_EXPORT char *
         zsys_hostname (void);
     
@@ -5381,7 +5937,7 @@ This is the class self test code:
         char *hostname = zsys_hostname ();
         zsys_info ("host name is %s", hostname);
         free (hostname);
-        zsys_info ("system limit is %zd ZeroMQ sockets", zsys_socket_limit ());
+        zsys_info ("system limit is %zu ZeroMQ sockets", zsys_socket_limit ());
     }
     zsys_set_io_threads (1);
     zsys_set_max_sockets (0);
@@ -5390,9 +5946,19 @@ This is the class self test code:
     zsys_set_rcvhwm (1000);
     zsys_set_pipehwm (2500);
     assert (zsys_pipehwm () == 2500);
-    
     zsys_set_ipv6 (0);
     
+    //  Test pipe creation
+    zsock_t *pipe_back;
+    zsock_t *pipe_front = zsys_create_pipe (&pipe_back);
+    zstr_send (pipe_front, "Hello");
+    char *string = zstr_recv (pipe_back);
+    assert (streq (string, "Hello"));
+    free (string);
+    zsock_destroy (&pipe_back);
+    zsock_destroy (&pipe_front);
+    
+    //  Test file manipulation
     rc = zsys_file_delete ("nosuchfile");
     assert (rc == -1);
     
@@ -5405,7 +5971,7 @@ This is the class self test code:
     time_t when = zsys_file_modified (".");
     assert (when > 0);
     
-    mode_t mode = zsys_file_mode (".");
+    int mode = zsys_file_mode (".");
     assert (S_ISDIR (mode));
     assert (mode & S_IRUSR);
     assert (mode & S_IWUSR);
@@ -5421,6 +5987,7 @@ This is the class self test code:
     rc = zsys_dir_delete ("%s/%s", ".", ".testsys");
     assert (rc == 0);
     zsys_file_mode_default ();
+    assert (zsys_dir_change (".") == 0);
     
     int major, minor, patch;
     zsys_version (&major, &minor, &patch);
@@ -5428,7 +5995,7 @@ This is the class self test code:
     assert (minor == CZMQ_VERSION_MINOR);
     assert (patch == CZMQ_VERSION_PATCH);
     
-    char *string = zsys_sprintf ("%s %02x", "Hello", 16);
+    string = zsys_sprintf ("%s %02x", "Hello", 16);
     assert (streq (string, "Hello 10"));
     free (string);
     
@@ -5443,7 +6010,7 @@ This is the class self test code:
     zsys_set_logsender ("inproc://logging");
     void *logger = zsys_socket (ZMQ_SUB, NULL, 0);
     assert (logger);
-    rc = zsocket_connect (logger, "inproc://logging");
+    rc = zmq_connect (logger, "inproc://logging");
     assert (rc == 0);
     rc = zmq_setsockopt (logger, ZMQ_SUBSCRIBE, "", 0);
     assert (rc == 0);
@@ -5465,7 +6032,7 @@ This is the class self test code:
     }
     zsys_close (logger, NULL, 0);
 
-<A name="toc4-5419" title="zuuid - UUID support class" />
+<A name="toc4-5987" title="zuuid - UUID support class" />
 #### zuuid - UUID support class
 
 The zuuid class generates UUIDs and provides methods for working with
@@ -5473,6 +6040,7 @@ them. If you build CZMQ with libuuid, on Unix/Linux, it will use that
 library. On Windows it will use UuidCreate(). Otherwise it will use a
 random number generator to produce convincing imitations of uuids.
 
+Please add @discuss section in ../src/zuuid.c.
 
 This is the class interface:
 
@@ -5496,12 +6064,18 @@ This is the class interface:
     CZMQ_EXPORT char *
         zuuid_str (zuuid_t *self);
     
-    //  Set UUID to new supplied value 
+    // Return UUID as formatted string in the canonical format 8-4-4-4-12,
+    // lower case.  The caller should free the freshly allocated string.
+    // See: http://en.wikipedia.org/wiki/Universally_unique_identifier
+    CZMQ_EXPORT char *
+        zuuid_formatted_str (zuuid_t *self);
+    
+    //  Set UUID to new supplied ZUUID_LEN-octet value
     CZMQ_EXPORT void
         zuuid_set (zuuid_t *self, byte *source);
         
-    //  Set UUID to new supplied 32-char string value; return 0 if OK,
-    //  else returns -1.
+    //  Set UUID to new supplied ZUUID_STR_LEN-char string value;
+    //  return 0 if OK, else returns -1.
     CZMQ_EXPORT int
         zuuid_set_str (zuuid_t *self, const char *source);
     
@@ -5529,10 +6103,13 @@ This is the class interface:
 This is the class self test code:
 
     //  Simple create/destroy test
+    assert (ZUUID_LEN == 16);
+    assert (ZUUID_STR_LEN == 32);
+    
     zuuid_t *uuid = zuuid_new ();
     assert (uuid);
-    assert (zuuid_size (uuid) == 16);
-    assert (strlen (zuuid_str (uuid)) == 32);
+    assert (zuuid_size (uuid) == ZUUID_LEN);
+    assert (strlen (zuuid_str (uuid)) == ZUUID_STR_LEN);
     zuuid_t *copy = zuuid_dup (uuid);
     assert (streq (zuuid_str (uuid), zuuid_str (copy)));
     
@@ -5540,21 +6117,26 @@ This is the class self test code:
     const char *myuuid = "8CB3E9A9649B4BEF8DE225E9C2CEBB38";
     zuuid_set_str (uuid, myuuid);
     assert (streq (zuuid_str (uuid), myuuid));
-    byte copy_uuid [16];
+    byte copy_uuid [ZUUID_LEN];
     zuuid_export (uuid, copy_uuid);
     zuuid_set (uuid, copy_uuid);
     assert (streq (zuuid_str (uuid), myuuid));
+    
+    // Check the formatted string output
+    char *formatted_str = zuuid_formatted_str (uuid);
+    assert (streq (formatted_str, "8cb3e9a9-649b-4bef-8de2-25e9c2cebb38"));
+    zstr_free (&formatted_str);
     
     zuuid_destroy (&uuid);
     zuuid_destroy (&copy);
 
 
-<A name="toc3-5503" title="API v2 Summary" />
+<A name="toc3-6086" title="API v2 Summary" />
 ### API v2 Summary
 
 This is the deprecated API provided by CZMQ v2.x, in alphabetical order.
 
-<A name="toc4-5508" title="zauth_v2 - authentication for ZeroMQ servers (deprecated)" />
+<A name="toc4-6091" title="zauth_v2 - authentication for ZeroMQ servers (deprecated)" />
 #### zauth_v2 - authentication for ZeroMQ servers (deprecated)
 
 A zauth object takes over authentication for all incoming connections in
@@ -5746,7 +6328,7 @@ This is the class self test code:
     zdir_remove (dir, true);
     zdir_destroy (&dir);
 
-<A name="toc4-5700" title="zctx - working with ØMQ contexts (deprecated)" />
+<A name="toc4-6283" title="zctx - working with ØMQ contexts (deprecated)" />
 #### zctx - working with ØMQ contexts (deprecated)
 
 The zctx class wraps ØMQ contexts. It manages open sockets in the context
@@ -5874,7 +6456,7 @@ This is the class self test code:
     assert (zctx_underlying (ctx));
     zctx_destroy (&ctx);
 
-<A name="toc4-5828" title="zmonitor_v2 - socket event monitor (deprecated)" />
+<A name="toc4-6411" title="zmonitor_v2 - socket event monitor (deprecated)" />
 #### zmonitor_v2 - socket event monitor (deprecated)
 
 The zmonitor class provides an API for obtaining socket events such as
@@ -5958,7 +6540,7 @@ This is the class self test code:
     zmonitor_destroy (&sourcemon);
     zctx_destroy (&ctx);
 
-<A name="toc4-5912" title="zmutex - working with mutexes (deprecated)" />
+<A name="toc4-6495" title="zmutex - working with mutexes (deprecated)" />
 #### zmutex - working with mutexes (deprecated)
 
 The zmutex class provides a portable wrapper for mutexes. Please do not
@@ -5967,6 +6549,7 @@ absolutely need thread-safe global state. This should happen in system
 code only. DO NOT USE THIS TO SHARE SOCKETS BETWEEN THREADS, OR DARK
 THINGS WILL HAPPEN TO YOUR CODE.
 
+Please add @discuss section in ../src/zmutex.c.
 
 This is the class interface:
 
@@ -6002,7 +6585,7 @@ This is the class self test code:
     zmutex_unlock (mutex);
     zmutex_destroy (&mutex);
 
-<A name="toc4-5956" title="zproxy_v2 - run a steerable proxy in the background (deprecated)" />
+<A name="toc4-6540" title="zproxy_v2 - run a steerable proxy in the background (deprecated)" />
 #### zproxy_v2 - run a steerable proxy in the background (deprecated)
 
 The zproxy class provides an equivalent to the ZMQ steerable proxy, on
@@ -6110,13 +6693,14 @@ This is the class self test code:
     zctx_destroy (&ctx);
     
 
-<A name="toc4-6064" title="zsocket - working with ØMQ sockets (deprecated)" />
+<A name="toc4-6648" title="zsocket - working with ØMQ sockets (deprecated)" />
 #### zsocket - working with ØMQ sockets (deprecated)
 
 The zsocket class provides helper functions for ØMQ sockets. It doesn't
 wrap the ØMQ socket type, to avoid breaking all libzmq socket-related
 calls.
 
+Please add @discuss section in ../src/zsocket.c.
 
 This is the class interface:
 
@@ -6200,7 +6784,7 @@ This is the class self test code:
     assert (ctx);
     
     //  Create a detached thread, let it run
-    char *interf = "*";
+    char *interf = "127.0.0.1";
     char *domain = "localhost";
     int service = 5560;
     
@@ -6274,7 +6858,7 @@ This is the class self test code:
     zsocket_destroy (ctx, writer);
     zctx_destroy (&ctx);
 
-<A name="toc4-6228" title="zsockopt - get/set ØMQ socket options (deprecated)" />
+<A name="toc4-6813" title="zsockopt - get/set ØMQ socket options (deprecated)" />
 #### zsockopt - get/set ØMQ socket options (deprecated)
 
 The zsockopt class provides access to the ØMQ getsockopt/setsockopt API.
@@ -6327,7 +6911,7 @@ This is the class interface:
     CZMQ_EXPORT int zsocket_tcp_keepalive_intvl (void *zocket);
     CZMQ_EXPORT char * zsocket_tcp_accept_filter (void *zocket);
     CZMQ_EXPORT int zsocket_rcvmore (void *zocket);
-    CZMQ_EXPORT int zsocket_fd (void *zocket);
+    CZMQ_EXPORT SOCKET zsocket_fd (void *zocket);
     CZMQ_EXPORT int zsocket_events (void *zocket);
     CZMQ_EXPORT char * zsocket_last_endpoint (void *zocket);
     
@@ -6411,7 +6995,7 @@ This is the class interface:
     CZMQ_EXPORT int zsocket_tcp_keepalive_intvl (void *zocket);
     CZMQ_EXPORT char * zsocket_tcp_accept_filter (void *zocket);
     CZMQ_EXPORT int zsocket_rcvmore (void *zocket);
-    CZMQ_EXPORT int zsocket_fd (void *zocket);
+    CZMQ_EXPORT SOCKET zsocket_fd (void *zocket);
     CZMQ_EXPORT int zsocket_events (void *zocket);
     CZMQ_EXPORT char * zsocket_last_endpoint (void *zocket);
     
@@ -6469,7 +7053,7 @@ This is the class interface:
     CZMQ_EXPORT int zsocket_backlog (void *zocket);
     CZMQ_EXPORT int zsocket_type (void *zocket);
     CZMQ_EXPORT int zsocket_rcvmore (void *zocket);
-    CZMQ_EXPORT int zsocket_fd (void *zocket);
+    CZMQ_EXPORT SOCKET zsocket_fd (void *zocket);
     CZMQ_EXPORT int zsocket_events (void *zocket);
     
     //  Set socket options
@@ -7266,7 +7850,7 @@ This is the class self test code:
     
     zctx_destroy (&ctx);
 
-<A name="toc4-7220" title="zthread - working with system threads (deprecated)" />
+<A name="toc4-7805" title="zthread - working with system threads (deprecated)" />
 #### zthread - working with system threads (deprecated)
 
 The zthread class wraps OS thread creation. It creates detached threads
@@ -7383,7 +7967,7 @@ This is the class self test code:
     zctx_destroy (&ctx);
 
 
-<A name="toc2-7337" title="Error Handling" />
+<A name="toc2-7922" title="Error Handling" />
 ## Error Handling
 
 The CZMQ policy is to reduce the error flow to 0/-1 where possible. libzmq still does a lot of errno setting. CZMQ does not do that, as it creates a fuzzy API. Things either work as expected, or they fail, and the application's best strategy is usually to assert on non-zero return codes.
@@ -7400,14 +7984,14 @@ There are a few cases where the return value is overloaded to return -1, 0, or o
 
 The overall goal with this strategy is robustness, and absolute minimal and predictable expression in the code. You can see that it works: the CZMQ code is generally very simple and clear, with a few exceptions of places where people have used their old C style (we fix these over time).
 
-<A name="toc2-7354" title="CZMQ Actors" />
+<A name="toc2-7939" title="CZMQ Actors" />
 ## CZMQ Actors
 
 The v2 API had a zthread class that let you create "attached threads" connected to their parent by an inproc:// PIPE socket. In v3 this has been simplified and better wrapped as the zactor class. CZMQ actors are in effect threads with a socket interface. A zactor_t instance works like a socket, and the CZMQ classes that deal with sockets (like zmsg and zpoller) all accept zactor_t references as well as zsock_t and libzmq void * socket handles.
 
 To write an actor, use this template. Note that your actor is a single function "void myname (zsock_t *pipe, void *args)" function:
 
-/*  =========================================================================
+    /*  =========================================================================
         someclass - some description
 
         Copyright (c) the Contributors as noted in the AUTHORS file.
@@ -7546,10 +8130,10 @@ To write an actor, use this template. Note that your actor is a single function 
 
 The selftest code shows how to create, talk to, and destroy an actor.
 
-<A name="toc2-7500" title="Under the Hood" />
+<A name="toc2-8085" title="Under the Hood" />
 ## Under the Hood
 
-<A name="toc3-7503" title="Adding a New Class" />
+<A name="toc3-8088" title="Adding a New Class" />
 ### Adding a New Class
 
 If you define a new CZMQ class `myclass` you need to:
@@ -7561,7 +8145,7 @@ If you define a new CZMQ class `myclass` you need to:
 * Add myclass to 'model/projects.xml` and read model/README.txt.
 * Add a section to README.txt.
 
-<A name="toc3-7515" title="Documentation" />
+<A name="toc3-8100" title="Documentation" />
 ### Documentation
 
 Man pages are generated from the class header and source files via the doc/mkman tool, and similar functionality in the gitdown tool (http://github.com/imatix/gitdown). The header file for a class must wrap its interface as follows (example is from include/zclock.h):
@@ -7600,7 +8184,7 @@ The source file for a class then provides the self test example as follows:
 
 The template for man pages is in doc/mkman.
 
-<A name="toc3-7554" title="Development" />
+<A name="toc3-8139" title="Development" />
 ### Development
 
 CZMQ is developed through a test-driven process that guarantees no memory violations or leaks in the code:
@@ -7610,7 +8194,7 @@ CZMQ is developed through a test-driven process that guarantees no memory violat
 * Run the 'selftest' script, which uses the Valgrind memcheck tool.
 * Repeat until perfect.
 
-<A name="toc3-7564" title="Porting CZMQ" />
+<A name="toc3-8149" title="Porting CZMQ" />
 ### Porting CZMQ
 
 When you try CZMQ on an OS that it's not been used on (ever, or for a while), you will hit code that does not compile. In some cases the patches are trivial, in other cases (usually when porting to Windows), the work needed to build equivalent functionality may be non-trivial. In any case, the benefit is that once ported, the functionality is available to all applications.
@@ -7621,7 +8205,7 @@ Before attempting to patch code for portability, please read the `czmq_prelude.h
 * Defining macros that rename exotic library functions to more conventional names: do this in czmq_prelude.h.
 * Reimplementing specific methods to use a non-standard API: this is typically needed on Windows. Do this in the relevant class, using #ifdefs to properly differentiate code for different platforms.
 
-<A name="toc3-7575" title="Hints to Contributors" />
+<A name="toc3-8160" title="Hints to Contributors" />
 ### Hints to Contributors
 
 CZMQ is a nice, neat library, and you may not immediately appreciate why. Read the CLASS style guide please, and write your code to make it indistinguishable from the rest of the code in the library. That is the only real criteria for good style: it's invisible.
@@ -7632,13 +8216,12 @@ Do read your code after you write it and ask, "Can I make this simpler?" We do u
 
 Before opening a pull request read our [contribution guidelines](https://github.com/zeromq/czmq/blob/master/CONTRIBUTING.md). Thanks!
 
-
-<A name="toc3-7587" title="Code Generation" />
+<A name="toc3-8171" title="Code Generation" />
 ### Code Generation
 
 We generate the zsockopt class using [GSL](https://github.com/imatix/gsl), using a code generator script in scripts/sockopts.gsl. We also generate the project files.
 
-<A name="toc3-7592" title="This Document" />
+<A name="toc3-8176" title="This Document" />
 ### This Document
 
 This document is originally at README.txt and is built using [gitdown](http://github.com/imatix/gitdown).

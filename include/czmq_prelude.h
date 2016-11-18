@@ -204,6 +204,11 @@
 #   define __UTYPE_GENERIC
 #endif
 
+//- Always include ZeroMQ headers -------------------------------------------
+
+#include "zmq.h"
+#include "zmq_utils.h"
+
 //- Standard ANSI include files ---------------------------------------------
 
 #include <ctype.h>
@@ -294,10 +299,15 @@
      || (defined (_POSIX_VERSION)  && (_POSIX_VERSION  >= 199309L)))
 #       include <sched.h>
 #   endif
-#   if (defined (__UTYPE_OSX))
-#       include <crt_externs.h>         //  For _NSGetEnviron()
+#   if (defined (__UTYPE_OSX) || defined (__UTYPE_IOS))
 #       include <mach/clock.h>
 #       include <mach/mach.h>           //  For monotonic clocks
+#   endif
+#   if (defined (__UTYPE_OSX))
+#       include <crt_externs.h>         //  For _NSGetEnviron()
+#   endif
+#   if (defined (__UTYPE_ANDROID))
+#       include <android/log.h>
 #   endif
 #endif
 
@@ -354,7 +364,7 @@
 #   define S_IRUSR S_IREAD
 #endif
 #ifndef S_IWUSR
-#   define S_IWUSR S_IWRITE 
+#   define S_IWUSR S_IWRITE
 #endif
 #ifndef S_ISDIR
 #   define S_ISDIR(m) (((m) & S_IFDIR) != 0)
@@ -417,6 +427,7 @@ typedef struct sockaddr_in inaddr_t;    //  Internet socket address structure
 #       define inline __inline
 #   endif
 #   define strtoull _strtoui64
+#   define atoll _atoi64
 #   define srandom srand
 #   define TIMEZONE _timezone
 #   if (!defined (__MINGW32__))
@@ -427,15 +438,48 @@ typedef struct sockaddr_in inaddr_t;    //  Internet socket address structure
     typedef unsigned int  uint;
 #   if (!defined (__MINGW32__))
     typedef int mode_t;
-#if defined (__IS_64BIT__)
+#       if defined (__IS_64BIT__)
     typedef long long ssize_t;
-#else
+#       else
     typedef long ssize_t;
-#endif
+#       endif
+#   endif
+#   if ((!defined (__MINGW32__) \
+    || (defined (__MINGW32__) && defined (__IS_64BIT__))) \
+    && !defined (ZMQ_DEFINED_STDINT))
+    typedef __int8 int8_t;
+    typedef __int16 int16_t;
     typedef __int32 int32_t;
     typedef __int64 int64_t;
+    typedef unsigned __int8 uint8_t;    
+    typedef unsigned __int16 uint16_t;
     typedef unsigned __int32 uint32_t;
     typedef unsigned __int64 uint64_t;
+#   endif
+    typedef uint32_t in_addr_t;
+#   if (!defined (PRId8))
+#       define PRId8    "d"
+#   endif
+#   if (!defined (PRId16))
+#       define PRId16   "d"
+#   endif
+#   if (!defined (PRId32))
+#       define PRId32   "d"
+#   endif
+#   if (!defined (PRId64))
+#       define PRId64   "I64d"
+#   endif
+#   if (!defined (PRIu8))
+#       define PRIu8    "u"
+#   endif
+#   if (!defined (PRIu16))
+#       define PRIu16   "u"
+#   endif
+#   if (!defined (PRIu32))
+#       define PRIu32   "u"
+#   endif
+#   if (!defined (PRIu64))
+#       define PRIu64   "I64u"
 #   endif
 #   if (!defined (va_copy))
     //  MSVC does not support C99's va_copy so we use a regular assignment
@@ -445,26 +489,51 @@ typedef struct sockaddr_in inaddr_t;    //  Internet socket address structure
     typedef unsigned long ulong;
     typedef unsigned int uint;
     //  This fixes header-order dependence problem with some Linux versions
-#elif (defined (__UTYPE_LINUX)) 
-#   if (__STDC_VERSION__ >= 199901L)
+#elif (defined (__UTYPE_LINUX))
+#   if (__STDC_VERSION__ >= 199901L && !defined (__USE_MISC))
     typedef unsigned int uint;
 #   endif
 #endif
 
-//- Error reporting ---------------------------------------------------------
+//- Non-portable declaration specifiers -------------------------------------
+
+#if defined (__WINDOWS__)
+#   if defined LIBCZMQ_STATIC
+#       define CZMQ_EXPORT
+#   elif defined LIBCZMQ_EXPORTS
+#       define CZMQ_EXPORT __declspec(dllexport)
+#   else
+#       define CZMQ_EXPORT __declspec(dllimport)
+#   endif
+#else
+#   define CZMQ_EXPORT
+#endif
+
+//  For thread-local storage
+#if defined (__WINDOWS__)
+#   define CZMQ_THREADLS __declspec(thread)
+#else
+#   define CZMQ_THREADLS __thread
+#endif
+
+//- Memory allocations ------------------------------------------------------
+#if defined(__cplusplus)
+   extern "C" CZMQ_EXPORT volatile uint64_t zsys_allocs;
+#else
+   extern CZMQ_EXPORT volatile uint64_t zsys_allocs;
+#endif
 
 //  Replacement for malloc() which asserts if we run out of heap, and
 //  which zeroes the allocated block.
 static inline void *
-    safe_malloc (
-    size_t size,
-    const char *file,
-    unsigned line)
+safe_malloc (size_t size, const char *file, unsigned line)
 {
-    void
-        *mem;
-
-    mem = calloc (1, size);
+//     printf ("%s:%u %08d\n", file, line, (int) size);
+#if defined (__UTYPE_LINUX) && defined (__IS_64BIT__)
+    //  On GCC we count zmalloc memory allocations
+    __sync_add_and_fetch (&zsys_allocs, 1);
+#endif
+    void *mem = calloc (1, size);
     if (mem == NULL) {
         fprintf (stderr, "FATAL ERROR at %s:%u\n", file, line);
         fprintf (stderr, "OUT OF MEMORY (malloc returned NULL)\n");
@@ -475,7 +544,7 @@ static inline void *
 }
 
 //  Define _ZMALLOC_DEBUG if you need to trace memory leaks using e.g. mtrace,
-//  otherwise all allocations will claim to come from zfl_prelude.h.  For best
+//  otherwise all allocations will claim to come from czmq_prelude.h. For best
 //  results, compile all classes so you see dangling object allocations.
 //  _ZMALLOC_PEDANTIC does the same thing, but its intention is to propagate
 //  out of memory condition back up the call stack.
@@ -530,31 +599,7 @@ typedef int SOCKET;
 #   endif
 #endif
 
-//- Non-portable declaration specifiers -------------------------------------
-
-#if defined (__WINDOWS__)
-#   if defined LIBCZMQ_STATIC
-#       define CZMQ_EXPORT
-#   elif defined LIBCZMQ_EXPORTS
-#       define CZMQ_EXPORT __declspec(dllexport)
-#   else
-#       define CZMQ_EXPORT __declspec(dllimport)
-#   endif
-#else
-#   define CZMQ_EXPORT
-#endif
-
-//  For thread-local storage
-#if defined (__WINDOWS__)
-#   define CZMQ_THREADLS __declspec(thread)
-#else
-#   define CZMQ_THREADLS __thread
-#endif
-
-//- Always include ZeroMQ header file ---------------------------------------
-
-#include "zmq.h"
-#include "zmq_utils.h"
+//  ZMQ compatibility macros
 
 #if ZMQ_VERSION_MAJOR == 4
 #   define ZMQ_POLL_MSEC    1           //  zmq_poll is msec
@@ -572,6 +617,8 @@ typedef int SOCKET;
 #   define zmq_recvmsg      zmq_recv
 #   define zmq_ctx_new      zmq_init
 #   define zmq_ctx_term     zmq_term
+#   define zmq_msg_send(m,s,f)  zmq_sendmsg ((s),(m),(f))
+#   define zmq_msg_recv(m,s,f)  zmq_recvmsg ((s),(m),(f))
     //  Older libzmq APIs may be missing some aspects of libzmq v3.0
 #   ifndef ZMQ_ROUTER
 #       define ZMQ_ROUTER       ZMQ_XREP

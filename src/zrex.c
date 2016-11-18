@@ -44,8 +44,7 @@
 */
 
 #include "../include/czmq.h"
-#include "../foreign/slre/slre.h"
-#include "../foreign/slre/slre.c"
+#include "foreign/slre/slre.inc_c"
 
 #define MAX_HITS 100            //  Should be enough for anyone :)
 
@@ -56,6 +55,7 @@ struct _zrex_t {
     bool valid;                 //  Is expression valid or not?
     const char *strerror;       //  Error message if any
     uint hits;                  //  Number of hits matched
+    size_t hit_set_len;         //  Length of hit set
     char *hit_set;              //  Captured hits as single string
     char *hit [MAX_HITS];       //  Pointers into hit_set
     struct cap caps [MAX_HITS]; //  Position/length for each hit
@@ -136,7 +136,6 @@ zrex_matches (zrex_t *self, const char *text)
 
     //  Free any previously-allocated hits
     self->hits = 0;
-    zstr_free (&self->hit_set);
 
     bool matches = slre_match (&self->slre, text, strlen (text), self->caps) != 0;
     if (matches) {
@@ -149,10 +148,14 @@ zrex_matches (zrex_t *self, const char *text)
         //  memory holding all hits as null-terminated strings
         uint index;
         //  First count total length of hit strings
-        uint hit_set_len = 0;
+        size_t hit_set_len = 0;
         for (index = 0; index < self->hits; index++)
             hit_set_len += self->caps [index].len + 1;
-        self->hit_set = (char *) zmalloc (hit_set_len);
+        if (hit_set_len > self->hit_set_len) {
+            zstr_free (&self->hit_set);
+            self->hit_set = (char *) zmalloc (hit_set_len);
+            self->hit_set_len = hit_set_len;
+        }
         // FIXME: no way to return an error
         assert (self->hit_set);
 
@@ -255,6 +258,7 @@ zrex_test (bool verbose)
 {
     printf (" * zrex: ");
 
+    //  @selftest
     //  This shows the pattern of matching many lines to a single pattern
     zrex_t *rex = zrex_new ("\\d+-\\d+-\\d+");
     assert (rex);
@@ -297,5 +301,7 @@ zrex_test (bool verbose)
     assert (streq (zrex_hit (rex, 1), "CURVE"));
     assert (streq (mechanism, "CURVE"));
     zrex_destroy (&rex);
+    
+    //  @end
     printf ("OK\n");
 }

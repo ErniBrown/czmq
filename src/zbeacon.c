@@ -1,4 +1,4 @@
-/*  =========================================================================
+﻿/*  =========================================================================
     zbeacon - LAN discovery and presence
 
     Copyright (c) the Contributors as noted in the AUTHORS file.
@@ -28,16 +28,14 @@
 #include "platform.h"
 #include "../include/czmq.h"
 
-#if (defined (__WINDOWS__))
-#define in_addr_t uint32_t
-#endif
+//  Constants
+#define INTERVAL_DFLT  1000         //  Default interval = 1 second
 
 //  --------------------------------------------------------------------------
 //  The self_t structure holds the state for one actor instance
 
 typedef struct {
     zsock_t *pipe;              //  Actor command pipe
-    zpoller_t *poller;          //  Socket poller
     SOCKET udpsock;             //  UDP socket for send/recv
     int port_nbr;               //  UDP port number we work on
     int interval;               //  Beacon broadcast interval
@@ -47,6 +45,7 @@ typedef struct {
     inaddr_t broadcast;         //  Our broadcast address
     bool terminated;            //  Did caller ask us to quit?
     bool verbose;               //  Verbose logging enabled?
+    char hostname [NI_MAXHOST]; //  Saved host name
 } self_t;
 
 static void
@@ -55,7 +54,6 @@ s_self_destroy (self_t **self_p)
     assert (self_p);
     if (*self_p) {
         self_t *self = *self_p;
-        zpoller_destroy (&self->poller);
         zframe_destroy (&self->transmit);
         zframe_destroy (&self->filter);
         zsys_udp_close (self->udpsock);
@@ -70,30 +68,26 @@ s_self_new (zsock_t *pipe)
     self_t *self = (self_t *) zmalloc (sizeof (self_t));
     if (!self)
         return NULL;
-
     self->pipe = pipe;
-    self->poller = zpoller_new (self->pipe, NULL);
-    if (!self->poller)
-        s_self_destroy (&self);
     return self;
 }
 
+
 //  --------------------------------------------------------------------------
-//  Prepare beacon to work on specified UPD port, reply hostname to
-//  pipe (or "" if this failed)
+//  Prepare beacon to work on specified UPD port.
 
 static void
-s_self_configure (self_t *self, int port_nbr)
+s_self_prepare_udp (self_t *self)
 {
-    assert (port_nbr);
-    self->port_nbr = port_nbr;
-
     //  Create our UDP socket
+    if (self->udpsock)
+        zsys_udp_close (self->udpsock);
+
+    self->hostname [0] = 0;
     self->udpsock = zsys_udp_new (false);
-    if (self->udpsock == INVALID_SOCKET) {
-        zstr_send (self->pipe, "");
+    if (self->udpsock == INVALID_SOCKET)
         return;
-    }
+
     //  Get the network interface fro ZSYS_INTERFACE or else use first
     //  broadcast interface defined on system. ZSYS_INTERFACE=* means
     //  use INADDR_ANY + INADDR_BROADCAST.
@@ -118,8 +112,8 @@ s_self_configure (self_t *self, int port_nbr)
                 send_to = inet_addr (ziflist_broadcast (iflist));
                 bind_to = inet_addr (ziflist_address (iflist));
                 if (self->verbose)
-                    zsys_info ("zbeacon: using address=%s broadcast=%s",
-                               ziflist_address (iflist), ziflist_broadcast (iflist));
+                    zsys_info ("zbeacon: interface=%s address=%s broadcast=%s",
+                               name, ziflist_address (iflist), ziflist_broadcast (iflist));
                 break;      //  iface is known, so allow it
             }
             name = ziflist_next (iflist);
@@ -145,21 +139,29 @@ s_self_configure (self_t *self, int port_nbr)
         if (bind (self->udpsock, (struct sockaddr *) &sockaddr, sizeof (inaddr_t)))
             zsys_socket_error ("bind");
 
-        //  Send our hostname back to API
-        char hostname [NI_MAXHOST];
-        if (!getnameinfo ((struct sockaddr *) &address, sizeof (inaddr_t),
-                          hostname, NI_MAXHOST, NULL, 0, NI_NUMERICHOST)) {
+        //  Get our hostname so we can send it back to the API
+        if (getnameinfo ((struct sockaddr *) &address, sizeof (inaddr_t),
+                          self->hostname, NI_MAXHOST, NULL, 0, NI_NUMERICHOST) == 0) {
             if (self->verbose)
-                zsys_info ("zbeacon: configured, hostname=%s", hostname);
-            zstr_send (self->pipe, hostname);
+                zsys_info ("zbeacon: configured, hostname=%s", self->hostname);
         }
-        else
-            zstr_send (self->pipe, "");
     }
-    else {
-        zsys_error ("No broadcast interface found, (ZSYS_INTERFACE=%s)", iface);
-        zstr_send (self->pipe, "");
-    }
+}
+
+
+//  --------------------------------------------------------------------------
+//  Prepare beacon to work on specified UPD port, reply hostname to
+//  pipe (or "" if this failed)
+
+static void
+s_self_configure (self_t *self, int port_nbr)
+{
+    assert (port_nbr);
+    self->port_nbr = port_nbr;
+    s_self_prepare_udp (self);
+    zstr_send (self->pipe, self->hostname);
+    if (streq (self->hostname, ""))
+        zsys_error ("No broadcast interface found, (ZSYS_INTERFACE=%s)", zsys_interface ());
 }
 
 
@@ -191,6 +193,8 @@ s_self_handle_pipe (self_t *self)
         zframe_destroy (&self->transmit);
         zsock_recv (self->pipe, "fi", &self->transmit, &self->interval);
         assert (zframe_size (self->transmit) <= UDP_FRAME_MAX);
+        if (self->interval == 0)
+            self->interval = INTERVAL_DFLT;
         //  Start broadcasting immediately
         self->ping_at = zclock_mono ();
     }
@@ -234,16 +238,16 @@ s_self_handle_udp (self_t *self)
     if (self->filter) {
         byte  *filter_data = zframe_data (self->filter);
         size_t filter_size = zframe_size (self->filter);
-        if (  zframe_size (frame) >= filter_size
-           && memcmp (zframe_data (frame), filter_data, filter_size) == 0)
+        if (zframe_size (frame) >= filter_size
+        && memcmp (zframe_data (frame), filter_data, filter_size) == 0)
             is_valid = true;
     }
     //  If valid, discard our own broadcasts, which UDP echoes to us
     if (is_valid && self->transmit) {
         byte  *transmit_data = zframe_data (self->transmit);
         size_t transmit_size = zframe_size (self->transmit);
-        if (  zframe_size (frame) == transmit_size
-           && memcmp (zframe_data (frame), transmit_data, transmit_size) == 0)
+        if (zframe_size (frame) == transmit_size
+        && memcmp (zframe_data (frame), transmit_data, transmit_size) == 0)
             is_valid = false;
     }
     //  If still a valid beacon, send on to the API
@@ -251,7 +255,7 @@ s_self_handle_udp (self_t *self)
         zmsg_t *msg = zmsg_new ();
         assert (msg);
         zmsg_addstr (msg, peername);
-        zmsg_add (msg, frame);
+        zmsg_append (msg, &frame);
         zmsg_send (&msg, self->pipe);
     }
     else
@@ -282,7 +286,8 @@ zbeacon (zsock_t *pipe, void *args)
             if (timeout < 0)
                 timeout = 0;
         }
-        if (zmq_poll (pollitems, self->udpsock ? 2 : 1, timeout * ZMQ_POLL_MSEC) == -1)
+        int pollset_size = self->udpsock? 2: 1;
+        if (zmq_poll (pollitems, pollset_size, timeout * ZMQ_POLL_MSEC) == -1)
             break;              //  Interrupted
 
         if (pollitems [0].revents & ZMQ_POLLIN)
@@ -290,10 +295,12 @@ zbeacon (zsock_t *pipe, void *args)
         if (pollitems [1].revents & ZMQ_POLLIN)
             s_self_handle_udp (self);
 
-        if (  self->transmit
-           && zclock_mono () >= self->ping_at) {
+        if (self->transmit
+        &&  zclock_mono () >= self->ping_at) {
             //  Send beacon to any listening peers
-            zsys_udp_send (self->udpsock, self->transmit, &self->broadcast);
+            if (zsys_udp_send (self->udpsock, self->transmit, &self->broadcast))
+                //  Try to recreate UDP socket on interface
+                s_self_prepare_udp (self);
             self->ping_at = zclock_mono () + self->interval;
         }
     }
@@ -318,18 +325,6 @@ zbeacon_test (bool verbose)
     assert (speaker);
     if (verbose)
         zstr_sendx (speaker, "VERBOSE", NULL);
-
-//
-//  Stop broadcasting the beacon:
-//
-//      zstr_sendx (beacon, "SILENCE", NULL);
-//
-//  Start listening to beacons from peers. The filter is used to do a prefix
-//  match on received beacons, to remove junk. Note that any received data
-//  that is identical to our broadcast beacon_data is discarded in any case.
-//  If the filter size is zero, we get all peer beacons:
-//
-//      zsock_send (beacon, "sb", "SUBSCRIBE", filter_data, filter_size);
 
     zsock_send (speaker, "si", "CONFIGURE", 9999);
     char *hostname = zstr_recv (speaker);

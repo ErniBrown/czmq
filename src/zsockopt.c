@@ -122,9 +122,9 @@ zsocket_set_probe_router (void *zocket, int probe_router)
         assert (false);
     }
 #   if defined (ZMQ_PROBE_ROUTER)
-    if (  zsocket_type (zocket) != ZMQ_ROUTER
-       && zsocket_type (zocket) != ZMQ_DEALER
-       && zsocket_type (zocket) != ZMQ_REQ) {
+    if (zsocket_type (zocket) != ZMQ_ROUTER
+    &&  zsocket_type (zocket) != ZMQ_DEALER
+    &&  zsocket_type (zocket) != ZMQ_REQ) {
         printf ("ZMQ_PROBE_ROUTER is not valid on %s sockets\n", zsocket_type_str (zocket));
         assert (false);
     }
@@ -190,11 +190,11 @@ zsocket_set_conflate (void *zocket, int conflate)
         assert (false);
     }
 #   if defined (ZMQ_CONFLATE)
-    if (  zsocket_type (zocket) != ZMQ_PUSH
-       && zsocket_type (zocket) != ZMQ_PULL
-       && zsocket_type (zocket) != ZMQ_PUB
-       && zsocket_type (zocket) != ZMQ_SUB
-       && zsocket_type (zocket) != ZMQ_DEALER) {
+    if (zsocket_type (zocket) != ZMQ_PUSH
+    &&  zsocket_type (zocket) != ZMQ_PULL
+    &&  zsocket_type (zocket) != ZMQ_PUB
+    &&  zsocket_type (zocket) != ZMQ_SUB
+    &&  zsocket_type (zocket) != ZMQ_DEALER) {
         printf ("ZMQ_CONFLATE is not valid on %s sockets\n", zsocket_type_str (zocket));
         assert (false);
     }
@@ -672,9 +672,7 @@ zsocket_set_gssapi_service_principal (void *zocket, const char * gssapi_service_
         assert (false);
     }
 #   if defined (ZMQ_GSSAPI_SERVICE_PRINCIPAL)
-    int rc =
-        zmq_setsockopt (zocket, ZMQ_GSSAPI_SERVICE_PRINCIPAL, gssapi_service_principal,
-                        strlen (gssapi_service_principal));
+    int rc = zmq_setsockopt (zocket, ZMQ_GSSAPI_SERVICE_PRINCIPAL, gssapi_service_principal, strlen (gssapi_service_principal));
     assert (rc == 0 || zmq_errno () == ETERM);
 #   endif
 }
@@ -1029,10 +1027,10 @@ zsocket_set_identity (void *zocket, const char * identity)
         assert (false);
     }
 #   if defined (ZMQ_IDENTITY)
-    if (  zsocket_type (zocket) != ZMQ_REQ
-       && zsocket_type (zocket) != ZMQ_REP
-       && zsocket_type (zocket) != ZMQ_DEALER
-       && zsocket_type (zocket) != ZMQ_ROUTER) {
+    if (zsocket_type (zocket) != ZMQ_REQ
+    &&  zsocket_type (zocket) != ZMQ_REP
+    &&  zsocket_type (zocket) != ZMQ_DEALER
+    &&  zsocket_type (zocket) != ZMQ_ROUTER) {
         printf ("ZMQ_IDENTITY is not valid on %s sockets\n", zsocket_type_str (zocket));
         assert (false);
     }
@@ -1717,14 +1715,14 @@ zsocket_rcvmore (void *zocket)
 //  Return socket ZMQ_FD value
 //  *** GENERATED SOURCE CODE, DO NOT EDIT, SEE INSTRUCTIONS AT START ***
 
-int
+SOCKET
 zsocket_fd (void *zocket)
 {
 #   if defined (ZMQ_FD)
-    int fd;
-    size_t option_len = sizeof (int);
+    SOCKET fd;
+    size_t option_len = sizeof (SOCKET);
     zmq_getsockopt (zocket, ZMQ_FD, &fd, &option_len);
-    return fd;
+    return (SOCKET) fd;
 #   else
     return 0;
 #   endif
@@ -2029,10 +2027,10 @@ zsocket_set_identity (void *zocket, const char * identity)
         assert (false);
     }
 #   if defined (ZMQ_IDENTITY)
-    if (  zsocket_type (zocket) != ZMQ_REQ
-       && zsocket_type (zocket) != ZMQ_REP
-       && zsocket_type (zocket) != ZMQ_DEALER
-       && zsocket_type (zocket) != ZMQ_ROUTER) {
+    if (zsocket_type (zocket) != ZMQ_REQ
+    &&  zsocket_type (zocket) != ZMQ_REP
+    &&  zsocket_type (zocket) != ZMQ_DEALER
+    &&  zsocket_type (zocket) != ZMQ_ROUTER) {
         printf ("ZMQ_IDENTITY is not valid on %s sockets\n", zsocket_type_str (zocket));
         assert (false);
     }
@@ -2717,14 +2715,14 @@ zsocket_rcvmore (void *zocket)
 //  Return socket ZMQ_FD value
 //  *** GENERATED SOURCE CODE, DO NOT EDIT, SEE INSTRUCTIONS AT START ***
 
-int
+SOCKET
 zsocket_fd (void *zocket)
 {
 #   if defined (ZMQ_FD)
-    int fd;
-    size_t option_len = sizeof (int);
+    SOCKET fd;
+    size_t option_len = sizeof (SOCKET);
     zmq_getsockopt (zocket, ZMQ_FD, &fd, &option_len);
-    return fd;
+    return (SOCKET) fd;
 #   else
     return 0;
 #   endif
@@ -3443,14 +3441,14 @@ zsocket_rcvmore (void *zocket)
 //  Return socket ZMQ_FD value
 //  *** GENERATED SOURCE CODE, DO NOT EDIT, SEE INSTRUCTIONS AT START ***
 
-int
+SOCKET
 zsocket_fd (void *zocket)
 {
 #   if defined (ZMQ_FD)
-    int fd;
-    size_t option_len = sizeof (int);
+    SOCKET fd;
+    size_t option_len = sizeof (SOCKET);
     zmq_getsockopt (zocket, ZMQ_FD, &fd, &option_len);
-    return fd;
+    return (SOCKET) fd;
 #   else
     return 0;
 #   endif

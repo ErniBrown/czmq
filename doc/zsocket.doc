@@ -4,6 +4,7 @@ The zsocket class provides helper functions for 0MQ sockets. It doesn't
 wrap the 0MQ socket type, to avoid breaking all libzmq socket-related
 calls.
 
+Please add @discuss section in ../src/zsocket.c.
 
 This is the class interface:
 
@@ -87,7 +88,7 @@ This is the class self test code:
     assert (ctx);
     
     //  Create a detached thread, let it run
-    char *interf = "*";
+    char *interf = "127.0.0.1";
     char *domain = "localhost";
     int service = 5560;
     

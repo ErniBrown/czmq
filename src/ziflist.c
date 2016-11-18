@@ -16,7 +16,7 @@
     The ziflist class takes a snapshot of the network interfaces that the
     system currently supports (this can change arbitrarily, especially on
     mobile devices). The caller can then access the network interface
-    information using an iterator that works like zring. Only stores those
+    information using an iterator that works like zlistx. Only stores those
     interfaces with broadcast capability, and ignores the loopback interface.
 @discuss
 @end
@@ -83,13 +83,30 @@ struct _ziflist_t;
 ziflist_t *
 ziflist_new (void)
 {
-    zlist_t *list = zlist_new ();
+    zlistx_t *list = zlistx_new ();
     ziflist_t *self = (ziflist_t *) list;
     if (self) {
-        zlist_set_destructor (list, (czmq_destructor *) s_interface_destroy);
+        zlistx_set_destructor (list, (czmq_destructor *) s_interface_destroy);
         ziflist_reload (self);
     }
     return self;
+}
+
+
+//  Print properties of the ziflist object.
+//  --------------------------------------------------------------------------
+CZMQ_EXPORT void
+ziflist_print (ziflist_t *self)
+{
+    for (interface_t *iface = (interface_t *) zlistx_first ((zlistx_t *) self) ;
+         iface != NULL ;
+         iface = (interface_t *) zlistx_next ((zlistx_t *) self))
+    {
+        zsys_info (" - interface name : %s", iface->name);
+        zsys_info (" - interface address : %s", iface->address);
+        zsys_info (" - interface netmask : %s", iface->netmask);
+        zsys_info (" - interface broadcast : %s", iface->broadcast);
+    }
 }
 
 
@@ -99,7 +116,7 @@ ziflist_new (void)
 void
 ziflist_destroy (ziflist_t **self_p)
 {
-    zlist_destroy ((zlist_t **) self_p);
+    zlistx_destroy ((zlistx_t **) self_p);
 }
 
 
@@ -128,8 +145,8 @@ void
 ziflist_reload (ziflist_t *self)
 {
     assert (self);
-    zlist_t *list = (zlist_t *) self;
-    zlist_purge (list);
+    zlistx_t *list = (zlistx_t *) self;
+    zlistx_purge (list);
 
 #if defined (HAVE_GETIFADDRS)
     struct ifaddrs *interfaces;
@@ -137,10 +154,10 @@ ziflist_reload (ziflist_t *self)
         struct ifaddrs *interface = interfaces;
         while (interface) {
             //  On Solaris, loopback interfaces have a NULL in ifa_broadaddr
-            if (  interface->ifa_broadaddr
-               && interface->ifa_addr
-               && interface->ifa_addr->sa_family == AF_INET
-               && s_valid_flags (interface->ifa_flags)) {
+            if (interface->ifa_broadaddr
+            &&  interface->ifa_addr
+            &&  interface->ifa_addr->sa_family == AF_INET
+            &&  s_valid_flags (interface->ifa_flags)) {
                 inaddr_t address = *(inaddr_t *) interface->ifa_addr;
                 inaddr_t netmask = *(inaddr_t *) interface->ifa_netmask;
                 inaddr_t broadcast = *(inaddr_t *) interface->ifa_broadaddr;
@@ -155,7 +172,7 @@ ziflist_reload (ziflist_t *self)
                     s_interface_new (interface->ifa_name, address, netmask,
                                      broadcast);
                 if (item)
-                    zlist_append (list, item);
+                    zlistx_add_end (list, item);
             }
             interface = interface->ifa_next;
         }
@@ -204,7 +221,7 @@ ziflist_reload (ziflist_t *self)
                 interface_t *item = s_interface_new (ifr->ifr_name, address,
                                                      netmask, broadcast);
                 if (item)
-                    zlist_append (list, item);
+                    zlistx_add_end (list, item);
             }
         }
         free (ifconfig.ifc_buf);
@@ -227,10 +244,9 @@ ziflist_reload (ziflist_t *self)
         PIP_ADAPTER_PREFIX pPrefix = cur_address->FirstPrefix;
 
         PWCHAR friendlyName = cur_address->FriendlyName;
-        size_t friendlyLength = 0;
         size_t asciiSize = wcstombs (0, friendlyName, 0) + 1;
         char *asciiFriendlyName = (char *) zmalloc (asciiSize);
-        friendlyLength = wcstombs (asciiFriendlyName, friendlyName, asciiSize);
+        wcstombs (asciiFriendlyName, friendlyName, asciiSize);
 
         bool valid = (cur_address->OperStatus == IfOperStatusUp)
                      && (pUnicast && pPrefix)
@@ -246,7 +262,7 @@ ziflist_reload (ziflist_t *self)
             interface_t *item = s_interface_new (asciiFriendlyName, address,
                                                  netmask, broadcast);
             if (item)
-                zlist_append (list, item);
+                zlistx_add_end (list, item);
         }
         free (asciiFriendlyName);
         cur_address = cur_address->Next;
@@ -266,7 +282,7 @@ size_t
 ziflist_size (ziflist_t *self)
 {
     assert (self);
-    return zlist_size ((zlist_t *) self);
+    return zlistx_size ((zlistx_t *) self);
 }
 
 
@@ -277,7 +293,7 @@ const char *
 ziflist_first (ziflist_t *self)
 {
     assert (self);
-    interface_t *iface = (interface_t *) zlist_first ((zlist_t *) self);
+    interface_t *iface = (interface_t *) zlistx_first ((zlistx_t *) self);
     if (iface)
         return iface->name;
     else
@@ -292,7 +308,7 @@ const char *
 ziflist_next (ziflist_t *self)
 {
     assert (self);
-    interface_t *iface = (interface_t *) zlist_next ((zlist_t *) self);
+    interface_t *iface = (interface_t *) zlistx_next ((zlistx_t *) self);
     if (iface)
         return iface->name;
     else
@@ -307,7 +323,7 @@ const char *
 ziflist_address (ziflist_t *self)
 {
     assert (self);
-    interface_t *iface = (interface_t *) zlist_item ((zlist_t *) self);
+    interface_t *iface = (interface_t *) zlistx_item ((zlistx_t *) self);
     if (iface)
         return iface->address;
     else
@@ -322,7 +338,7 @@ const char *
 ziflist_broadcast (ziflist_t *self)
 {
     assert (self);
-    interface_t *iface = (interface_t *) zlist_item ((zlist_t *) self);
+    interface_t *iface = (interface_t *) zlistx_item ((zlistx_t *) self);
     if (iface)
         return iface->broadcast;
     else
@@ -337,7 +353,7 @@ const char *
 ziflist_netmask (ziflist_t *self)
 {
     assert (self);
-    interface_t *iface = (interface_t *) zlist_item ((zlist_t *) self);
+    interface_t *iface = (interface_t *) zlistx_item ((zlistx_t *) self);
     if (iface)
         return iface->netmask;
     else
@@ -358,10 +374,11 @@ ziflist_test (bool verbose)
     //  @selftest
     ziflist_t *iflist = ziflist_new ();
     assert (iflist);
+
     size_t items = ziflist_size (iflist);
 
     if (verbose) {
-        printf ("ziflist: interfaces=%zu\n", ziflist_size (iflist));
+//        printf ("ziflist: interfaces=%zu\n", ziflist_size (iflist));
         const char *name = ziflist_first (iflist);
         while (name) {
             printf (" - name=%s address=%s netmask=%s broadcast=%s\n",

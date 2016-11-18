@@ -1,5 +1,5 @@
 /*  =========================================================================
-    zlist - generic type-free list container
+    zlist - simple generic list container
 
     Copyright (c) the Contributors as noted in the AUTHORS file.
     This file is part of CZMQ, the high-level C binding for 0MQ:
@@ -15,7 +15,8 @@
 @header
     Provides a generic container implementing a fast singly-linked list. You
     can use this to construct multi-dimensional lists, and other structures
-    together with other generic containers like zhash.
+    together with other generic containers like zhash. This is a simple
+    class. For demanding applications we recommend using zlistx.
 @discuss
     To iterate through a list, use zlist_first to get the first item, then
     loop while not null, and do zlist_next at the end of each iteration.
@@ -37,13 +38,13 @@ typedef struct _node_t {
 //  Structure of our class
 
 struct _zlist_t {
-    node_t *head;               //  First item in list, if any
-    node_t *tail;               //  Last item in list, if any
-    node_t *cursor;             //  Current cursors for iteration
-    size_t size;                //  Number of items in list
-    //  Function callbacks for duplicating and destroying items, if any
-    czmq_duplicator *duplicator;
-    czmq_destructor *destructor;
+    node_t *head;                 //  First item in list, if any
+    node_t *tail;                 //  Last item in list, if any
+    node_t *cursor;               //  Current cursors for iteration
+    size_t size;                  //  Number of items in list
+    bool autofree;                //  If true, free items in destructor
+    zlist_compare_fn *compare_fn; //  Function to compare two list item for
+                                  //  less than, equals or greater than
 };
 
 
@@ -166,8 +167,7 @@ zlist_item (zlist_t *self)
 
 //  --------------------------------------------------------------------------
 //  Append an item to the end of the list, return 0 if OK or -1 if this
-//  failed for some reason (out of memory). Note that if a duplicator has
-//  been set, this method will also duplicate the item.
+//  failed for some reason (out of memory).
 
 int
 zlist_append (zlist_t *self, void *item)
@@ -181,8 +181,8 @@ zlist_append (zlist_t *self, void *item)
         return -1;
 
     //  If necessary, take duplicate of (string) item
-    if (self->duplicator)
-        item = (self->duplicator)(item);
+    if (self->autofree)
+        item = strdup ((char *) item);
 
     node->item = item;
     if (self->tail)
@@ -201,8 +201,7 @@ zlist_append (zlist_t *self, void *item)
 
 //  --------------------------------------------------------------------------
 //  Push an item to the start of the list, return 0 if OK or -1 if this
-//  failed for some reason (out of memory). Note that if a duplicator has
-//  been set, this method will also duplicate the item.
+//  failed for some reason (out of memory).
 
 int
 zlist_push (zlist_t *self, void *item)
@@ -213,8 +212,8 @@ zlist_push (zlist_t *self, void *item)
         return -1;
 
     //  If necessary, take duplicate of (string) item
-    if (self->duplicator)
-        item = (self->duplicator)(item);
+    if (self->autofree)
+        item = strdup ((char *) item);
 
     node->item = item;
     node->next = self->head;
@@ -250,6 +249,35 @@ zlist_pop (zlist_t *self)
 
 
 //  --------------------------------------------------------------------------
+//  Checks if an item already is present. Uses compare method to determine if
+//  items are equal. If the compare method is NULL the check will only compare
+//  pointers. Returns true if item is present else false.
+
+bool
+zlist_exists (zlist_t *self, void *item)
+{
+    assert (self);
+    assert (item);
+    node_t *node = self->head;
+
+    while (node) {
+        if (self->compare_fn) {
+            if ((*self->compare_fn)(node->item, item) == 0)
+                return true;
+        }
+        else {
+            if (node->item == item) {
+                return true;
+            }
+        }
+        node = node->next;
+    }
+
+    return false;
+}
+
+
+//  --------------------------------------------------------------------------
 //  Remove the item from the list, if present. Safe to call on items that
 //  are not in the list.
 
@@ -260,8 +288,14 @@ zlist_remove (zlist_t *self, void *item)
 
     //  First off, we need to find the list node
     for (node = self->head; node != NULL; node = node->next) {
-        if (node->item == item)
-            break;
+        if (self->compare_fn) {
+            if ((*self->compare_fn)(node->item, item) == 0)
+               break;
+        }
+        else {
+            if (node->item == item)
+                break;
+        }
         prev = node;
     }
     if (node) {
@@ -275,9 +309,6 @@ zlist_remove (zlist_t *self, void *item)
         if (self->cursor == node)
             self->cursor = prev;
 
-        if (self->destructor)
-            (self->destructor)(&node->item);
-        else
         if (node->free_fn)
             (node->free_fn)(node->item);
 
@@ -288,9 +319,10 @@ zlist_remove (zlist_t *self, void *item)
 
 
 //  --------------------------------------------------------------------------
-//  Make a copy of list. If the list has a duplicator set, the copied list will
-//  duplicate all items. Otherwise, the list will hold pointers back
-//  to the items in the original list.
+//  Make a copy of list. If the list has autofree set, the copied list will
+//  duplicate all items, which must be strings. Otherwise, the list will hold
+//  pointers back to the items in the original list. If list is null, returns
+//  NULL.
 
 zlist_t *
 zlist_dup (zlist_t *self)
@@ -299,10 +331,7 @@ zlist_dup (zlist_t *self)
         return NULL;
 
     zlist_t *copy = zlist_new ();
-
     if (copy) {
-        copy->destructor = self->destructor;
-        copy->duplicator = self->duplicator;
         node_t *node;
         for (node = self->head; node; node = node->next) {
             if (zlist_append (copy, node->item) == -1) {
@@ -325,8 +354,8 @@ zlist_purge (zlist_t *self)
     node_t *node = self->head;
     while (node) {
         node_t *next = node->next;
-        if (self->destructor)
-            (self->destructor)(&node->item);
+        if (self->autofree)
+            free (node->item);
         else
         if (node->free_fn)
             (node->free_fn)(node->item);
@@ -358,23 +387,25 @@ zlist_size (zlist_t *self)
 void
 zlist_sort (zlist_t *self, zlist_compare_fn *compare)
 {
-    //  Uses a comb sort, which is simple and reasonably fast. The
-    //  algorithm is based on Wikipedia's C pseudo-code for comb sort.
+    //  If the compare function is NULL use the lists one if present
+    if (!compare && self->compare_fn)
+        compare = self->compare_fn;
+    //  Uses a comb sort, which is simple and reasonably fast.
+    //  See http://en.wikipedia.org/wiki/Comb_sort
     size_t gap = self->size;
     bool swapped = false;
     while (gap > 1 || swapped) {
         if (gap > 1)
-            gap = (size_t) ((double) gap / 1.247330950103979);
-
+            gap = (size_t) ((double) gap / 1.3);
         node_t *base = self->head;
         node_t *test = self->head;
-        int jump = gap;
+        size_t jump = gap;
         while (jump--)
             test = test->next;
 
         swapped = false;
         while (base && test) {
-            if ((*compare)(base->item, test->item)) {
+            if ((*compare)(base->item, test->item) > 0) {
                 //  It's trivial to swap items in a generic container
                 void *item = base->item;
                 base->item = test->item;
@@ -389,31 +420,21 @@ zlist_sort (zlist_t *self, zlist_compare_fn *compare)
 
 
 //  --------------------------------------------------------------------------
-//  Set a user-defined deallocator for items; by default items are not
-//  freed when the list is destroyed.
+//  Sets a compare function for this list. The function compares two items.
+//  It returns an integer less than, equal to, or greater than zero if the
+//  first item is found, respectively, to be less than, to match, or be
+//  greater than the second item.
+//  This function is used for sorting, removal and exists checking.
 
 void
-zlist_set_destructor (zlist_t *self, czmq_destructor destructor)
+zlist_comparefn (zlist_t *self,  zlist_compare_fn fn)
 {
     assert (self);
-    self->destructor = destructor;
+    self->compare_fn = fn;
 }
 
 
 //  --------------------------------------------------------------------------
-//  Set a user-defined duplicator for items; by default items are not
-//  copied when the list is duplicated.
-
-void
-zlist_set_duplicator (zlist_t *self, czmq_duplicator duplicator)
-{
-    assert (self);
-    self->duplicator = duplicator;
-}
-
-
-//  --------------------------------------------------------------------------
-//  DEPRECATED by zlist_set_duplicator/zlist_set_destructor
 //  Set a free function for the specified list item. When the item is
 //  destroyed, the free function, if any, is called on that item.
 //  Use this when list items are dynamically allocated, to ensure that
@@ -438,7 +459,6 @@ zlist_freefn (zlist_t *self, void *item, zlist_free_fn *fn, bool at_tail)
 }
 
 //  --------------------------------------------------------------------------
-//  DEPRECATED by zlist_set_duplicator/zlist_set_destructor
 //  Set list for automatic item destruction; item values MUST be strings.
 //  By default a list item refers to a value held elsewhere. When you set
 //  this, each time you append or push a list item, zlist will take a copy
@@ -452,8 +472,7 @@ void
 zlist_autofree (zlist_t *self)
 {
     assert (self);
-    zlist_set_destructor (self, (czmq_destructor *) zstr_free);
-    zlist_set_duplicator (self, (czmq_duplicator *) strdup);
+    self->autofree = true;
 }
 
 
@@ -464,13 +483,10 @@ s_zlist_free (void *data)
     zlist_destroy (&self);
 }
 
-static bool
+static int
 s_compare (void *item1, void *item2)
 {
-    if (strcmp ((char *) item1, (char *) item2) > 0)
-        return true;
-    else
-        return false;
+    return strcmp ((char *) item1, (char *) item2);
 }
 
 
@@ -495,10 +511,19 @@ zlist_test (int verbose)
 
     zlist_append (list, cheese);
     assert (zlist_size (list) == 1);
+    assert ( zlist_exists (list, cheese));
+    assert (!zlist_exists (list, bread));
+    assert (!zlist_exists (list, wine));
     zlist_append (list, bread);
     assert (zlist_size (list) == 2);
+    assert ( zlist_exists (list, cheese));
+    assert ( zlist_exists (list, bread));
+    assert (!zlist_exists (list, wine));
     zlist_append (list, wine);
     assert (zlist_size (list) == 3);
+    assert ( zlist_exists (list, cheese));
+    assert ( zlist_exists (list, bread));
+    assert ( zlist_exists (list, wine));
 
     assert (zlist_head (list) == cheese);
     assert (zlist_next (list) == cheese);
@@ -567,9 +592,29 @@ zlist_test (int verbose)
     zlist_append (list, sub_list_2);
     assert (zlist_freefn (list, sub_list, &s_zlist_free, false) == sub_list);
     assert (zlist_freefn (list, sub_list_2, &s_zlist_free, true) == sub_list_2);
-
-    //  Destructor should be safe to call twice
     zlist_destroy (&list);
+
+    //  Test autofree functionality
+    list = zlist_new ();
+    assert (list);
+    zlist_autofree (list);
+    //  Set equals function otherwise equals will not work as autofree copies strings
+    zlist_comparefn (list, s_compare);
+    zlist_push (list, bread);
+    zlist_append (list, cheese);
+    assert (zlist_size (list) == 2);
+    zlist_append (list, wine);
+    assert (zlist_exists (list, wine));
+    zlist_remove (list, wine);
+    assert (!zlist_exists (list, wine));
+    assert (streq ((const char *) zlist_first (list), bread));
+    item = (char *) zlist_pop (list);
+    assert (streq (item, bread));
+    free (item);
+    item = (char *) zlist_pop (list);
+    assert (streq (item, cheese));
+    free (item);
+
     zlist_destroy (&list);
     assert (list == NULL);
     //  @end
