@@ -1,4 +1,4 @@
-﻿/*  =========================================================================
+/*  =========================================================================
     zstr - sending and receiving strings
 
     Copyright (c) the Contributors as noted in the AUTHORS file.
@@ -30,7 +30,7 @@
 @end
 */
 
-#include "../include/czmq.h"
+#include "czmq_classes.h"
 
 static int
 s_send_string (void *dest, bool more, char *string)
@@ -42,7 +42,13 @@ s_send_string (void *dest, bool more, char *string)
     zmq_msg_t message;
     zmq_msg_init_size (&message, len);
     memcpy (zmq_msg_data (&message), string, len);
-    if (zmq_sendmsg (handle, &message, more ? ZMQ_SNDMORE : 0) == -1) {
+
+#if defined (ZMQ_SERVER)
+    //  Set routing ID if we're sending to a SERVER socket (ZMQ 4.2 and later)
+    if (zsock_is (dest) && zsock_type (dest) == ZMQ_SERVER)
+        zmq_msg_set_routing_id (&message, zsock_routing_id ((zsock_t *) dest));
+#endif
+    if (zmq_sendmsg (handle, &message, more? ZMQ_SNDMORE: 0) == -1) {
         zmq_msg_close (&message);
         return -1;
     }
@@ -67,6 +73,11 @@ zstr_recv (void *source)
     if (zmq_recvmsg (handle, &message, 0) < 0)
         return NULL;
 
+#if defined (ZMQ_SERVER)
+    //  Grab routing ID if we're reading from a SERVER socket (ZMQ 4.2 and later)
+    if (zsock_is (source) && zsock_type (source) == ZMQ_SERVER)
+        zsock_set_routing_id ((zsock_t *) source, zmq_msg_routing_id (&message));
+#endif
     size_t size = zmq_msg_size (&message);
     char *string = (char *) malloc (size + 1);
     if (string) {
@@ -75,6 +86,49 @@ zstr_recv (void *source)
     }
     zmq_msg_close (&message);
     return string;
+}
+
+
+//  --------------------------------------------------------------------------
+//  Receive a series of strings (until NULL) from multipart data.
+//  Each string is allocated and filled with string data; if there
+//  are not enough frames, unallocated strings are set to NULL.
+//  Returns -1 if the message could not be read, else returns the
+//  number of strings filled, zero or more. Free each returned string
+//  using zstr_free(). If not enough strings are provided, remaining
+//  multipart frames in the message are dropped.
+
+int
+zstr_recvx (void *source, char **string_p, ...)
+{
+    assert (source);
+    void *handle = zsock_resolve (source);
+
+    zmsg_t *msg = zmsg_recv (handle);
+    if (!msg)
+        return -1;
+
+#if defined (ZMQ_SERVER)
+    //  Grab routing ID if we're reading from a SERVER socket (ZMQ 4.2 and later)
+    if (zsock_is (source) && zsock_type (source) == ZMQ_SERVER)
+        zsock_set_routing_id ((zsock_t *) source, zmsg_routing_id (msg));
+#endif
+    //  Filter a signal that may come from a dying actor
+    if (zmsg_signal (msg) >= 0) {
+        zmsg_destroy (&msg);
+        return -1;
+    }
+    int count = 0;
+    va_list args;
+    va_start (args, string_p);
+    while (string_p) {
+        *string_p = zmsg_popstr (msg);
+        string_p = va_arg (args, char **);
+        count++;
+    }
+    va_end (args);
+    zmsg_destroy (&msg);
+    return count;
 }
 
 
@@ -88,7 +142,7 @@ int
 zstr_send (void *dest, const char *string)
 {
     assert (dest);
-    return s_send_string (dest, false, string ? (char *) string : "");
+    return s_send_string (dest, false, string? (char *) string: "");
 }
 
 
@@ -126,7 +180,7 @@ zstr_sendf (void *dest, const char *format, ...)
     va_end (argptr);
 
     int rc = s_send_string (dest, false, string);
-    free (string);
+    zstr_free (&string);
     return rc;
 }
 
@@ -151,7 +205,7 @@ zstr_sendfm (void *dest, const char *format, ...)
     va_end (argptr);
 
     int rc = s_send_string (dest, true, string);
-    free (string);
+    zstr_free (&string);
     return rc;
 }
 
@@ -173,45 +227,27 @@ zstr_sendx (void *dest, const char *string, ...)
         string = va_arg (args, char *);
     }
     va_end (args);
+
+#if defined (ZMQ_SERVER)
+    //  Grab routing ID if we're reading from a SERVER socket (ZMQ 4.2 and later)
+    if (zsock_is (dest) && zsock_type (dest) == ZMQ_SERVER)
+        zmsg_set_routing_id (msg, zsock_routing_id ((zsock_t *) dest));
+#endif
     return zmsg_send (&msg, dest);
 }
 
 
 //  --------------------------------------------------------------------------
-//  Receive a series of strings (until NULL) from multipart data.
-//  Each string is allocated and filled with string data; if there
-//  are not enough frames, unallocated strings are set to NULL.
-//  Returns -1 if the message could not be read, else returns the
-//  number of strings filled, zero or more. Free each returned string
-//  using zstr_free(). If not enough strings are provided, remaining
-//  multipart frames in the message are dropped.
+//  Accepts a void pointer and returns a fresh character string. If source is
+//  null, returns an empty string.
 
-int
-zstr_recvx (void *source, char **string_p, ...)
+char *
+zstr_str (void *source)
 {
-    assert (source);
-    void *handle = zsock_resolve (source);
-
-    zmsg_t *msg = zmsg_recv (handle);
-    if (!msg)
-        return -1;
-
-    //  Filter a signal that may come from a dying actor
-    if (zmsg_signal (msg) >= 0) {
-        zmsg_destroy (&msg);
-        return -1;
-    }
-    int count = 0;
-    va_list args;
-    va_start (args, string_p);
-    while (string_p) {
-        *string_p = zmsg_popstr (msg);
-        string_p = va_arg (args, char **);
-        count++;
-    }
-    va_end (args);
-    zmsg_destroy (&msg);
-    return count;
+    if (source)
+        return strdup ((char *) source);
+    else
+        return strdup ("");
 }
 
 
@@ -293,6 +329,58 @@ zstr_test (bool verbose)
 
     zsock_destroy (&input);
     zsock_destroy (&output);
+
+#if defined (ZMQ_SERVER)
+    //  Test SERVER/CLIENT over zstr
+    zsock_t *server = zsock_new_server ("inproc://zstr-test-routing");
+    zsock_t *client = zsock_new_client ("inproc://zstr-test-routing");;
+    assert (server);
+    assert (client);
+
+    //  Try normal ping-pong to check reply routing ID
+    int rc = zstr_send (client, "Hello");
+    assert (rc == 0);
+    char *request = zstr_recv (server);
+    assert (streq (request, "Hello"));
+    assert (zsock_routing_id (server));
+    free (request);
+
+    rc = zstr_send (server, "World");
+    assert (rc == 0);
+    char *reply = zstr_recv (client);
+    assert (streq (reply, "World"));
+    free (reply);
+
+    rc = zstr_sendf (server, "%s", "World");
+    assert (rc == 0);
+    reply = zstr_recv (client);
+    assert (streq (reply, "World"));
+    free (reply);
+
+    //  Try ping-pong using sendx and recx
+    rc = zstr_sendx (client, "Hello", NULL);
+    assert (rc == 0);
+    rc = zstr_recvx (server, &request, NULL);
+    assert (rc >= 0);
+    assert (streq (request, "Hello"));
+    free (request);
+
+    rc = zstr_sendx (server, "World", NULL);
+    assert (rc == 0);
+    rc = zstr_recvx (client, &reply, NULL);
+    assert (rc >= 0);
+    assert (streq (reply, "World"));
+    free (reply);
+
+    //  Client and server disallow multipart
+    rc = zstr_sendm (client, "Hello");
+    assert (rc == -1);
+    rc = zstr_sendm (server, "World");
+    assert (rc == -1);
+
+    zsock_destroy (&client);
+    zsock_destroy (&server);
+#endif
     //  @end
 
     printf ("OK\n");

@@ -29,7 +29,7 @@
 @end
 */
 
-#include "../include/czmq.h"
+#include "czmq_classes.h"
 #include "./zgossip_msg.h"
 
 //  Structure of our class
@@ -65,7 +65,7 @@ struct _zgossip_msg_t {
 
 //  Put a 1-byte number to the frame
 #define PUT_NUMBER1(host) { \
-    *(byte *) self->needle = (host); \
+    *(byte *) self->needle = (byte) (host); \
     self->needle++; \
 }
 
@@ -589,13 +589,13 @@ zgossip_msg_set_ttl (zgossip_msg_t *self, uint32_t ttl)
 //  --------------------------------------------------------------------------
 //  Selftest
 
-int
+void
 zgossip_msg_test (bool verbose)
 {
     printf (" * zgossip_msg:");
 
-    //  Silence an "unused" warning by "using" the verbose variable
-    if (verbose) {;}
+    if (verbose)
+        printf ("\n");
 
     //  @selftest
     //  Simple create/destroy test
@@ -681,5 +681,4 @@ zgossip_msg_test (bool verbose)
     //  @end
 
     printf ("OK\n");
-    return 0;
 }

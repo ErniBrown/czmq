@@ -1,4 +1,4 @@
-﻿/*  =========================================================================
+/*  =========================================================================
     zchunk - work with memory chunks
 
     Copyright (c) the Contributors as noted in the AUTHORS file.
@@ -13,13 +13,13 @@
 /*
 @header
     The zchunk class works with variable sized blobs. Not as efficient as
-    MQ's messages but they do less weirdness and so are easier to understand.
+    ZeroMQ's messages but they do less weirdness and so are easier to understand.
     The chunk class has methods to read and write chunks from disk.
 @discuss
 @end
 */
 
-#include "../include/czmq.h"
+#include "czmq_classes.h"
 
 //  zchunk_t instances always have this tag as the first 4 octets of
 //  their data, which lets us do runtime object typing & validation.
@@ -47,6 +47,7 @@ zchunk_new (const void *data, size_t size)
 {
     //  Use malloc, not zmalloc, to avoid nullification costs
     zchunk_t *self = (zchunk_t *) malloc (sizeof (zchunk_t) + size);
+    //  Catch memory exhaustion in this specific class
     if (self) {
         self->tag = ZCHUNK_TAG;
         self->size = 0;
@@ -186,8 +187,8 @@ zchunk_fill (zchunk_t *self, byte filler, size_t size)
 
 //  --------------------------------------------------------------------------
 //  Append user-supplied data to chunk, return resulting chunk size. If the
-//  data would exceeed the available space, it is truncated. If you want to
-//  grow the chunk to accomodate new data, use the zchunk_extend method.
+//  data would exceeded the available space, it is truncated. If you want to
+//  grow the chunk to accommodate new data, use the zchunk_extend method.
 
 size_t
 zchunk_append (zchunk_t *self, const void *data, size_t size)
@@ -207,7 +208,7 @@ zchunk_append (zchunk_t *self, const void *data, size_t size)
 
 //  --------------------------------------------------------------------------
 //  Append user-supplied data to chunk, return resulting chunk size. If the
-//  data would exceeed the available space, the chunk grows in size.
+//  data would exceeded the available space, the chunk grows in size.
 
 size_t
 zchunk_extend (zchunk_t *self, const void *data, size_t size)

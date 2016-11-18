@@ -1,25 +1,13 @@
-﻿/*  =========================================================================
+/*  =========================================================================
     zdir - work with file-system directories
 
-    -------------------------------------------------------------------------
-    Copyright (c) 1991-2014 iMatix Corporation <www.imatix.com>
-    Copyright other contributors as noted in the AUTHORS file.
-
+    Copyright (c) the Contributors as noted in the AUTHORS file.
     This file is part of CZMQ, the high-level C binding for 0MQ:
     http://czmq.zeromq.org.
 
-    This is free software; you can redistribute it and/or modify it under
-    the terms of the GNU Lesser General Public License as published by the
-    Free Software Foundation; either version 3 of the License, or (at your
-    option) any later version.
-
-    This software is distributed in the hope that it will be useful, but
-    WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTA-
-    BILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General
-    Public License for more details.
-
-    You should have received a copy of the GNU Lesser General Public License
-    along with this program. If not, see http://www.gnu.org/licenses/.
+    This Source Code Form is subject to the terms of the Mozilla Public
+    License, v. 2.0. If a copy of the MPL was not distributed with this
+    file, You can obtain one at http://mozilla.org/MPL/2.0/.
     =========================================================================*/
 
 /*
@@ -32,7 +20,7 @@
 @end
 */
 
-#include "../include/czmq.h"
+#include "czmq_classes.h"
 
 //  Structure of our class
 
@@ -103,6 +91,9 @@ s_posix_populate_entry (zdir_t *self, struct dirent *entry)
 }
 #endif
 
+#ifndef WIN32
+static pthread_mutex_t s_readdir_mutex = PTHREAD_MUTEX_INITIALIZER;
+#endif
 
 //  --------------------------------------------------------------------------
 //  Create a new directory item that loads in the full tree of the specified
@@ -113,8 +104,7 @@ zdir_t *
 zdir_new (const char *path, const char *parent)
 {
     zdir_t *self = (zdir_t *) zmalloc (sizeof (zdir_t));
-    if (!self)
-        return NULL;
+    assert (self);
 
     if (parent) {
         if (streq (parent, "-")) {
@@ -188,22 +178,22 @@ zdir_new (const char *path, const char *parent)
 
     DIR *handle = opendir (self->path);
     if (handle) {
-        //  Calculate system-specific size of dirent block
-        int dirent_size = offsetof (struct dirent, d_name)
-                          + pathconf (self->path, _PC_NAME_MAX) + 1;
-        struct dirent *entry = (struct dirent *) zmalloc (dirent_size);
-        if (!entry) {
-            zdir_destroy (&self);
-            return NULL;
-        }
-        struct dirent *result;
-
-        int rc = readdir_r (handle, entry, &result);
-        while (rc == 0 && result != NULL) {
+        // readdir_r is deprecated in glibc 2.24, but readdir is still not
+        // guaranteed to be thread safe if the same directory is accessed
+        // by different threads at the same time. Unfortunately given it was
+        // not a constraint before we cannot change it now as it would be an
+        // API breakage. Use a global lock when scanning the directory to
+        // work around it.
+        pthread_mutex_lock (&s_readdir_mutex);
+        struct dirent *entry = readdir (handle);
+        pthread_mutex_unlock (&s_readdir_mutex);
+        while (entry != NULL) {
+            // Beware of recursion. Lock only around readdir calls.
             s_posix_populate_entry (self, entry);
-            rc = readdir_r (handle, entry, &result);
+            pthread_mutex_lock (&s_readdir_mutex);
+            entry = readdir (handle);
+            pthread_mutex_unlock (&s_readdir_mutex);
         }
-        free (entry);
         closedir (handle);
     }
 #endif
@@ -547,7 +537,7 @@ zdir_resync (zdir_t *self, const char *alias)
     zlist_t *patches = zlist_new ();
     if (!patches)
         return NULL;
-    
+
     zfile_t **files = zdir_flatten (self);
     uint index;
     for (index = 0;; index++) {
@@ -664,7 +654,8 @@ s_on_read_timer (zloop_t *loop, int timer_id, void *arg)
 {
     zdir_watch_t *watch = (zdir_watch_t *) arg;
 
-    for (void *data = zhash_first (watch->subs); data != NULL; data = zhash_next (watch->subs))
+    void *data;
+    for (data = zhash_first (watch->subs); data != NULL; data = zhash_next (watch->subs))
     {
         zdir_watch_sub_t *sub = (zdir_watch_sub_t *) data;
 
@@ -695,7 +686,7 @@ s_on_read_timer (zloop_t *loop, int timer_id, void *arg)
                 zsys_info ("zdir_watch: Found %d changes in %s:", zlist_size (diff), zdir_path (sub->dir));
                 while (patch)
                 {
-                    zsys_info ("zdir_watch:   %s %s", zfile_filename (zdir_patch_file (patch), NULL), zdir_patch_op (patch) == ZDIR_PATCH_CREATE ? "created" : "deleted");
+                    zsys_info ("zdir_watch:   %s %s", zfile_filename (zdir_patch_file (patch), NULL), zdir_patch_op (patch) == ZDIR_PATCH_CREATE? "created": "deleted");
                     patch = (zdir_patch_t *) zlist_next (diff);
                 }
             }
@@ -725,6 +716,7 @@ s_zdir_watch_destroy (zdir_watch_t **watch_p)
         zdir_watch_t *watch = *watch_p;
 
         zloop_destroy (&watch->loop);
+        zhash_destroy (&watch->subs);
 
         free (watch);
         *watch_p = NULL;
@@ -832,6 +824,8 @@ s_on_command (zloop_t *loop, zsock_t *reader, void *arg)
         zsys_info ("zdir_watch: Command received: %s", command);
 
     if (streq (command, "$TERM")) {
+        zstr_free (&command);
+        zmsg_destroy (&msg);
         return -1;
     }
     else
@@ -887,6 +881,7 @@ s_on_command (zloop_t *loop, zsock_t *reader, void *arg)
     }
 
     free (command);
+    zmsg_destroy (&msg);
     return 0;
 }
 
@@ -935,13 +930,22 @@ zdir_test (bool verbose)
     printf (" * zdir: ");
 
     //  @selftest
-    zdir_t *older = zdir_new (".", NULL);
+    // need to create a file in the test directory we're watching
+    // in order to ensure the directory exists
+    zfile_t *initfile = zfile_new ("./zdir-test-dir", "initial_file");
+    assert (initfile);
+    zfile_output (initfile);
+    fprintf (zfile_handle (initfile), "initial file\n");
+    zfile_close (initfile);
+    zfile_destroy (&initfile);
+
+    zdir_t *older = zdir_new ("zdir-test-dir", NULL);
     assert (older);
     if (verbose) {
         printf ("\n");
         zdir_dump (older, 0);
     }
-    zdir_t *newer = zdir_new ("..", NULL);
+    zdir_t *newer = zdir_new (".", NULL);
     assert (newer);
     zlist_t *patches = zdir_diff (older, newer, "/");
     assert (patches);
@@ -965,15 +969,6 @@ zdir_test (bool verbose)
         assert (zsock_wait (watch) == 0);
     }
 
-    // need to create a file in the test directory we're watching
-    // in order to ensure the directory exists
-    zfile_t *initfile = zfile_new ("./zdir-test-dir", "initial_file");
-    assert (initfile);
-    zfile_output (initfile);
-    fprintf (zfile_handle (initfile), "initial file\n");
-    zfile_close (initfile);
-    zfile_destroy (&initfile);
-
     zclock_sleep (1001); // wait for initial file to become 'stable'
 
     zsock_send (watch, "si", "TIMEOUT", 100);
@@ -996,7 +991,7 @@ zdir_test (bool verbose)
     zpoller_t *watch_poll = zpoller_new (watch, NULL);
 
     // poll for a certain timeout before giving up and failing the test.
-    assert(zpoller_wait (watch_poll, 1001) == watch);
+    assert (zpoller_wait (watch_poll, 1001) == watch);
 
     // wait for notification of the file being added
     char *path;
@@ -1022,7 +1017,7 @@ zdir_test (bool verbose)
     zfile_destroy (&newfile);
 
     // poll for a certain timeout before giving up and failing the test.
-    assert(zpoller_wait (watch_poll, 1001) == watch);
+    assert (zpoller_wait (watch_poll, 1001) == watch);
 
     // wait for notification of the file being removed
     rc = zsock_recv (watch, "sp", &path, &patches);
