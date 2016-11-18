@@ -28,7 +28,7 @@
 //  CZMQ version macros for compile-time API detection
 #define CZMQ_VERSION_MAJOR 4
 #define CZMQ_VERSION_MINOR 0
-#define CZMQ_VERSION_PATCH 0
+#define CZMQ_VERSION_PATCH 1
 
 #define CZMQ_MAKE_VERSION(major, minor, patch) \
     ((major) * 10000 + (minor) * 100 + (patch))
@@ -49,8 +49,14 @@
 #   else
 #       define CZMQ_EXPORT __declspec(dllimport)
 #   endif
+#   define CZMQ_PRIVATE
 #else
 #   define CZMQ_EXPORT
+#   if (defined __GNUC__ && __GNUC__ >= 4) || defined __INTEL_COMPILER
+#       define CZMQ_PRIVATE __attribute__ ((visibility ("hidden")))
+#   else
+#       define CZMQ_PRIVATE
+#   endif
 #endif
 
 //  Opaque class structures to allow forward references
