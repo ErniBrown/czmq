@@ -233,8 +233,9 @@ install(
 ########################################################################
 # tests
 ########################################################################
+find_package(Threads REQUIRED)
 add_executable(czmq_selftest "${SOURCE_DIR}/src/czmq_selftest.c")
-target_link_libraries(czmq_selftest czmq ${ZEROMQ_LIBRARIES})
+target_link_libraries(czmq_selftest czmq ${ZEROMQ_LIBRARIES} Threads::Threads)
 add_test(czmq_selftest czmq_selftest)
 
 ########################################################################
